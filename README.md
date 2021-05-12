@@ -1,7 +1,7 @@
 Project Sandiego
 ==============================
 
-template for the team to use
+Project Sandiego will glean information from open source-ecosystem data sets that can help drive community- and business-oriented decision making. Using data-analysis tools built by OSPO and IBM Research, as well as community metric tools from Project CHAOSS, Sandiego will enable contributors and participants to ask questions and make data-informed decisions about open source projects and communities.
 
 Project Organization
 ------------
