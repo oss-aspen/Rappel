@@ -1,4 +1,4 @@
-project-template
+Project Sandiego
 ==============================
 
 template for the team to use
