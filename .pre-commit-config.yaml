@@ -39,7 +39,7 @@ repos:
     hooks:
       - id: mypy
         exclude: '^(docs|tasks|tests)|setup\.py'
-        args: [--ignore-missing-imports]
+        args: ["--ignore-missing-imports"]
 
   - repo: https://github.com/psf/black
     rev: 21.6b0
@@ -47,7 +47,7 @@ repos:
       - id: black
 
   - repo: https://github.com/tomcatling/black-nb
-    rev: '0.5.0'
+    rev: "0.5.0"
     hooks:
       - id: black-nb
 
@@ -61,6 +61,7 @@ repos:
     rev: v0.3.0
     hooks:
       - id: flake8-nb
-        additional_dependencies: ['pep8-naming']
+        additional_dependencies: ["pep8-naming"]
         # Ignore all format-related checks as Black takes care of those.
-        args: ['--ignore', 'E2,W5', '--select', 'E,W,F,N', '--max-line-length=120']
+        args:
+          ["--ignore", "E2,W5", "--select", "E,W,F,N", "--max-line-length=120"]
