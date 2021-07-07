@@ -3,15 +3,14 @@ tls_verify: false
 requirements_format: pipenv
 
 runtime_environments:
-  - name: rhel:8
+  - name: "ubi8"
     operating_system:
-      name: rhel
-      version: "8"
+      name: ubi
+      version: "8.0"
     python_version: "3.8"
     recommendation_type: latest
 
 managers:
-  - name: pipfile-requirements
   - name: update
     configuration:
       labels: [bot]
@@ -19,8 +18,10 @@ managers:
   - name: version
     configuration:
       maintainers:
-        - tumido
+        - sesheta
+        - cdolfi
       assignees:
         - sesheta
       labels: [bot]
       changelog_file: true
+      changelog_smart: true
