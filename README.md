@@ -3,6 +3,11 @@ Project Sandiego
 
 Project Sandiego will glean information from open source-ecosystem data sets that can help drive community- and business-oriented decision making. Using data-analysis tools built by OSPO and IBM Research, as well as community metric tools from Project CHAOSS, Sandiego will enable contributors and participants to ask questions and make data-informed decisions about open source projects and communities.
 
+Project Discussion
+------------
+
+We have a [Matrix](https://matrix.org) room for discussion of anything Sandiego-related. Come chat with us in [#sandiego-rh:matrix.org](https://matrix.to/#/!eSeeqXiNqjrlNaeAdQ:matrix.org)!
+
 Project Organization
 ------------
 
