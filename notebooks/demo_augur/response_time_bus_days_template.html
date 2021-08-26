@@ -94,13 +94,40 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../START_HERE.html">
-   Introduction to connecting and Querrying the Augur DB
+   Introduction to connecting and Querying the Augur DB
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Demo Augur
+  Preliminary Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Reports
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -234,51 +261,34 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   PR Response Time Analysis (Business Days)
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
+   Control Cell - Set Variables and Filters
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-database-connection-and-imports">
-   Setting up database connection and imports
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
-     Control Cell - Set Variables and Filters
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gathering-and-processing-the-data">
    Gathering and Processing the Data
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#getting-the-data-from-your-augur-database">
      Getting the data from your Augur database
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#setting-up-the-dataframe">
      Setting up the Dataframe
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#calculating-whether-responses-are-within-business-days-threshold-and-adding-analysis-to-title">
-     Calculating Whether Responses are within Business Days Threshold and Adding Analysis to Title
-    </a>
-   </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotting-the-results">
    Plotting the Results
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#optional-step-if-you-would-like-to-save-the-figure">
      Optional step if you would like to save the figure
     </a>
@@ -303,9 +313,6 @@ a reasonable timeframe by comparing response times to a number of business
 days threshold / expectation that you set.</p>
 <hr class="docutils" />
 <p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
-</div>
-<div class="section" id="setting-up-database-connection-and-imports">
-<h1>Setting up database connection and imports<a class="headerlink" href="#setting-up-database-connection-and-imports" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -339,6 +346,7 @@ days threshold / expectation that you set.</p>
 </div>
 <div class="section" id="control-cell-set-variables-and-filters">
 <h2>Control Cell - Set Variables and Filters<a class="headerlink" href="#control-cell-set-variables-and-filters" title="Permalink to this headline">¶</a></h2>
+<p>The cell below is for generating repo_ids from the repo names. For this to work, the repo must already be in the database. If you want to manually assign a repo_id skip the cell below and read the comments on the next cell.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name here of the repo you want to query if known (and in the database)</span>
@@ -386,11 +394,10 @@ days threshold / expectation that you set.</p>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="gathering-and-processing-the-data">
-<h1>Gathering and Processing the Data<a class="headerlink" href="#gathering-and-processing-the-data" title="Permalink to this headline">¶</a></h1>
+<h2>Gathering and Processing the Data<a class="headerlink" href="#gathering-and-processing-the-data" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="getting-the-data-from-your-augur-database">
-<h2>Getting the data from your Augur database<a class="headerlink" href="#getting-the-data-from-your-augur-database" title="Permalink to this headline">¶</a></h2>
+<h3>Getting the data from your Augur database<a class="headerlink" href="#getting-the-data-from-your-augur-database" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -535,7 +542,7 @@ days threshold / expectation that you set.</p>
 </div>
 </div>
 <div class="section" id="setting-up-the-dataframe">
-<h2>Setting up the Dataframe<a class="headerlink" href="#setting-up-the-dataframe" title="Permalink to this headline">¶</a></h2>
+<h3>Setting up the Dataframe<a class="headerlink" href="#setting-up-the-dataframe" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BusinessDay</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">bus_days</span><span class="p">)</span> 
@@ -560,9 +567,7 @@ days threshold / expectation that you set.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="calculating-whether-responses-are-within-business-days-threshold-and-adding-analysis-to-title">
-<h2>Calculating Whether Responses are within Business Days Threshold and Adding Analysis to Title<a class="headerlink" href="#calculating-whether-responses-are-within-business-days-threshold-and-adding-analysis-to-title" title="Permalink to this headline">¶</a></h2>
+<p><strong>Calculating Whether Responses are within Business Days Threshold and Adding Analysis to Title</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">risk_num</span> <span class="o">=</span> <span class="mi">0</span>
@@ -573,7 +578,7 @@ days threshold / expectation that you set.</p>
     <span class="k">if</span> <span class="p">(</span><span class="n">percent</span> <span class="o">&gt;</span> <span class="mf">0.10</span> <span class="ow">and</span> <span class="n">year_month</span> <span class="o">&gt;=</span> <span class="n">six_months</span><span class="p">):</span>
         <span class="n">risk_num</span><span class="o">+=</span><span class="mi">1</span>
 
-<span class="n">title</span> <span class="o">=</span> <span class="n">repo_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Timely Responses:&quot;</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">repo_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Timely Responses:&quot;</span>
 
 <span class="k">if</span> <span class="n">risk_num</span> <span class="o">&gt;=</span> <span class="n">bus_days</span><span class="p">:</span>
     <span class="n">title</span> <span class="o">+=</span> <span class="s2">&quot; AT RISK</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">risk_num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; month(s) with &gt; 10</span><span class="si">% o</span><span class="s2">f pull requests not responded to within &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bus_days</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; business days in the past 6 months.&quot;</span>
@@ -588,7 +593,7 @@ days threshold / expectation that you set.</p>
 </div>
 </div>
 <div class="section" id="plotting-the-results">
-<h1>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Permalink to this headline">¶</a></h1>
+<h2>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
@@ -612,15 +617,16 @@ days threshold / expectation that you set.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/response_time_bus_days_template_13_0.png" src="../../_images/response_time_bus_days_template_13_0.png" />
+<img alt="../../_images/response_time_bus_days_template_12_0.png" src="../../_images/response_time_bus_days_template_12_0.png" />
 </div>
 </div>
 <div class="section" id="optional-step-if-you-would-like-to-save-the-figure">
-<h2>Optional step if you would like to save the figure<a class="headerlink" href="#optional-step-if-you-would-like-to-save-the-figure" title="Permalink to this headline">¶</a></h2>
+<h3>Optional step if you would like to save the figure<a class="headerlink" href="#optional-step-if-you-would-like-to-save-the-figure" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;outputs/bus_days.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
