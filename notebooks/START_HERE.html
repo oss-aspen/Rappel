@@ -1,0 +1,1990 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to connecting and Querrying the Augur DB &#8212; Sandiego</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="New Contributor Analysis" href="demo_augur/new_contributor_template.html" />
+    <link rel="prev" title="Project Sandiego" href="../README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to connecting and Querrying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Demo Augur
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/START_HERE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/START_HERE.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/START_HERE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/START_HERE.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-your-database">
+   Connect to your database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieve-available-respositories">
+     Retrieve Available Respositories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries">
+     Create a Simpler List for quickly Identifying repo_group_id’s and repo_id’s for other queries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries">
+     Create a list of all of the tables with the total number of data entries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-from-the-messages">
+     Data from the messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributor-affiliation-data">
+     Contributor affiliation data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-connecting-and-querrying-the-augur-db">
+<h1>Introduction to connecting and Querrying the Augur DB<a class="headerlink" href="#introduction-to-connecting-and-querrying-the-augur-db" title="Permalink to this headline">¶</a></h1>
+<p>If you made to this point, welcome! :) This short tutorial will show how to connect to the database and how to do a simple querry. If you need the config file please email <a class="reference external" href="mailto:cdolfi&#37;&#52;&#48;redhat&#46;com">cdolfi<span>&#64;</span>redhat<span>&#46;</span>com</a></p>
+<p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
+<div class="section" id="connect-to-your-database">
+<h2>Connect to your database<a class="headerlink" href="#connect-to-your-database" title="Permalink to this headline">¶</a></h2>
+<p>Until the Operate First enviroment can connect to the DB, use config file to access. Do not push config file to Github repo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="retrieve-available-respositories">
+<h3>Retrieve Available Respositories<a class="headerlink" href="#retrieve-available-respositories" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT a.rg_name,</span>
+<span class="s2">                a.repo_group_id,</span>
+<span class="s2">                b.repo_name,</span>
+<span class="s2">                b.repo_id,</span>
+<span class="s2">                b.forked_from,</span>
+<span class="s2">                b.repo_archived,</span>
+<span class="s2">                b.repo_git</span>
+<span class="s2">            FROM</span>
+<span class="s2">                repo_groups a,</span>
+<span class="s2">                repo b</span>
+<span class="s2">            WHERE</span>
+<span class="s2">                a.repo_group_id = b.repo_group_id</span>
+<span class="s2">            ORDER BY</span>
+<span class="s2">                rg_name,</span>
+<span class="s2">                repo_name;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">repolist</span><span class="p">)</span>
+<span class="n">repolist</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rg_name</th>
+      <th>repo_group_id</th>
+      <th>repo_name</th>
+      <th>repo_id</th>
+      <th>forked_from</th>
+      <th>repo_archived</th>
+      <th>repo_git</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Default Repo Group</td>
+      <td>1</td>
+      <td>augur</td>
+      <td>1</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/augur.git</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25442</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/labs.git</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25443</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/velero-examples.git</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25445</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/move2kube-demos.git</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25446</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/tackle-documentati...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25497</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/tackle-commons-res...</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25498</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/eng-kbase.git</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25486</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/mtc-breakfix.git</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25441</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/mig-demo-apps.git</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>konveyor</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>25499</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/konveyor/enhancements.git</td>
+    </tr>
+  </tbody>
+</table>
+<p>71 rows × 7 columns</p>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rg_name          object
+repo_group_id     int64
+repo_name        object
+repo_id           int64
+forked_from      object
+repo_archived     int64
+repo_git         object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries">
+<h3>Create a Simpler List for quickly Identifying repo_group_id’s and repo_id’s for other queries<a class="headerlink" href="#create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT b.repo_id,</span>
+<span class="s2">                a.repo_group_id,</span>
+<span class="s2">                b.repo_name,</span>
+<span class="s2">                a.rg_name,</span>
+<span class="s2">                b.repo_git</span>
+<span class="s2">            FROM</span>
+<span class="s2">                repo_groups a,</span>
+<span class="s2">                repo b </span>
+<span class="s2">            WHERE</span>
+<span class="s2">                a.repo_group_id = b.repo_group_id </span>
+<span class="s2">            ORDER BY</span>
+<span class="s2">                rg_name,</span>
+<span class="s2">                repo_name;   </span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">150</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_id</th>
+      <th>repo_group_id</th>
+      <th>repo_name</th>
+      <th>rg_name</th>
+      <th>repo_git</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>25490</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/crane-ui-tests.git</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>25491</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/mig-ci.git</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>25492</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/tackle-config-disc...</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>25493</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/must-gather.git</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>25494</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/data-mover.git</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>25495</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/virt-payload.git</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>25484</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/mig-analytics-tool...</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>25496</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/wadsworth.git</td>
+    </tr>
+    <tr>
+      <th>58</th>
+      <td>25430</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/move2kube.git</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>25431</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/pelorus.git</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>25438</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/forklift-controlle...</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>25444</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/move2kube-operator...</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>25450</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/tackle-ui.git</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>25456</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/tackle-application...</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>25483</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/crane.git</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>25485</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/rsync-transfer.git</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>25497</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/tackle-commons-res...</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>25498</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/eng-kbase.git</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>25486</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/mtc-breakfix.git</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>25441</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/mig-demo-apps.git</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>25499</td>
+      <td>101</td>
+      <td>NULL</td>
+      <td>konveyor</td>
+      <td>https://github.com/konveyor/enhancements.git</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries">
+<h3>Create a list of all of the tables with the total number of data entries<a class="headerlink" href="#create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                ANALYZE;</span>
+<span class="s2">                SELECT schemaname,relname,n_live_tup </span>
+<span class="s2">                  FROM pg_stat_user_tables </span>
+<span class="s2">                  ORDER BY n_live_tup DESC;</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span><span class="p">[:</span><span class="mi">35</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>schemaname</th>
+      <th>relname</th>
+      <th>n_live_tup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur_data</td>
+      <td>pull_request_files</td>
+      <td>137311</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur_data</td>
+      <td>issue_events</td>
+      <td>67098</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur_data</td>
+      <td>pull_request_events</td>
+      <td>51052</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur_data</td>
+      <td>pull_request_commits</td>
+      <td>41075</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur_data</td>
+      <td>message</td>
+      <td>20023</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>augur_data</td>
+      <td>pull_request_meta</td>
+      <td>14943</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>augur_data</td>
+      <td>pull_request_reviews</td>
+      <td>11630</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>augur_data</td>
+      <td>issues</td>
+      <td>10242</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>augur_data</td>
+      <td>issue_message_ref</td>
+      <td>9932</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>augur_data</td>
+      <td>pull_requests</td>
+      <td>7507</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>augur_data</td>
+      <td>pull_request_review_message_ref</td>
+      <td>6399</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>augur_data</td>
+      <td>contributors</td>
+      <td>5176</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>augur_data</td>
+      <td>issue_labels</td>
+      <td>4988</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>augur_operations</td>
+      <td>worker_history</td>
+      <td>2890</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>augur_data</td>
+      <td>pull_request_labels</td>
+      <td>2563</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>augur_data</td>
+      <td>pull_request_reviewers</td>
+      <td>2320</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>augur_data</td>
+      <td>issue_assignees</td>
+      <td>1261</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>augur_data</td>
+      <td>pull_request_message_ref</td>
+      <td>1072</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>augur_data</td>
+      <td>contributor_affiliations</td>
+      <td>703</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>augur_data</td>
+      <td>repo_info</td>
+      <td>673</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>augur_data</td>
+      <td>pull_request_assignees</td>
+      <td>491</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>spdx</td>
+      <td>licenses</td>
+      <td>322</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>augur_data</td>
+      <td>repo_insights</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>augur_data</td>
+      <td>chaoss_metric_status</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>augur_data</td>
+      <td>repo</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>custom</td>
+      <td>subprojects</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>custom</td>
+      <td>repotemp</td>
+      <td>70</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>augur_data</td>
+      <td>merge_data_0_3014364</td>
+      <td>53</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>custom</td>
+      <td>contribs</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>augur_data</td>
+      <td>merge_data_0_3708870</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>augur_data</td>
+      <td>merge_data_0_3610</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>augur_data</td>
+      <td>releases</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>augur_data</td>
+      <td>repo_insights_records</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>spdx</td>
+      <td>relationship_types</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>augur_operations</td>
+      <td>worker_job</td>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Congrats you have done your first queries! There will be a few more simple examples below on how to pull an entire table. If you would like to explore on your own, the schema.png on the home sandiego directory will be greatly helpful in your explorations! Happy querying :)</p>
+</div>
+<div class="section" id="data-from-the-messages">
+<h3>Data from the messages<a class="headerlink" href="#data-from-the-messages" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT * FROM message</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>msg_id</th>
+      <th>rgls_id</th>
+      <th>msg_text</th>
+      <th>msg_timestamp</th>
+      <th>msg_sender_email</th>
+      <th>msg_header</th>
+      <th>pltfrm_id</th>
+      <th>tool_source</th>
+      <th>tool_version</th>
+      <th>data_source</th>
+      <th>data_collection_date</th>
+      <th>cntrb_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1691707</td>
+      <td>None</td>
+      <td>Hello, I am an Outreachy applicant. I am inter...</td>
+      <td>2020-03-06 12:16:26</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>278615</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1691708</td>
+      <td>None</td>
+      <td>Hi, I am Abhishek, currently pursuing B.Tech i...</td>
+      <td>2020-03-14 08:24:40</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>278628</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1691709</td>
+      <td>None</td>
+      <td>Currently it seems that changes are required i...</td>
+      <td>2020-06-07 19:32:47</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>277384</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1691710</td>
+      <td>None</td>
+      <td>@ccarterlandis I had a question regarding the ...</td>
+      <td>2020-03-22 16:14:31</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>277384</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1691711</td>
+      <td>None</td>
+      <td>@sgoggins the first bug is just key not found ...</td>
+      <td>2021-01-05 15:48:50</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>277384</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>1691798</td>
+      <td>None</td>
+      <td>Yes, I am using Ubuntu 19.10\n\nOn Fri, 13 Mar...</td>
+      <td>2020-03-13 07:54:58</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>277795</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>1691799</td>
+      <td>None</td>
+      <td>Oh I am so sorry, actually I replied directly ...</td>
+      <td>2020-04-05 15:06:23</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>277795</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>1691800</td>
+      <td>None</td>
+      <td>@sgoggins \r\nIs it like creating GitHub's Dep...</td>
+      <td>2021-03-30 16:52:19</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>278703</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>1691801</td>
+      <td>None</td>
+      <td>I started out using the local environment but ...</td>
+      <td>2018-02-20 21:02:37</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>278354</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>1691802</td>
+      <td>None</td>
+      <td>That works. I'll close this issue then.</td>
+      <td>2018-02-27 15:28:56</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-07-16 21:02:43</td>
+      <td>278354</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 12 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="contributor-affiliation-data">
+<h3>Contributor affiliation data<a class="headerlink" href="#contributor-affiliation-data" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT * FROM contributor_affiliations</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span><span class="p">[</span><span class="mi">650</span><span class="p">:</span><span class="mi">700</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ca_id</th>
+      <th>ca_domain</th>
+      <th>ca_start_date</th>
+      <th>tool_source</th>
+      <th>tool_version</th>
+      <th>data_source</th>
+      <th>data_collection_date</th>
+      <th>ca_last_used</th>
+      <th>ca_affiliation</th>
+      <th>ca_active</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>650</th>
+      <td>24277</td>
+      <td>ross@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>651</th>
+      <td>24278</td>
+      <td>ross@kukulinski.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>652</th>
+      <td>24279</td>
+      <td>ralph@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>653</th>
+      <td>24280</td>
+      <td>ralph.l.bankston@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>654</th>
+      <td>24281</td>
+      <td>alex_brand@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>655</th>
+      <td>24282</td>
+      <td>alexbrand09@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>656</th>
+      <td>24283</td>
+      <td>joe@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>657</th>
+      <td>24284</td>
+      <td>joe.github@bedafamily.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>658</th>
+      <td>24285</td>
+      <td>vince@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>659</th>
+      <td>24286</td>
+      <td>vince@vincepri.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>660</th>
+      <td>24287</td>
+      <td>chuck@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>661</th>
+      <td>24288</td>
+      <td>ha.chuck@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>662</th>
+      <td>24289</td>
+      <td>jason@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>663</th>
+      <td>24290</td>
+      <td>detiber@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>664</th>
+      <td>24291</td>
+      <td>detiberusj@vmware.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>665</th>
+      <td>24292</td>
+      <td>liz@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>666</th>
+      <td>24293</td>
+      <td>.*liztio@users.noreply.github.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>667</th>
+      <td>24294</td>
+      <td>naadir@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>668</th>
+      <td>24295</td>
+      <td>naadir@randomvariable.co.uk</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>669</th>
+      <td>24296</td>
+      <td>randomvariable@users.noreply.github.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>670</th>
+      <td>24297</td>
+      <td>ruben@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>671</th>
+      <td>24298</td>
+      <td>rubenoz@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>672</th>
+      <td>24299</td>
+      <td>rdodev@vmware.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>673</th>
+      <td>25300</td>
+      <td>tstclair@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>674</th>
+      <td>25301</td>
+      <td>timothysc@users.noreply.github.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>675</th>
+      <td>25302</td>
+      <td>craigtracey@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>676</th>
+      <td>25303</td>
+      <td>luohui925@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>677</th>
+      <td>25304</td>
+      <td>davanum@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>678</th>
+      <td>25305</td>
+      <td>amy@users.noreply.github.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>679</th>
+      <td>25306</td>
+      <td>bryanliles@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>680</th>
+      <td>25307</td>
+      <td>bryan@Bryans-MacBook-Pro.local</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>681</th>
+      <td>25308</td>
+      <td>lilesb@vmware.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>682</th>
+      <td>25309</td>
+      <td>sfoohei@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>683</th>
+      <td>25310</td>
+      <td>foos@vmware.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>684</th>
+      <td>25311</td>
+      <td>mlandaverde@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>685</th>
+      <td>25312</td>
+      <td>mdaverde@users.noreply.github.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>686</th>
+      <td>25313</td>
+      <td>shomron@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>687</th>
+      <td>25314</td>
+      <td>derek@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>688</th>
+      <td>25315</td>
+      <td>jderekwilson@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>689</th>
+      <td>25316</td>
+      <td>eric@heptio.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>690</th>
+      <td>25317</td>
+      <td>kate.kuchin@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>691</th>
+      <td>25318</td>
+      <td>suraci.alex@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>692</th>
+      <td>25319</td>
+      <td>asuraci@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>693</th>
+      <td>25320</td>
+      <td>alex@localhost.localdomain</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>694</th>
+      <td>25321</td>
+      <td>julian.zucker@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>695</th>
+      <td>25322</td>
+      <td>sahil.muthoo@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>696</th>
+      <td>25323</td>
+      <td>fali@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>697</th>
+      <td>25324</td>
+      <td>fai28683@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>698</th>
+      <td>25325</td>
+      <td>dgarnier@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>699</th>
+      <td>25326</td>
+      <td>git@garnier.wf</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../README.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Project Sandiego</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="demo_augur/new_contributor_template.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">New Contributor Analysis</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
