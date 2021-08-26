@@ -1,6 +1,0 @@
-format: jb-book
-root: README
-parts:
-  - caption: Getting started
-    chapters:
-    - file: notebooks/demo_augur/START_HERE
