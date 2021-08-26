@@ -95,13 +95,40 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../START_HERE.html">
-   Introduction to connecting and Querrying the Augur DB
+   Introduction to connecting and Querying the Augur DB
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Demo Augur
+  Preliminary Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Reports
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -235,41 +262,22 @@
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Contributor Risk Analysis
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
+   Control Cell - Set Variables and Filters
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#setting-up-database-connection-and-imports">
-   Setting up database connection and imports
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gathering-and-processing-the-data-into-a-dataframe">
+   Gathering and Processing the Data into a dataframe
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
-     Control Cell - Set Variables and Filters
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gathering-and-processing-the-data">
-   Gathering and Processing the Data
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculating-contributor-risk-and-adding-analysis-to-the-title">
+   Calculating Contributor Risk and Adding Analysis to the Title
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#getting-the-data-from-your-augur-database-and-storing-it-in-a-dataframe">
-     Getting the data from your Augur database and storing it in a dataframe
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#calculating-contributor-risk-and-adding-analysis-to-the-title">
-     Calculating Contributor Risk and Adding Analysis to the Title
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#plotting-the-results">
    Plotting the Results
   </a>
@@ -290,10 +298,23 @@
 <p>Learn whether you have enough contributors to sustain the project if a key contributor won the lottery and retired on a beach.</p>
 <p>You can also use this data to identify contributors who might be good candidates for mentoring to expand their contributions or help them move into leadership roles.</p>
 <p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timezone</span>
+</pre></div>
 </div>
-<div class="section" id="setting-up-database-connection-and-imports">
-<h1>Setting up database connection and imports<a class="headerlink" href="#setting-up-database-connection-and-imports" title="Permalink to this headline">¶</a></h1>
-<div class="cell tag_hide-input docutils container">
+</div>
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
@@ -311,7 +332,7 @@
 <div class="section" id="control-cell-set-variables-and-filters">
 <h2>Control Cell - Set Variables and Filters<a class="headerlink" href="#control-cell-set-variables-and-filters" title="Permalink to this headline">¶</a></h2>
 <p>The cell below is for generating repo_ids from the repo names. For this to work, the repo must already be in the database. If you want to manually assign a repo_id skip the cell below and read the comments on the next cell.</p>
-<div class="cell tag_hidecode docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name here of the repo you want to query if known (and in the database)</span>
 <span class="n">repo_name</span> <span class="o">=</span> <span class="s1">&#39;augur&#39;</span>
@@ -340,7 +361,7 @@
 </div>
 </div>
 </div>
-<div class="cell tag_toggle docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number</span>
 <span class="c1">#repo_id = 25440</span>
@@ -362,13 +383,10 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="gathering-and-processing-the-data">
-<h1>Gathering and Processing the Data<a class="headerlink" href="#gathering-and-processing-the-data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="getting-the-data-from-your-augur-database-and-storing-it-in-a-dataframe">
-<h2>Getting the data from your Augur database and storing it in a dataframe<a class="headerlink" href="#getting-the-data-from-your-augur-database-and-storing-it-in-a-dataframe" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gathering-and-processing-the-data-into-a-dataframe">
+<h2>Gathering and Processing the Data into a dataframe<a class="headerlink" href="#gathering-and-processing-the-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
 <p><strong>Important note: You may need to edit this query to exclude additional bots with unexpected names.</strong></p>
-<div class="cell tag_hidecode tag_toggle docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Commit data - from humans excluding known bots</span>
 <span class="n">commitsDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -500,9 +518,8 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="plotting-the-results">
-<h1>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Permalink to this headline">¶</a></h1>
+<h2>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
@@ -530,7 +547,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/contributor_risk_template_12_0.png" src="../../_images/contributor_risk_template_12_0.png" />
+<img alt="../../_images/contributor_risk_template_11_0.png" src="../../_images/contributor_risk_template_11_0.png" />
+</div>
 </div>
 </div>
 </div>

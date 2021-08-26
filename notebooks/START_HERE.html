@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to connecting and Querrying the Augur DB &#8212; Sandiego</title>
+    <title>Introduction to connecting and Querying the Augur DB &#8212; Sandiego</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="New Contributor Analysis" href="demo_augur/new_contributor_template.html" />
+    <link rel="next" title="Github Activity Metrics-Commits" href="commits_activity.html" />
     <link rel="prev" title="Project Sandiego" href="../README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -95,13 +95,40 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Introduction to connecting and Querrying the Augur DB
+   Introduction to connecting and Querying the Augur DB
   </a>
  </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Demo Augur
+  Preliminary Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Reports
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -278,9 +305,11 @@
         
               <div>
                 
-  <div class="section" id="introduction-to-connecting-and-querrying-the-augur-db">
-<h1>Introduction to connecting and Querrying the Augur DB<a class="headerlink" href="#introduction-to-connecting-and-querrying-the-augur-db" title="Permalink to this headline">¶</a></h1>
-<p>If you made to this point, welcome! :) This short tutorial will show how to connect to the database and how to do a simple querry. If you need the config file please email <a class="reference external" href="mailto:cdolfi&#37;&#52;&#48;redhat&#46;com">cdolfi<span>&#64;</span>redhat<span>&#46;</span>com</a></p>
+  <div class="section" id="introduction-to-connecting-and-querying-the-augur-db">
+<h1>Introduction to connecting and Querying the Augur DB<a class="headerlink" href="#introduction-to-connecting-and-querying-the-augur-db" title="Permalink to this headline">¶</a></h1>
+<p>If you made to this point, welcome! :) This short tutorial will show how to connect to the database and how to do a simple query. If you need the config file please email <a class="reference external" href="mailto:cdolfi&#37;&#52;&#48;redhat&#46;com">cdolfi<span>&#64;</span>redhat<span>&#46;</span>com</a></p>
+<p>For Project Sandiego’s data, we will be using a personal instance of Augur. Augur is a software suite for collecting and measuring structured data about free and open-source software (FOSS) communities.</p>
+<p>Augur gather’s trace data for a group of repositories, normalize it into the data model, and provide a variety of metrics about said data. The structure of the data model enables us to synthesize data across various platforms to provide meaningful context for meaningful questions about the way these communities evolve.</p>
 <p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
 <div class="section" id="connect-to-your-database">
 <h2>Connect to your database<a class="headerlink" href="#connect-to-your-database" title="Permalink to this headline">¶</a></h2>
@@ -293,7 +322,7 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -366,58 +395,64 @@
       <th>forked_from</th>
       <th>repo_archived</th>
       <th>repo_git</th>
+      <th>repo_path</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Default Repo Group</td>
-      <td>1</td>
+      <td>chaoss</td>
+      <td>25155</td>
       <td>augur</td>
-      <td>1</td>
+      <td>25440</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/chaoss/augur.git</td>
+      <td>https://github.com/chaoss/augur</td>
+      <td>github.com/chaoss/</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25442</td>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>augur-license</td>
+      <td>25460</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/labs.git</td>
+      <td>https://github.com/chaoss/augur-license</td>
+      <td>github.com/chaoss/</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25443</td>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>community-reports</td>
+      <td>25558</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/velero-examples.git</td>
+      <td>https://github.com/chaoss/community-reports</td>
+      <td>github.com/chaoss</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25445</td>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>governance</td>
+      <td>25449</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/move2kube-demos.git</td>
+      <td>https://github.com/chaoss/governance</td>
+      <td>github.com/chaoss/</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25446</td>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>grimoirelab</td>
+      <td>25448</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/tackle-documentati...</td>
+      <td>https://github.com/chaoss/grimoirelab</td>
+      <td>github.com/chaoss/</td>
     </tr>
     <tr>
       <th>...</th>
@@ -428,60 +463,66 @@
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>66</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25497</td>
+      <th>75</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>salt-winrepo-ng</td>
+      <td>30356</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/tackle-commons-res...</td>
+      <td>https://github.com/saltstack/salt-winrepo-ng</td>
+      <td>github.com/saltstack/</td>
     </tr>
     <tr>
-      <th>67</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25498</td>
+      <th>76</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>salty-vagrant</td>
+      <td>30362</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/eng-kbase.git</td>
+      <td>https://github.com/saltstack/salty-vagrant</td>
+      <td>github.com/saltstack/</td>
     </tr>
     <tr>
-      <th>68</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25486</td>
+      <th>77</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>sublime-text</td>
+      <td>30347</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/mtc-breakfix.git</td>
+      <td>https://github.com/saltstack/sublime-text</td>
+      <td>github.com/saltstack/</td>
     </tr>
     <tr>
-      <th>69</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25441</td>
+      <th>78</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>takara</td>
+      <td>30380</td>
       <td>Parent not available</td>
-      <td>0</td>
-      <td>https://github.com/konveyor/mig-demo-apps.git</td>
+      <td>1</td>
+      <td>https://github.com/saltstack/takara</td>
+      <td>github.com/saltstack/</td>
     </tr>
     <tr>
-      <th>70</th>
-      <td>konveyor</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>25499</td>
+      <th>79</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>windows-test-states</td>
+      <td>30346</td>
       <td>Parent not available</td>
       <td>0</td>
-      <td>https://github.com/konveyor/enhancements.git</td>
+      <td>https://github.com/saltstack/windows-test-states</td>
+      <td>github.com/saltstack/</td>
     </tr>
   </tbody>
 </table>
-<p>71 rows × 7 columns</p>
+<p>80 rows × 8 columns</p>
 </div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rg_name          object
 repo_group_id     int64
 repo_name        object
@@ -489,6 +530,7 @@ repo_id           int64
 forked_from      object
 repo_archived     int64
 repo_git         object
+repo_path        object
 dtype: object
 </pre></div>
 </div>
@@ -521,7 +563,7 @@ dtype: object
 
 <span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 
-<span class="n">repolist</span><span class="p">[</span><span class="mi">50</span><span class="p">:</span><span class="mi">150</span><span class="p">]</span>
+<span class="n">repolist</span>
 </pre></div>
 </div>
 </div>
@@ -553,175 +595,96 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>50</th>
-      <td>25490</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/crane-ui-tests.git</td>
+      <th>0</th>
+      <td>25440</td>
+      <td>25155</td>
+      <td>augur</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/augur</td>
     </tr>
     <tr>
-      <th>51</th>
-      <td>25491</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/mig-ci.git</td>
+      <th>1</th>
+      <td>25460</td>
+      <td>25155</td>
+      <td>augur-license</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/augur-license</td>
     </tr>
     <tr>
-      <th>52</th>
-      <td>25492</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/tackle-config-disc...</td>
+      <th>2</th>
+      <td>25558</td>
+      <td>25155</td>
+      <td>community-reports</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/community-reports</td>
     </tr>
     <tr>
-      <th>53</th>
-      <td>25493</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/must-gather.git</td>
+      <th>3</th>
+      <td>25449</td>
+      <td>25155</td>
+      <td>governance</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/governance</td>
     </tr>
     <tr>
-      <th>54</th>
-      <td>25494</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/data-mover.git</td>
+      <th>4</th>
+      <td>25448</td>
+      <td>25155</td>
+      <td>grimoirelab</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/grimoirelab</td>
     </tr>
     <tr>
-      <th>55</th>
-      <td>25495</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/virt-payload.git</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>56</th>
-      <td>25484</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/mig-analytics-tool...</td>
+      <th>75</th>
+      <td>30356</td>
+      <td>60017</td>
+      <td>salt-winrepo-ng</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/salt-winrepo-ng</td>
     </tr>
     <tr>
-      <th>57</th>
-      <td>25496</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/wadsworth.git</td>
+      <th>76</th>
+      <td>30362</td>
+      <td>60017</td>
+      <td>salty-vagrant</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/salty-vagrant</td>
     </tr>
     <tr>
-      <th>58</th>
-      <td>25430</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/move2kube.git</td>
+      <th>77</th>
+      <td>30347</td>
+      <td>60017</td>
+      <td>sublime-text</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/sublime-text</td>
     </tr>
     <tr>
-      <th>59</th>
-      <td>25431</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/pelorus.git</td>
+      <th>78</th>
+      <td>30380</td>
+      <td>60017</td>
+      <td>takara</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/takara</td>
     </tr>
     <tr>
-      <th>60</th>
-      <td>25438</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/forklift-controlle...</td>
-    </tr>
-    <tr>
-      <th>61</th>
-      <td>25444</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/move2kube-operator...</td>
-    </tr>
-    <tr>
-      <th>62</th>
-      <td>25450</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/tackle-ui.git</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>25456</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/tackle-application...</td>
-    </tr>
-    <tr>
-      <th>64</th>
-      <td>25483</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/crane.git</td>
-    </tr>
-    <tr>
-      <th>65</th>
-      <td>25485</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/rsync-transfer.git</td>
-    </tr>
-    <tr>
-      <th>66</th>
-      <td>25497</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/tackle-commons-res...</td>
-    </tr>
-    <tr>
-      <th>67</th>
-      <td>25498</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/eng-kbase.git</td>
-    </tr>
-    <tr>
-      <th>68</th>
-      <td>25486</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/mtc-breakfix.git</td>
-    </tr>
-    <tr>
-      <th>69</th>
-      <td>25441</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/mig-demo-apps.git</td>
-    </tr>
-    <tr>
-      <th>70</th>
-      <td>25499</td>
-      <td>101</td>
-      <td>NULL</td>
-      <td>konveyor</td>
-      <td>https://github.com/konveyor/enhancements.git</td>
+      <th>79</th>
+      <td>30346</td>
+      <td>60017</td>
+      <td>windows-test-states</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/windows-test-states</td>
     </tr>
   </tbody>
 </table>
+<p>80 rows × 5 columns</p>
 </div></div></div>
 </div>
 </div>
@@ -741,7 +704,7 @@ dtype: object
 
 <span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 
-<span class="n">repolist</span><span class="p">[:</span><span class="mi">35</span><span class="p">]</span>
+<span class="n">repolist</span>
 </pre></div>
 </div>
 </div>
@@ -773,221 +736,79 @@ dtype: object
     <tr>
       <th>0</th>
       <td>augur_data</td>
-      <td>pull_request_files</td>
-      <td>137311</td>
+      <td>commits</td>
+      <td>320271</td>
     </tr>
     <tr>
       <th>1</th>
       <td>augur_data</td>
-      <td>issue_events</td>
-      <td>67098</td>
+      <td>repo_labor</td>
+      <td>312000</td>
     </tr>
     <tr>
       <th>2</th>
       <td>augur_data</td>
-      <td>pull_request_events</td>
-      <td>51052</td>
+      <td>pull_request_files</td>
+      <td>149825</td>
     </tr>
     <tr>
       <th>3</th>
       <td>augur_data</td>
-      <td>pull_request_commits</td>
-      <td>41075</td>
+      <td>message</td>
+      <td>93410</td>
     </tr>
     <tr>
       <th>4</th>
       <td>augur_data</td>
-      <td>message</td>
-      <td>20023</td>
+      <td>issue_events</td>
+      <td>79373</td>
     </tr>
     <tr>
-      <th>5</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>174</th>
       <td>augur_data</td>
-      <td>pull_request_meta</td>
-      <td>14943</td>
+      <td>pull_request_analysis</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>175</th>
       <td>augur_data</td>
-      <td>pull_request_reviews</td>
-      <td>11630</td>
+      <td>message_sentiment_summary</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>176</th>
       <td>augur_data</td>
-      <td>issues</td>
-      <td>10242</td>
+      <td>message_sentiment</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>177</th>
       <td>augur_data</td>
-      <td>issue_message_ref</td>
-      <td>9932</td>
+      <td>message_analysis_summary</td>
+      <td>0</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>178</th>
       <td>augur_data</td>
-      <td>pull_requests</td>
-      <td>7507</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>augur_data</td>
-      <td>pull_request_review_message_ref</td>
-      <td>6399</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>augur_data</td>
-      <td>contributors</td>
-      <td>5176</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>augur_data</td>
-      <td>issue_labels</td>
-      <td>4988</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>augur_operations</td>
-      <td>worker_history</td>
-      <td>2890</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>augur_data</td>
-      <td>pull_request_labels</td>
-      <td>2563</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>augur_data</td>
-      <td>pull_request_reviewers</td>
-      <td>2320</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>augur_data</td>
-      <td>issue_assignees</td>
-      <td>1261</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>augur_data</td>
-      <td>pull_request_message_ref</td>
-      <td>1072</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>augur_data</td>
-      <td>contributor_affiliations</td>
-      <td>703</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>augur_data</td>
-      <td>repo_info</td>
-      <td>673</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>augur_data</td>
-      <td>pull_request_assignees</td>
-      <td>491</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>spdx</td>
-      <td>licenses</td>
-      <td>322</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>augur_data</td>
-      <td>repo_insights</td>
-      <td>130</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>augur_data</td>
-      <td>chaoss_metric_status</td>
-      <td>80</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>augur_data</td>
-      <td>repo</td>
-      <td>71</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>custom</td>
-      <td>subprojects</td>
-      <td>70</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>custom</td>
-      <td>repotemp</td>
-      <td>70</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>augur_data</td>
-      <td>merge_data_0_3014364</td>
-      <td>53</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>custom</td>
-      <td>contribs</td>
-      <td>51</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>augur_data</td>
-      <td>merge_data_0_3708870</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>augur_data</td>
-      <td>merge_data_0_3610</td>
-      <td>49</td>
-    </tr>
-    <tr>
-      <th>31</th>
-      <td>augur_data</td>
-      <td>releases</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <th>32</th>
-      <td>augur_data</td>
-      <td>repo_insights_records</td>
-      <td>43</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>spdx</td>
-      <td>relationship_types</td>
-      <td>30</td>
-    </tr>
-    <tr>
-      <th>34</th>
-      <td>augur_operations</td>
-      <td>worker_job</td>
-      <td>21</td>
+      <td>message_analysis</td>
+      <td>0</td>
     </tr>
   </tbody>
 </table>
+<p>179 rows × 3 columns</p>
 </div></div></div>
 </div>
 <p>Congrats you have done your first queries! There will be a few more simple examples below on how to pull an entire table. If you would like to explore on your own, the schema.png on the home sandiego directory will be greatly helpful in your explorations! Happy querying :)</p>
 </div>
 <div class="section" id="data-from-the-messages">
 <h3>Data from the messages<a class="headerlink" href="#data-from-the-messages" title="Permalink to this headline">¶</a></h3>
+<p>This data is the collection of all comments from any issue, PR, commit, etc opened. This example shows another side of the database and the types of data we can pull from it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -999,7 +820,7 @@ dtype: object
 
 <span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 
-<span class="n">repolist</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">repolist</span>
 </pre></div>
 </div>
 </div>
@@ -1039,78 +860,78 @@ dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>1691707</td>
+      <td>1715557</td>
       <td>None</td>
-      <td>Hello, I am an Outreachy applicant. I am inter...</td>
-      <td>2020-03-06 12:16:26</td>
+      <td>All of these are repeated. Why don't you creat...</td>
+      <td>2015-12-17 22:54:17</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
       <td>GitHub API Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>278615</td>
+      <td>NaT</td>
+      <td>279368</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1691708</td>
+      <td>1715697</td>
       <td>None</td>
-      <td>Hi, I am Abhishek, currently pursuing B.Tech i...</td>
-      <td>2020-03-14 08:24:40</td>
+      <td>@acs, @valeriocos:\r\n\r\nMappings should foll...</td>
+      <td>2018-02-28 20:08:50</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
       <td>GitHub API Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>278628</td>
+      <td>NaT</td>
+      <td>279373</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1691709</td>
       <td>None</td>
-      <td>Currently it seems that changes are required i...</td>
-      <td>2020-06-07 19:32:47</td>
+      <td>All of these are repeated. Why don't you creat...</td>
+      <td>2015-12-17 22:54:17</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
       <td>GitHub API Worker</td>
-      <td>1.0.0</td>
+      <td>0.0.3</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>277384</td>
+      <td>NaT</td>
+      <td>277140</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1691710</td>
       <td>None</td>
-      <td>@ccarterlandis I had a question regarding the ...</td>
-      <td>2020-03-22 16:14:31</td>
+      <td>this change does not seem related to the purpo...</td>
+      <td>2015-12-17 22:57:10</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
       <td>GitHub API Worker</td>
-      <td>1.0.0</td>
+      <td>0.0.3</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>277384</td>
+      <td>NaT</td>
+      <td>277140</td>
     </tr>
     <tr>
       <th>4</th>
       <td>1691711</td>
       <td>None</td>
-      <td>@sgoggins the first bug is just key not found ...</td>
-      <td>2021-01-05 15:48:50</td>
+      <td>I think that function like this, and  `read_fi...</td>
+      <td>2015-12-17 23:07:08</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
       <td>GitHub API Worker</td>
-      <td>1.0.0</td>
+      <td>0.0.3</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>277384</td>
+      <td>NaT</td>
+      <td>277140</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1128,88 +949,89 @@ dtype: object
       <td>...</td>
     </tr>
     <tr>
-      <th>95</th>
-      <td>1691798</td>
+      <th>93405</th>
+      <td>1785136</td>
       <td>None</td>
-      <td>Yes, I am using Ubuntu 19.10\n\nOn Fri, 13 Mar...</td>
-      <td>2020-03-13 07:54:58</td>
+      <td>I see! Yes. The only problem here is, what if ...</td>
+      <td>2013-04-02 14:23:34</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
-      <td>GitHub API Worker</td>
+      <td>GitHub Pull Request Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>277795</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
     </tr>
     <tr>
-      <th>96</th>
-      <td>1691799</td>
+      <th>93406</th>
+      <td>1785137</td>
       <td>None</td>
-      <td>Oh I am so sorry, actually I replied directly ...</td>
-      <td>2020-04-05 15:06:23</td>
+      <td>Ya, that would an issue if there are multiple ...</td>
+      <td>2013-04-02 14:36:33</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
-      <td>GitHub API Worker</td>
+      <td>GitHub Pull Request Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>277795</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280725</td>
     </tr>
     <tr>
-      <th>97</th>
-      <td>1691800</td>
+      <th>93407</th>
+      <td>1785138</td>
       <td>None</td>
-      <td>@sgoggins \r\nIs it like creating GitHub's Dep...</td>
-      <td>2021-03-30 16:52:19</td>
+      <td>Not sure how you can do the math if you don't ...</td>
+      <td>2013-04-02 14:43:21</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
-      <td>GitHub API Worker</td>
+      <td>GitHub Pull Request Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>278703</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
     </tr>
     <tr>
-      <th>98</th>
-      <td>1691801</td>
+      <th>93408</th>
+      <td>1785139</td>
       <td>None</td>
-      <td>I started out using the local environment but ...</td>
-      <td>2018-02-20 21:02:37</td>
+      <td>Currently though the: _x unknown yet to accept...</td>
+      <td>2013-04-02 14:58:46</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
-      <td>GitHub API Worker</td>
+      <td>GitHub Pull Request Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>278354</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280725</td>
     </tr>
     <tr>
-      <th>99</th>
-      <td>1691802</td>
+      <th>93409</th>
+      <td>1785140</td>
       <td>None</td>
-      <td>That works. I'll close this issue then.</td>
-      <td>2018-02-27 15:28:56</td>
+      <td>Yeah, I understand that the current method als...</td>
+      <td>2013-04-02 15:07:27</td>
       <td>None</td>
       <td>None</td>
       <td>25150</td>
-      <td>GitHub API Worker</td>
+      <td>GitHub Pull Request Worker</td>
       <td>1.0.0</td>
       <td>GitHub API</td>
-      <td>2021-07-16 21:02:43</td>
-      <td>278354</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
     </tr>
   </tbody>
 </table>
-<p>100 rows × 12 columns</p>
+<p>93410 rows × 12 columns</p>
 </div></div></div>
 </div>
 </div>
 <div class="section" id="contributor-affiliation-data">
 <h3>Contributor affiliation data<a class="headerlink" href="#contributor-affiliation-data" title="Permalink to this headline">¶</a></h3>
+<p>This data tells us what is the company affiliation of many open source contributors. This can help tell us which companies are involved in a certian open source project.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -1221,7 +1043,7 @@ dtype: object
 
 <span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
 
-<span class="n">repolist</span><span class="p">[</span><span class="mi">650</span><span class="p">:</span><span class="mi">700</span><span class="p">]</span>
+<span class="n">repolist</span>
 </pre></div>
 </div>
 </div>
@@ -1258,631 +1080,85 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>650</th>
-      <td>24277</td>
-      <td>ross@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
+      <th>0</th>
+      <td>25152</td>
+      <td>goggins.com</td>
+      <td>2016-03-03</td>
       <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2019-10-29 17:22:30</td>
+      <td>2020-04-17 21:06:25</td>
+      <td>None</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>651</th>
-      <td>24278</td>
-      <td>ross@kukulinski.com</td>
+      <th>1</th>
+      <td>1</td>
+      <td>samsung.com</td>
       <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>Samsung</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>652</th>
-      <td>24279</td>
-      <td>ralph@heptio.com</td>
+      <th>2</th>
+      <td>2</td>
+      <td>linuxfoundation.org</td>
       <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>Linux Foundation</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>653</th>
-      <td>24280</td>
-      <td>ralph.l.bankston@gmail.com</td>
+      <th>3</th>
+      <td>3</td>
+      <td>ibm.com</td>
       <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>IBM</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>654</th>
-      <td>24281</td>
-      <td>alex_brand@heptio.com</td>
+      <th>4</th>
+      <td>8</td>
+      <td>walmart.com</td>
       <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-09-01 06:00:00</td>
+      <td>Walmart</td>
       <td>1</td>
     </tr>
     <tr>
-      <th>655</th>
-      <td>24282</td>
-      <td>alexbrand09@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>656</th>
-      <td>24283</td>
-      <td>joe@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>657</th>
-      <td>24284</td>
-      <td>joe.github@bedafamily.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>658</th>
-      <td>24285</td>
-      <td>vince@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>659</th>
-      <td>24286</td>
-      <td>vince@vincepri.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>660</th>
-      <td>24287</td>
-      <td>chuck@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>661</th>
-      <td>24288</td>
-      <td>ha.chuck@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>662</th>
-      <td>24289</td>
-      <td>jason@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>663</th>
-      <td>24290</td>
-      <td>detiber@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>664</th>
-      <td>24291</td>
-      <td>detiberusj@vmware.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>665</th>
-      <td>24292</td>
-      <td>liz@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>666</th>
-      <td>24293</td>
-      <td>.*liztio@users.noreply.github.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>667</th>
-      <td>24294</td>
-      <td>naadir@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>668</th>
-      <td>24295</td>
-      <td>naadir@randomvariable.co.uk</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>669</th>
-      <td>24296</td>
-      <td>randomvariable@users.noreply.github.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>670</th>
-      <td>24297</td>
-      <td>ruben@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>671</th>
-      <td>24298</td>
-      <td>rubenoz@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>672</th>
-      <td>24299</td>
-      <td>rdodev@vmware.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>673</th>
-      <td>25300</td>
-      <td>tstclair@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>674</th>
-      <td>25301</td>
-      <td>timothysc@users.noreply.github.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>675</th>
-      <td>25302</td>
-      <td>craigtracey@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>676</th>
-      <td>25303</td>
-      <td>luohui925@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>677</th>
-      <td>25304</td>
-      <td>davanum@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>678</th>
-      <td>25305</td>
-      <td>amy@users.noreply.github.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>679</th>
-      <td>25306</td>
-      <td>bryanliles@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>680</th>
-      <td>25307</td>
-      <td>bryan@Bryans-MacBook-Pro.local</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>681</th>
-      <td>25308</td>
-      <td>lilesb@vmware.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>682</th>
-      <td>25309</td>
-      <td>sfoohei@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>683</th>
-      <td>25310</td>
-      <td>foos@vmware.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>684</th>
-      <td>25311</td>
-      <td>mlandaverde@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>685</th>
-      <td>25312</td>
-      <td>mdaverde@users.noreply.github.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>686</th>
-      <td>25313</td>
-      <td>shomron@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>687</th>
-      <td>25314</td>
-      <td>derek@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>688</th>
-      <td>25315</td>
-      <td>jderekwilson@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>689</th>
-      <td>25316</td>
-      <td>eric@heptio.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>690</th>
-      <td>25317</td>
-      <td>kate.kuchin@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>691</th>
-      <td>25318</td>
-      <td>suraci.alex@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>692</th>
-      <td>25319</td>
-      <td>asuraci@pivotal.io</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>693</th>
-      <td>25320</td>
-      <td>alex@localhost.localdomain</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>694</th>
-      <td>25321</td>
-      <td>julian.zucker@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>695</th>
-      <td>25322</td>
-      <td>sahil.muthoo@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>696</th>
-      <td>25323</td>
-      <td>fali@pivotal.io</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>697</th>
-      <td>25324</td>
-      <td>fai28683@gmail.com</td>
-      <td>1970-01-01</td>
-      <td>Helper Script</td>
-      <td>None</td>
-      <td>Dawn's vmware_mapping JSON</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>2020-04-28 18:52:49</td>
-      <td>VMware</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>698</th>
+      <th>703</th>
       <td>25325</td>
       <td>dgarnier@pivotal.io</td>
       <td>1970-01-01</td>
@@ -1895,7 +1171,7 @@ dtype: object
       <td>1</td>
     </tr>
     <tr>
-      <th>699</th>
+      <th>704</th>
       <td>25326</td>
       <td>git@garnier.wf</td>
       <td>1970-01-01</td>
@@ -1907,8 +1183,48 @@ dtype: object
       <td>VMware</td>
       <td>1</td>
     </tr>
+    <tr>
+      <th>705</th>
+      <td>25327</td>
+      <td>matthew.heidemann@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>706</th>
+      <td>25328</td>
+      <td>me@lurraca.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>707</th>
+      <td>25329</td>
+      <td>lurraca@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
   </tbody>
 </table>
+<p>708 rows × 10 columns</p>
 </div></div></div>
 </div>
 </div>
@@ -1954,10 +1270,10 @@ dtype: object
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="demo_augur/new_contributor_template.html" title="next page">
+        <a class="right-next" href="commits_activity.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">New Contributor Analysis</p>
+                <p class="prevnext-title">Github Activity Metrics-Commits</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

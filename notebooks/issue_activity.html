@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Activity Metrics-Issues &#8212; Sandiego</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Github Activity Metrics-Pull Requests" href="pr_activity.html" />
+    <link rel="prev" title="Github Activity Metrics-Commits" href="commits_activity.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="START_HERE.html">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Preliminary Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Reports
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/issue_activity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/issue_activity.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/issue_activity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/issue_activity.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gather-and-process-data">
+   Gather and Process Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#query">
+     Query
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numer-of-issues-created">
+   Numer of issues Created
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-day">
+     By Day
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-week">
+     By Week
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-month">
+     By Month
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numer-of-issues-closed">
+   Numer of issues closed
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     By Day
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     By Week
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     By Month
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="github-activity-metrics-issues">
+<h1>Github Activity Metrics-Issues<a class="headerlink" href="#github-activity-metrics-issues" title="Permalink to this headline">¶</a></h1>
+<p><strong>Activity by Repo</strong></p>
+<p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
+<p>Any necessary computations from the data to get the metric value will be done as the queries are determined</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
+<span class="n">repo_name_set</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;augur&#39;</span><span class="p">,</span> <span class="s1">&#39;grimoirelab&#39;</span><span class="p">]</span>
+<span class="n">repo_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">repo_name</span> <span class="ow">in</span> <span class="n">repo_name_set</span><span class="p">:</span>
+    <span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">                 SELECT </span>
+<span class="s2">                    b.repo_id</span>
+<span class="s2">                FROM</span>
+<span class="s2">                    repo_groups a,</span>
+<span class="s2">                    repo b</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                    a.repo_group_id = b.repo_group_id AND</span>
+<span class="s2">                    b.repo_name = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">repo_query</span><span class="p">)</span>
+    <span class="n">repo_id</span> <span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">mappings</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repo_id&#39;</span><span class="p">)</span>
+    <span class="n">repo_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repo_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[25440, 25448]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number(s)</span>
+<span class="c1">#repo_set = [25440]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gather-and-process-data">
+<h2>Gather and Process Data<a class="headerlink" href="#gather-and-process-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="query">
+<h3>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">repo_id</span> <span class="ow">in</span> <span class="n">repo_set</span><span class="p">:</span> 
+
+    <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT</span>
+<span class="s2">                    r.repo_name,</span>
+<span class="s2">					i.issue_id AS issue, </span>
+<span class="s2">					i.gh_issue_number AS issue_number,</span>
+<span class="s2">					i.gh_issue_id AS gh_issue,</span>
+<span class="s2">					i.created_at AS created, </span>
+<span class="s2">					i.closed_at AS closed</span>
+<span class="s2">                FROM</span>
+<span class="s2">                	repo r,</span>
+<span class="s2">                    issues i</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                	r.repo_id = i.repo_id AND</span>
+<span class="s2">                    i.repo_id = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">df_current_repo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">df_issues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_issues</span><span class="p">,</span> <span class="n">df_current_repo</span><span class="p">])</span>
+
+<span class="n">df_issues</span> <span class="o">=</span> <span class="n">df_issues</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_issues</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+<span class="n">df_issues</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>issue</th>
+      <th>issue_number</th>
+      <th>gh_issue</th>
+      <th>created</th>
+      <th>closed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>340115</td>
+      <td>28</td>
+      <td>213149529</td>
+      <td>2017-03-09 20:06:18</td>
+      <td>2017-04-07 21:18:01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>343231</td>
+      <td>886</td>
+      <td>682259157</td>
+      <td>2020-08-20 00:09:30</td>
+      <td>2020-08-20 00:16:50</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>343216</td>
+      <td>880</td>
+      <td>679627659</td>
+      <td>2020-08-15 19:11:45</td>
+      <td>2020-08-17 14:30:04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>343467</td>
+      <td>967</td>
+      <td>724668885</td>
+      <td>2020-10-19 14:21:08</td>
+      <td>2020-10-19 14:21:34</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>342738</td>
+      <td>740</td>
+      <td>628534692</td>
+      <td>2020-06-01 15:34:33</td>
+      <td>2020-08-20 10:48:14</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1855</th>
+      <td>grimoirelab</td>
+      <td>735294</td>
+      <td>437</td>
+      <td>941801983</td>
+      <td>2021-07-12 08:23:29</td>
+      <td>2021-07-28 08:58:49</td>
+    </tr>
+    <tr>
+      <th>1856</th>
+      <td>grimoirelab</td>
+      <td>735295</td>
+      <td>436</td>
+      <td>924259145</td>
+      <td>2021-06-17 19:24:54</td>
+      <td>NaT</td>
+    </tr>
+    <tr>
+      <th>1857</th>
+      <td>grimoirelab</td>
+      <td>340606</td>
+      <td>284</td>
+      <td>559853733</td>
+      <td>2020-02-04 17:00:31</td>
+      <td>NaT</td>
+    </tr>
+    <tr>
+      <th>1858</th>
+      <td>grimoirelab</td>
+      <td>734649</td>
+      <td>429</td>
+      <td>889819068</td>
+      <td>2021-05-12 08:28:28</td>
+      <td>NaT</td>
+    </tr>
+    <tr>
+      <th>1859</th>
+      <td>grimoirelab</td>
+      <td>734631</td>
+      <td>428</td>
+      <td>875296742</td>
+      <td>2021-05-04 09:52:41</td>
+      <td>NaT</td>
+    </tr>
+  </tbody>
+</table>
+<p>1860 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#IF YOU ONLY WANT TO LOOK AT A ONE OF THE REPOS QUERIED </span>
+<span class="n">repo_focus</span> <span class="o">=</span> <span class="s1">&#39;augur&#39;</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="n">df_issues</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span> <span class="s2">&quot;created&quot;</span><span class="p">)</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numer-of-issues-created">
+<h2>Numer of issues Created<a class="headerlink" href="#numer-of-issues-created" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="by-day">
+<h3>By Day<a class="headerlink" href="#by-day" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_12_0.png" src="../_images/issue_activity_12_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="by-week">
+<h3>By Week<a class="headerlink" href="#by-week" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Weekly issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_15_0.png" src="../_images/issue_activity_15_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="by-month">
+<h3>By Month<a class="headerlink" href="#by-month" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_monthly</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Monthly issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_18_0.png" src="../_images/issue_activity_18_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numer-of-issues-closed">
+<h2>Numer of issues closed<a class="headerlink" href="#numer-of-issues-closed" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>By Day<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily issues Closed for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_22_0.png" src="../_images/issue_activity_22_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>By Week<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_weekly</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Weekly issues Closed for &quot;</span><span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_25_0.png" src="../_images/issue_activity_25_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>By Month<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Monthly issues Closed for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_28_0.png" src="../_images/issue_activity_28_0.png" />
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="commits_activity.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Github Activity Metrics-Commits</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="pr_activity.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Github Activity Metrics-Pull Requests</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
