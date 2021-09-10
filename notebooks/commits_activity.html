@@ -1,0 +1,1016 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Activity Metrics-Commits &#8212; Sandiego</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Github Metrics- Growth of a Repo’s Community" href="community_metrics.html" />
+    <link rel="prev" title="Introduction to connecting and Querying the Augur DB" href="START_HERE.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="START_HERE.html">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Explore Your Community
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/commits_activity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/commits_activity.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/commits_activity.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/commits_activity.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gather-and-process-data">
+   Gather and Process Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#query">
+     Query
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-cleaning">
+     Data Cleaning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-of-commits">
+   Number of commits
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-day">
+     By Day
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-week">
+     By Week
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#by-month">
+     By Month
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-of-lines-per-commit">
+   Number of lines per commit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-of-lines-per-file">
+   Number of lines per file
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="github-activity-metrics-commits">
+<h1>Github Activity Metrics-Commits<a class="headerlink" href="#github-activity-metrics-commits" title="Permalink to this headline">¶</a></h1>
+<p><strong>Activity by Repo</strong></p>
+<p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following commit metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
+<p>Any necessary computations from the data to get the metric value will be done as the queries are determined</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
+<span class="n">repo_name_set</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;augur&#39;</span><span class="p">,</span> <span class="s1">&#39;grimoirelab&#39;</span><span class="p">]</span>
+<span class="n">repo_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">repo_name</span> <span class="ow">in</span> <span class="n">repo_name_set</span><span class="p">:</span>
+    <span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">                 SELECT </span>
+<span class="s2">                    b.repo_id</span>
+<span class="s2">                FROM</span>
+<span class="s2">                    repo_groups a,</span>
+<span class="s2">                    repo b</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                    a.repo_group_id = b.repo_group_id AND</span>
+<span class="s2">                    b.repo_name = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">repo_query</span><span class="p">)</span>
+    <span class="n">repo_id</span> <span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">mappings</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repo_id&#39;</span><span class="p">)</span>
+    <span class="n">repo_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repo_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[25440, 25448]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number(s)</span>
+<span class="c1">#repo_set = [25440]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gather-and-process-data">
+<h2>Gather and Process Data<a class="headerlink" href="#gather-and-process-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="query">
+<h3>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
+<p>It should be noted that each entry on this table is for files, not commits. So there can be multiple files/rows for each commits</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_commits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">repo_id</span> <span class="ow">in</span> <span class="n">repo_set</span><span class="p">:</span> 
+
+    <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT</span>
+<span class="s2">                    r.repo_name,</span>
+<span class="s2">                    c.cmt_commit_hash AS commits,</span>
+<span class="s2">                    c.cmt_id AS file, </span>
+<span class="s2">					c.cmt_added AS lines_added,</span>
+<span class="s2">					c.cmt_removed AS lines_removed,</span>
+<span class="s2">                    c.cmt_author_date AS date</span>
+<span class="s2">                FROM</span>
+<span class="s2">                	repo r,</span>
+<span class="s2">                    commits c</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                	r.repo_id = c.repo_id AND</span>
+<span class="s2">                    c.repo_id = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">df_current_repo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">df_commits</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_commits</span><span class="p">,</span> <span class="n">df_current_repo</span><span class="p">])</span>
+
+<span class="n">df_commits</span> <span class="o">=</span> <span class="n">df_commits</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_commits</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+<span class="n">df_commits</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>commits</th>
+      <th>file</th>
+      <th>lines_added</th>
+      <th>lines_removed</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>79ee6429a570b2982fab12a20dea670a858e1141</td>
+      <td>34605744</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2021-03-24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>79ee6429a570b2982fab12a20dea670a858e1141</td>
+      <td>34605745</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2021-03-24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>574901f5cd8372006cc64ff2b9f14f5470bba4e4</td>
+      <td>34605767</td>
+      <td>6</td>
+      <td>6</td>
+      <td>2021-03-19</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>7877b0c7937c6242e18ed712d5fb14323d13115f</td>
+      <td>34605778</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2021-03-24</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>7877b0c7937c6242e18ed712d5fb14323d13115f</td>
+      <td>34605779</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2021-03-24</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>27673</th>
+      <td>grimoirelab</td>
+      <td>fe7ab96bdf7d0187737285af6dc3c08f5c422f14</td>
+      <td>34556304</td>
+      <td>6</td>
+      <td>2</td>
+      <td>2018-01-19</td>
+    </tr>
+    <tr>
+      <th>27674</th>
+      <td>grimoirelab</td>
+      <td>ff18ee3474f147c6c3b99997ac79b612fd7a2adc</td>
+      <td>34556713</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2018-06-04</td>
+    </tr>
+    <tr>
+      <th>27675</th>
+      <td>grimoirelab</td>
+      <td>ff22f21630e80b67707db0551ca1787de843e403</td>
+      <td>34556365</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2018-09-10</td>
+    </tr>
+    <tr>
+      <th>27676</th>
+      <td>grimoirelab</td>
+      <td>ff7bd07014362d6b1b54a7c4de6e70e8412ee1d0</td>
+      <td>34557194</td>
+      <td>15</td>
+      <td>0</td>
+      <td>2019-04-01</td>
+    </tr>
+    <tr>
+      <th>27677</th>
+      <td>grimoirelab</td>
+      <td>ff93d710067dcef632a9403e98c9f9d8b691ef67</td>
+      <td>34556732</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2019-01-28</td>
+    </tr>
+  </tbody>
+</table>
+<p>27678 rows × 6 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="data-cleaning">
+<h3>Data Cleaning<a class="headerlink" href="#data-cleaning" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_commits</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_commits</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#IF YOU ONLY WANT TO LOOK AT A ONE OF THE REPOS QUERIED </span>
+<span class="n">repo_focus</span> <span class="o">=</span> <span class="s1">&#39;augur&#39;</span>
+<span class="n">df_repo_focus</span> <span class="o">=</span> <span class="n">df_commits</span><span class="p">[</span><span class="n">df_commits</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
+<span class="n">df_repo_focus</span> <span class="o">=</span> <span class="n">df_repo_focus</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span> <span class="s2">&quot;date_time&quot;</span><span class="p">)</span>
+<span class="n">df_repo_focus</span> <span class="o">=</span> <span class="n">df_repo_focus</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_repo_focus</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>commits</th>
+      <th>file</th>
+      <th>lines_added</th>
+      <th>lines_removed</th>
+      <th>date</th>
+      <th>date_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>c1c780958deb790fd40520873fdf8eee8e9988d9</td>
+      <td>34595109</td>
+      <td>17</td>
+      <td>1</td>
+      <td>2017-01-05</td>
+      <td>2017-01-05</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>c1c780958deb790fd40520873fdf8eee8e9988d9</td>
+      <td>34595110</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2017-01-05</td>
+      <td>2017-01-05</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>9c742edec6169dbd8423c96c07c4725499ebaa6e</td>
+      <td>34586512</td>
+      <td>42</td>
+      <td>1</td>
+      <td>2017-01-10</td>
+      <td>2017-01-10</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>4d67b9758af01f1789edab9564c5f876c3665e38</td>
+      <td>34586047</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2017-01-10</td>
+      <td>2017-01-10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>9c742edec6169dbd8423c96c07c4725499ebaa6e</td>
+      <td>34586503</td>
+      <td>4</td>
+      <td>1</td>
+      <td>2017-01-10</td>
+      <td>2017-01-10</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>25842</th>
+      <td>augur</td>
+      <td>cb0bce873c5ff578a8b3c818f36ce7efe94a5e0e</td>
+      <td>34684610</td>
+      <td>5</td>
+      <td>0</td>
+      <td>2021-07-25</td>
+      <td>2021-07-25</td>
+    </tr>
+    <tr>
+      <th>25843</th>
+      <td>augur</td>
+      <td>70f60c931f3dd764579c83032dad10f24456690f</td>
+      <td>34684604</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2021-07-26</td>
+      <td>2021-07-26</td>
+    </tr>
+    <tr>
+      <th>25844</th>
+      <td>augur</td>
+      <td>fa7e9767664c46865ec09b7479b89431fa0fe207</td>
+      <td>34684818</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021-08-01</td>
+      <td>2021-08-01</td>
+    </tr>
+    <tr>
+      <th>25845</th>
+      <td>augur</td>
+      <td>3a253df3838f2103ce6ed0de0a87e1bea4904820</td>
+      <td>34684343</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021-08-01</td>
+      <td>2021-08-01</td>
+    </tr>
+    <tr>
+      <th>25846</th>
+      <td>augur</td>
+      <td>93032e8fd3263097c0bcb9fdbbbb7402f50e4beb</td>
+      <td>34684425</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2021-08-01</td>
+      <td>2021-08-01</td>
+    </tr>
+  </tbody>
+</table>
+<p>25847 rows × 7 columns</p>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="number-of-commits">
+<h2>Number of commits<a class="headerlink" href="#number-of-commits" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We will fetch all the unique commit IDs and drop the redundant ones</span>
+<span class="n">df_commits_unique</span> <span class="o">=</span> <span class="n">df_repo_focus</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;file&#39;</span><span class="p">])</span>
+<span class="n">agg_fun</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;repo_name&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span>  <span class="s1">&#39;commits&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;lines_added&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;lines_removed&#39;</span><span class="p">:</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> 
+                         <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;date_time&#39;</span><span class="p">:</span> <span class="s1">&#39;first&#39;</span><span class="p">}</span>
+<span class="n">df_commits_unique</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_commits_unique</span><span class="p">[</span><span class="s1">&#39;commits&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">agg_fun</span><span class="p">)</span>
+<span class="n">df_commits_unique</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="by-day">
+<h3>By Day<a class="headerlink" href="#by-day" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_daily_commits</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_commits_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_daily_commits</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Commits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily Commits for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/commits_activity_17_0.png" src="../_images/commits_activity_17_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="by-week">
+<h3>By Week<a class="headerlink" href="#by-week" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_week_commits</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_commits_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_week_commits</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Commits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Weekly Commits for &quot;</span> <span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/commits_activity_20_0.png" src="../_images/commits_activity_20_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="by-month">
+<h3>By Month<a class="headerlink" href="#by-month" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_monthy_commits</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_commits_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repo_monthy_commits</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Commits&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Monthy Commits for &quot;</span> <span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/commits_activity_23_0.png" src="../_images/commits_activity_23_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="number-of-lines-per-commit">
+<h2>Number of lines per commit<a class="headerlink" href="#number-of-lines-per-commit" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_lines_repo</span> <span class="o">=</span> <span class="n">df_commits_unique</span><span class="p">[[</span><span class="s2">&quot;commits&quot;</span><span class="p">,</span> <span class="s2">&quot;lines_added&quot;</span><span class="p">]]</span>
+<span class="n">df_lines_repo</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Commit ID&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Lines&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Lines per Commit for &quot;</span><span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/commits_activity_25_0.png" src="../_images/commits_activity_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_commits_unique</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>lines_added</th>
+      <th>lines_removed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>5431.000000</td>
+      <td>5431.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>581.224636</td>
+      <td>590.132020</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>6150.904575</td>
+      <td>7409.079865</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>33.000000</td>
+      <td>14.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>252656.000000</td>
+      <td>321009.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="number-of-lines-per-file">
+<h2>Number of lines per file<a class="headerlink" href="#number-of-lines-per-file" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_repo_focus</span><span class="p">[[</span> <span class="s2">&quot;lines_added&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;file&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;lines_added&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# lines per file for &quot;</span><span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/commits_activity_28_0.png" src="../_images/commits_activity_28_0.png" />
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="START_HERE.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Introduction to connecting and Querying the Augur DB</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="community_metrics.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Github Metrics- Growth of a Repo’s Community</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
