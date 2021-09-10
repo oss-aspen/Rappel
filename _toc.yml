@@ -1,0 +1,18 @@
+format: jb-book
+root: README
+parts:
+  - caption: Getting started
+    chapters:
+    - file: notebooks/START_HERE
+  - caption: GitHub Community Metrics
+    chapters:
+    - file: notebooks/commits_activity
+    - file: notebooks/community_metrics
+    - file: notebooks/issue_activity
+    - file: notebooks/pr_activity
+  - caption: Community Analysis
+    chapters:
+    - file: notebooks/demo_augur/new_contributor_template
+    - file: notebooks/demo_augur/contributor_risk_template
+    - file: notebooks/demo_augur/pull_request_analysis_template
+    - file: notebooks/demo_augur/response_time_bus_days_template
