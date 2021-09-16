@@ -1,0 +1,1124 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Performance Metrics- Issues &#8212; Sandiego</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Github Performance Metrics- Pull Requests" href="pr_performance.html" />
+    <link rel="prev" title="PR Response Time Analysis (Business Days)" href="../demo_augur/response_time_bus_days_template.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../START_HERE.html">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  GitHub Community Metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Community Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Performance Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Github Performance Metrics- Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_performance.html">
+   Github Performance Metrics- Pull Requests
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/notebooks/performance/issues_performance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/performance/issues_performance.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/performance/issues_performance.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/performance/issues_performance.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#query-for-issue-analysis">
+   Query for Issue Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#median-time-to-close-issues">
+   Median Time to Close Issues
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-plot">
+     Line Plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bar-plot">
+   Bar Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-of-issues-open">
+   Number of Issues Open
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot">
+     Plot
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-to-first-response-issues">
+   Time to First Response Issues
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pie-chart-response-percent">
+     Pie Chart-Response Percent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bar-plot-mean-time-to-first-reponse">
+     Bar Plot- Mean Time to First Reponse
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="github-performance-metrics-issues">
+<h1>Github Performance Metrics- Issues<a class="headerlink" href="#github-performance-metrics-issues" title="Permalink to this headline">¶</a></h1>
+<p><strong>Activity by Repo</strong></p>
+<p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
+<p>Any necessary computations from the data to get the metric value will be done as the queries are determined</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
+<span class="n">repo_name_set</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;augur&#39;</span><span class="p">,</span> <span class="s1">&#39;grimoirelab&#39;</span><span class="p">]</span>
+<span class="n">repo_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">repo_name</span> <span class="ow">in</span> <span class="n">repo_name_set</span><span class="p">:</span>
+    <span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">                 SELECT </span>
+<span class="s2">                    b.repo_id</span>
+<span class="s2">                FROM</span>
+<span class="s2">                    repo_groups a,</span>
+<span class="s2">                    repo b</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                    a.repo_group_id = b.repo_group_id AND</span>
+<span class="s2">                    b.repo_name = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">repo_query</span><span class="p">)</span>
+    <span class="n">repo_id</span> <span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">mappings</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repo_id&#39;</span><span class="p">)</span>
+    <span class="n">repo_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repo_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[25440, 25448]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number(s)</span>
+<span class="c1">#repo_set = [25440]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="query-for-issue-analysis">
+<h2>Query for Issue Analysis<a class="headerlink" href="#query-for-issue-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">repo_id</span> <span class="ow">in</span> <span class="n">repo_set</span><span class="p">:</span> 
+
+    <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT</span>
+<span class="s2">                    r.repo_name,</span>
+<span class="s2">					i.issue_id AS issue, </span>
+<span class="s2">					i.gh_issue_number AS issue_number,</span>
+<span class="s2">					i.gh_issue_id AS gh_issue,</span>
+<span class="s2">					i.created_at AS created, </span>
+<span class="s2">					i.closed_at AS closed</span>
+<span class="s2">                FROM</span>
+<span class="s2">                	repo r,</span>
+<span class="s2">                    issues i</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                	r.repo_id = i.repo_id AND</span>
+<span class="s2">                    i.repo_id = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">df_current_repo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">df_issues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_issues</span><span class="p">,</span> <span class="n">df_current_repo</span><span class="p">])</span>
+
+<span class="n">df_issues</span> <span class="o">=</span> <span class="n">df_issues</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_issues</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+<span class="n">df_issues</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>issue</th>
+      <th>issue_number</th>
+      <th>gh_issue</th>
+      <th>created</th>
+      <th>closed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>340115</td>
+      <td>28</td>
+      <td>213149529</td>
+      <td>2017-03-09 20:06:18</td>
+      <td>2017-04-07 21:18:01</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>343231</td>
+      <td>886</td>
+      <td>682259157</td>
+      <td>2020-08-20 00:09:30</td>
+      <td>2020-08-20 00:16:50</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>343216</td>
+      <td>880</td>
+      <td>679627659</td>
+      <td>2020-08-15 19:11:45</td>
+      <td>2020-08-17 14:30:04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>343467</td>
+      <td>967</td>
+      <td>724668885</td>
+      <td>2020-10-19 14:21:08</td>
+      <td>2020-10-19 14:21:34</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>342738</td>
+      <td>740</td>
+      <td>628534692</td>
+      <td>2020-06-01 15:34:33</td>
+      <td>2020-08-20 10:48:14</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">repo_id</span> <span class="ow">in</span> <span class="n">repo_set</span><span class="p">:</span> 
+
+    <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT</span>
+<span class="s2">                    r.repo_name,</span>
+<span class="s2">                    irm.issue_id,</span>
+<span class="s2">                    irm.issue_msg_ref_id,</span>
+<span class="s2">                    i.created_at,</span>
+<span class="s2">                    m.msg_timestamp msg_time,</span>
+<span class="s2">					m.msg_text comment_text</span>
+<span class="s2">                FROM</span>
+<span class="s2">                	repo r,</span>
+<span class="s2">                    issues i,</span>
+<span class="s2">                    issue_message_ref irm, </span>
+<span class="s2">                    message m </span>
+<span class="s2">                WHERE</span>
+<span class="s2">                	m.msg_id = irm.msg_id AND</span>
+<span class="s2">                    irm.issue_id = i.issue_id AND</span>
+<span class="s2">                	i.repo_id = r.repo_id AND</span>
+<span class="s2">                    r.repo_id = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">df_current_repo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">df_issues_comments</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_issues_comments</span><span class="p">,</span> <span class="n">df_current_repo</span><span class="p">])</span>
+
+<span class="n">df_issues_comments</span> <span class="o">=</span> <span class="n">df_issues_comments</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_issues_comments</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+<span class="n">df_issues_comments</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>issue_id</th>
+      <th>issue_msg_ref_id</th>
+      <th>created_at</th>
+      <th>msg_time</th>
+      <th>comment_text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>339455</td>
+      <td>1199959</td>
+      <td>2020-04-17 21:25:27</td>
+      <td>2018-08-11 20:49:22</td>
+      <td>Is there a reason requirements.txt was removed?</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>339455</td>
+      <td>1199960</td>
+      <td>2020-04-17 21:25:27</td>
+      <td>2018-08-12 16:47:29</td>
+      <td>I did not intend to delete this file.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>339455</td>
+      <td>1199961</td>
+      <td>2020-04-17 21:25:27</td>
+      <td>2019-01-17 18:04:57</td>
+      <td>Was this a merge conflict resolution?  I think...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>339455</td>
+      <td>1199962</td>
+      <td>2020-04-17 21:25:27</td>
+      <td>2019-01-17 18:16:36</td>
+      <td>Actually, @gabe-heim had made this change earl...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>339455</td>
+      <td>1199963</td>
+      <td>2020-04-17 21:25:27</td>
+      <td>2019-06-13 12:30:55</td>
+      <td>This was the error message I got: \r\nYou can ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#IF YOU ONLY WANT TO LOOK AT A ONE OF THE REPOS QUERIED </span>
+<span class="n">repo_focus</span> <span class="o">=</span> <span class="s1">&#39;augur&#39;</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="n">df_issues</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span> <span class="s2">&quot;created&quot;</span><span class="p">)</span>
+<span class="n">df_issues_focus</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="median-time-to-close-issues">
+<h2>Median Time to Close Issues<a class="headerlink" href="#median-time-to-close-issues" title="Permalink to this headline">¶</a></h2>
+<p>One of the performance metrics we would like to track is the median time taken to close issues. From the <code class="docutils literal notranslate"><span class="pre">issues</span></code> table, we have <code class="docutils literal notranslate"><span class="pre">created</span></code> and <code class="docutils literal notranslate"><span class="pre">closed</span></code> timestamps, the difference between the two will give us the time taken to close a given issue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate the time taken to close an issue</span>
+<span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">closed</span> <span class="o">-</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_name</th>
+      <th>issue</th>
+      <th>issue_number</th>
+      <th>gh_issue</th>
+      <th>created</th>
+      <th>closed</th>
+      <th>time_to_close</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur</td>
+      <td>340142</td>
+      <td>1</td>
+      <td>202159788</td>
+      <td>2017-01-20 14:56:01</td>
+      <td>2017-12-18 17:15:12</td>
+      <td>332 days 02:19:11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur</td>
+      <td>340141</td>
+      <td>2</td>
+      <td>202161717</td>
+      <td>2017-01-20 15:04:01</td>
+      <td>2017-02-17 03:05:14</td>
+      <td>27 days 12:01:13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur</td>
+      <td>340140</td>
+      <td>3</td>
+      <td>202232128</td>
+      <td>2017-01-20 20:15:51</td>
+      <td>2017-02-15 16:55:41</td>
+      <td>25 days 20:39:50</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur</td>
+      <td>340139</td>
+      <td>4</td>
+      <td>202606858</td>
+      <td>2017-01-23 18:00:23</td>
+      <td>2017-05-11 15:45:33</td>
+      <td>107 days 21:45:10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur</td>
+      <td>340138</td>
+      <td>5</td>
+      <td>202618154</td>
+      <td>2017-01-23 18:50:08</td>
+      <td>2017-01-23 20:49:42</td>
+      <td>0 days 01:59:34</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The overal median time to close issues for the augur repo</span>
+<span class="n">df_issues_focus</span><span class="o">.</span><span class="n">time_to_close</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;0 days 09:40:58&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s find out the median time taken to close issues grouped by month.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can visualize the trend in median time to close issues by month</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="line-plot">
+<h3>Line Plot<a class="headerlink" href="#line-plot" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_20_0.png" src="../../_images/issues_performance_20_0.png" />
+</div>
+</div>
+<p>We can also plot a bar graph as follows</p>
+</div>
+</div>
+<div class="section" id="bar-plot">
+<h2>Bar Plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Median Time to Close Issues (Monthly)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/issues_performance_23_1.png" src="../../_images/issues_performance_23_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count                          1351
+mean     17 days 00:29:38.954108068
+std      58 days 21:09:12.017033490
+min                 0 days 00:00:07
+25%                 0 days 00:02:16
+50%                 0 days 09:40:58
+75%                 6 days 19:29:25
+max               692 days 02:45:18
+Name: time_to_close, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="number-of-issues-open">
+<h2>Number of Issues Open<a class="headerlink" href="#number-of-issues-open" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now identify the issues which are still open and view them by the month they were openned originally</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open</span> <span class="o">=</span> <span class="n">df_issues_open</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To find out how long an issue has been open, we can find the difference between the current timestamp and the issue creation timestamp</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Calculate the time an issue has been open</span>
+<span class="n">df_issues_open</span><span class="p">[</span><span class="s1">&#39;time_open&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">df_issues_open</span><span class="o">.</span><span class="n">created</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open</span><span class="p">[</span><span class="s1">&#39;time_open&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count                            101
+mean     130 days 18:03:09.518855800
+std      118 days 08:39:25.371506794
+min           6 days 18:03:55.310935
+25%          40 days 18:07:30.310935
+50%          71 days 00:03:07.310935
+75%         186 days 23:10:14.310935
+max         514 days 01:34:43.310935
+Name: time_open, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, lets see the median time issues were open by month</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open_monthly</span> <span class="o">=</span> <span class="n">df_issues_open</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_open</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can visualize the median time issues are open with a bar graph</p>
+<div class="section" id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Number of Issues Currenly Open by Created Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Issues&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Number of Issues&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/issues_performance_35_1.png" src="../../_images/issues_performance_35_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="time-to-first-response-issues">
+<h2>Time to First Response Issues<a class="headerlink" href="#time-to-first-response-issues" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments</span><span class="p">[</span><span class="n">df_issues_comments</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
+<span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span> <span class="s2">&quot;msg_time&quot;</span><span class="p">)</span>
+<span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;issue_id&#39;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">not_answered</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">answered</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pie-chart-response-percent">
+<h3>Pie Chart-Response Percent<a class="headerlink" href="#pie-chart-response-percent" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Answered&quot;</span><span class="p">,</span><span class="s2">&quot;Not Answered&quot;</span><span class="p">]</span>
+<span class="n">sizes</span> <span class="o">=</span> <span class="p">[</span><span class="n">answered</span><span class="p">,</span><span class="n">not_answered</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span><span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span><span class="n">pctdistance</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Issues-Response Percent&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_40_0.png" src="../../_images/issues_performance_40_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">msg_time</span> <span class="o">-</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">created_at</span><span class="p">)</span>
+<span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">df_issues_comments_monthly</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="bar-plot-mean-time-to-first-reponse">
+<h3>Bar Plot- Mean Time to First Reponse<a class="headerlink" href="#bar-plot-mean-time-to-first-reponse" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Note: this is the time for only the issues that have a response</strong></em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to Comment (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Issue Comment (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_44_0.png" src="../../_images/issues_performance_44_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>issue_id</th>
+      <th>issue_msg_ref_id</th>
+      <th>time_to_response</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>572.000000</td>
+      <td>5.720000e+02</td>
+      <td>572</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>376210.860140</td>
+      <td>1.204971e+06</td>
+      <td>10 days 06:48:15.858391608</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>113390.064602</td>
+      <td>8.001126e+03</td>
+      <td>28 days 08:16:20.265810224</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>339462.000000</td>
+      <td>1.199971e+06</td>
+      <td>0 days 00:00:17</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>339728.750000</td>
+      <td>1.200566e+06</td>
+      <td>0 days 04:26:28.500000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>339945.500000</td>
+      <td>1.200936e+06</td>
+      <td>1 days 13:58:46.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>340139.250000</td>
+      <td>1.209160e+06</td>
+      <td>6 days 01:36:14.250000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>734598.000000</td>
+      <td>1.225894e+06</td>
+      <td>241 days 12:57:16</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/performance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../demo_augur/response_time_bus_days_template.html" title="previous page">PR Response Time Analysis (Business Days)</a>
+    <a class='right-next' id="next-link" href="pr_performance.html" title="next page">Github Performance Metrics- Pull Requests</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
