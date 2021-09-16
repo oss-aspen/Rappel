@@ -16,3 +16,7 @@ parts:
     - file: notebooks/demo_augur/contributor_risk_template
     - file: notebooks/demo_augur/pull_request_analysis_template
     - file: notebooks/demo_augur/response_time_bus_days_template
+  - caption: Performance Analysis
+    chapters:
+    - file: notebooks/performance/issues_performance
+    - file: notebooks/performance/pr_performance
