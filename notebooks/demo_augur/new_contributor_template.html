@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -42,17 +42,18 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Contributor Risk Analysis" href="contributor_risk_template.html" />
-    <link rel="prev" title="Github Metrics- Growth of a Repo’s Community" href="../community_metrics.html" />
+    <link rel="prev" title="Github Activity Metrics-Pull Requests" href="../pr_activity.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -78,7 +79,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -101,13 +102,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Preliminary Analysis
+  GitHub Community Metrics
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../commits_activity.html">
    Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
   </a>
  </li>
  <li class="toctree-l1">
@@ -120,15 +126,10 @@
    Github Activity Metrics-Pull Requests
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../community_metrics.html">
-   Github Metrics- Growth of a Repo’s Community
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Community Reports
+  Community Analysis
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -150,6 +151,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="response_time_bus_days_template.html">
    PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Performance Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../performance/issues_performance.html">
+   Github Performance Metrics- Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../performance/pr_performance.html">
+   Github Performance Metrics- Pull Requests
   </a>
  </li>
 </ul>
@@ -260,7 +278,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#control-cells-set-variables-and-filters">
@@ -460,7 +478,7 @@
 <h2>Contributor and Month Data Accessing and Processing<a class="headerlink" href="#contributor-and-month-data-accessing-and-processing" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="query">
 <h3>Query<a class="headerlink" href="#query" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
@@ -919,7 +937,7 @@
 </div>
 <div class="section" id="add-date-data">
 <h3>Add Date Data<a class="headerlink" href="#add-date-data" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add yearmonths to contributor</span>
 <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;month&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -966,7 +984,7 @@
 </div>
 <div class="section" id="repo-aliasing-ignore-if-not-using-aliases">
 <h2>Repo Aliasing- ignore if not using aliases<a class="headerlink" href="#repo-aliasing-ignore-if-not-using-aliases" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#create a dictionairy with a number(0-26) as the key and a letter(A-Z) as the value</span>
 <span class="c1">#this is used to alias repos when using &#39;competor&#39; display grouping is specified</span>
@@ -1029,7 +1047,7 @@
 </div>
 <div class="section" id="data-visualizations">
 <h2>Data Visualizations<a class="headerlink" href="#data-visualizations" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import visualization libraries</span>
 <span class="kn">from</span> <span class="nn">bokeh.io</span> <span class="kn">import</span> <span class="n">output_notebook</span><span class="p">,</span> <span class="n">show</span><span class="p">,</span> <span class="n">export_png</span>
@@ -1046,7 +1064,7 @@
 </div>
 <div class="section" id="new-contributors-bar-charts">
 <h3>New Contributors Bar Charts<a class="headerlink" href="#new-contributors-bar-charts" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vertical_bar_chart</span><span class="p">(</span><span class="n">input_df</span><span class="p">,</span> <span class="n">months_df</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="n">group_by</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;new_contributors&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> Time Contributors Per </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">required_contributions</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">required_time</span> <span class="o">=</span><span class="mi">5</span>  <span class="p">):</span>
     <span class="n">contributor_types</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;All&#39;</span><span class="p">,</span> <span class="s1">&#39;repeat&#39;</span><span class="p">,</span> <span class="s1">&#39;drive_by&#39;</span><span class="p">]</span>
@@ -3262,7 +3280,7 @@
 </div>
 <div class="section" id="new-contributors-action-bar-charts">
 <h3>New Contributors Action Bar Charts<a class="headerlink" href="#new-contributors-action-bar-charts" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vertical_stacked_bar_chart</span><span class="p">(</span><span class="n">input_df</span><span class="p">,</span> <span class="n">months_df</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="n">group_by</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;new_contributors&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2"> Time Contributors Per </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">required_contributions</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">required_time</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
     
@@ -5510,7 +5528,7 @@
 </div>
 <div class="section" id="repeat-and-drive-by-contributor-counts-pie-chart">
 <h3>Repeat and Drive By Contributor Counts Pie Chart<a class="headerlink" href="#repeat-and-drive-by-contributor-counts-pie-chart" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pie_chart</span><span class="p">(</span><span class="n">input_df</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot; </span><span class="si">{}</span><span class="s2">: Number of Returning Contributors out of </span><span class="si">{}</span><span class="s2"> from </span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">required_contributions</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">required_time</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="n">repo_list</span><span class="p">):</span>
@@ -6350,7 +6368,7 @@
 </div>
 <div class="section" id="repeat-and-drive-by-contributor-counts-stacked-bar-chart">
 <h3>Repeat and Drive-by Contributor Counts Stacked Bar Chart<a class="headerlink" href="#repeat-and-drive-by-contributor-counts-stacked-bar-chart" title="Permalink to this headline">¶</a></h3>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vertical_stacked_bar_chart_2</span><span class="p">(</span><span class="n">input_df</span><span class="p">,</span> <span class="n">months_df</span><span class="p">,</span> <span class="n">repo_id</span><span class="p">,</span> <span class="n">group_by</span><span class="p">,</span> <span class="n">y_axis</span><span class="o">=</span><span class="s1">&#39;new_contributors&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: Drive By and Repeat Contributor Counts per </span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">required_contributions</span><span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">required_time</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 
@@ -7267,32 +7285,12 @@
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="../pr_activity.html" title="previous page">Github Activity Metrics-Pull Requests</a>
+    <a class='right-next' id="next-link" href="contributor_risk_template.html" title="next page">Contributor Risk Analysis</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../community_metrics.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Github Metrics- Growth of a Repo’s Community</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="contributor_risk_template.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Contributor Risk Analysis</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>

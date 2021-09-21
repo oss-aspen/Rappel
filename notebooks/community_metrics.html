@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,17 +42,18 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="New Contributor Analysis" href="demo_augur/new_contributor_template.html" />
-    <link rel="prev" title="Github Activity Metrics-Pull Requests" href="pr_activity.html" />
+    <link rel="next" title="Github Activity Metrics-Issues" href="issue_activity.html" />
+    <link rel="prev" title="Github Activity Metrics-Commits" href="commits_activity.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -78,7 +79,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -101,13 +102,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Preliminary Analysis
+  GitHub Community Metrics
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="commits_activity.html">
    Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Github Metrics- Growth of a Repo’s Community
   </a>
  </li>
  <li class="toctree-l1">
@@ -120,15 +126,10 @@
    Github Activity Metrics-Pull Requests
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Github Metrics- Growth of a Repo’s Community
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Community Reports
+  Community Analysis
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -150,6 +151,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
    PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Performance Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance/issues_performance.html">
+   Github Performance Metrics- Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance/pr_performance.html">
+   Github Performance Metrics- Pull Requests
   </a>
  </li>
 </ul>
@@ -260,107 +278,67 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Github Metrics- Growth of a Repo’s Community
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
    Control Cell - Set Variables and Filters
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#growth-of-novel-first-time-issue-submitters-over-time">
-   Growth of novel (first-time) issue submitters over time
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#growth-of-first-time-issue-submitters-over-time">
+   Growth of first-time issue submitters over time
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#query-for-repo-s-issues-ascending-time">
-     Query for repo’s issues, ascending time
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#drop-all-duplicate-reporter-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-     Drop all duplicate reporter_id’s except for their first occurrence; re-sort in ascending order.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#new-issue-creators-over-time">
-     New issue creators over time
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-time-issue-creators-over-time">
+     First-time issue creators over time
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#growth-of-novel-first-time-pr-submitters-over-time">
-   Growth of novel (first-time) PR submitters over time
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#growth-of-first-time-pr-submitters-over-time">
+   Growth of first-time PR submitters over time
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#query-for-user-who-made-pr-and-timestamp-of-pr">
-     Query for user who made PR and timestamp of PR
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#drop-all-duplicate-pr-src-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-     Drop all duplicate pr_src_id’s except for their first occurrence; re-sort in ascending order.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#new-pr-makers-over-time">
-     New PR makers over time
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#growth-of-aggregate-first-time-pr-submitters">
+     Growth of aggregate first-time PR submitters
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#number-of-augur-contributors-differentiated-as-committer-and-author">
-   Number of Augur contributors, differentiated as “Committer” and “Author
+   Number of Augur contributors, differentiated as “Committer” and “Author”
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#query-for-first-time-committers-and-first-time-authors-each-sorted-in-ascending-order">
-     Query for first-time committers and first-time authors, each sorted in ascending order
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#first-time-commiters-over-time">
+     First-time commiters over time
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#drop-all-duplicate-cmt-committer-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-     Drop all duplicate cmt_committer_name’s except for their first occurrence; re-sort in ascending order
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#first-time-commit-makers-over-time">
-     First-time commit makers over time
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#drop-all-duplicate-cmt-author-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-     Drop all duplicate cmt_author_name’s except for their first occurrence; re-sort in ascending order
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#first-time-commit-authors-over-time">
      First-time commit authors over time
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comparison-of-growth-between-new-authors-and-new-committers">
-     Comparison of growth between new authors and new committers
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-of-growth-between-new-commit-authors-and-new-commit-makers">
+     Comparison of growth between new commit authors and new commit makers.
     </a>
    </li>
   </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#organizational-diversity">
-   Organizational diversity
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#organizational-diversity-wip">
+   Organizational diversity [WIP]
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#number-of-users">
-   Number of Users
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-of-users-wip">
+   Number of Users [WIP]
   </a>
  </li>
 </ul>
@@ -377,8 +355,9 @@
   <div class="section" id="github-metrics-growth-of-a-repo-s-community">
 <h1>Github Metrics- Growth of a Repo’s Community<a class="headerlink" href="#github-metrics-growth-of-a-repo-s-community" title="Permalink to this headline">¶</a></h1>
 <p>note: <a class="reference external" href="https://www.zainrizvi.io/blog/jupyter-notebooks-best-practices-use-virtual-environments/">https://www.zainrizvi.io/blog/jupyter-notebooks-best-practices-use-virtual-environments/</a> for setting up virtual environments in this RHODs JL instance.</p>
-<p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
-<div class="cell docutils container">
+<p>This notebook will aim to query the Augur DB to derive measurements specified in the GitHub Community Metrics working document: <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
+<p><strong>Imports and Database (Augur) connection</strong></p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
@@ -393,10 +372,11 @@
 <span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">BusinessDay</span>
 <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
 <span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">17</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
 
 <span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> 
@@ -413,12 +393,11 @@
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="control-cell-set-variables-and-filters">
-<h1>Control Cell - Set Variables and Filters<a class="headerlink" href="#control-cell-set-variables-and-filters" title="Permalink to this headline">¶</a></h1>
+<h2>Control Cell - Set Variables and Filters<a class="headerlink" href="#control-cell-set-variables-and-filters" title="Permalink to this headline">¶</a></h2>
 <p>The cell below is for generating repo_ids from the repo names. For this to work, the repo must already be in the database. If you want to manually assign a repo_id skip the cell below and read the comments on the next cell.</p>
 <p>In other words, this cell translates a repo’s name (augur or grimoirelab) into their respective repo-id.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
 <span class="c1">#repo_name_set = [&#39;augur&#39;, &#39;grimoirelab&#39;]</span>
@@ -452,14 +431,11 @@
 </div>
 </div>
 </div>
-<div class="section" id="growth-of-novel-first-time-issue-submitters-over-time">
-<h1>Growth of novel (first-time) issue submitters over time<a class="headerlink" href="#growth-of-novel-first-time-issue-submitters-over-time" title="Permalink to this headline">¶</a></h1>
-<p>We are interested in the growth of new people submitting issues to a project over time.</p>
-<p>Over time, we expect to see the number of novel issue-submitters strictly increase and with a relatively constant slope.</p>
+<div class="section" id="growth-of-first-time-issue-submitters-over-time">
+<h2>Growth of first-time issue submitters over time<a class="headerlink" href="#growth-of-first-time-issue-submitters-over-time" title="Permalink to this headline">¶</a></h2>
 <p>This measurement is derived from removing all non-unique and non-first entries of the same reporter_id. We are then able to track the timestamps in order of first-time issue submissions.
-The resulting plot will show the growth in the number of novel issue submitors vs. time.</p>
-<div class="section" id="query-for-repo-s-issues-ascending-time">
-<h2>Query for repo’s issues, ascending time<a class="headerlink" href="#query-for-repo-s-issues-ascending-time" title="Permalink to this headline">¶</a></h2>
+The resulting plot will show the aggregate number of issue-submitters vs. time.</p>
+<p><strong>Query for repo’s issues, ascending time</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -482,6 +458,7 @@ The resulting plot will show the growth in the number of novel issue submitors v
 
 <span class="n">df_issues</span> <span class="o">=</span> <span class="n">df_issues</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">df_issues</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1">#df_issues[&quot;date_time&quot;] = pd.to_datetime(df_issues[&quot;created_at&quot;], format=&#39;%Y-%m-%d&#39;)</span>
 <span class="n">df_issues</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -539,9 +516,7 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="drop-all-duplicate-reporter-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-<h2>Drop all duplicate reporter_id’s except for their first occurrence; re-sort in ascending order.<a class="headerlink" href="#drop-all-duplicate-reporter-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order" title="Permalink to this headline">¶</a></h2>
+<p><strong>Drop all duplicate reporter_id’s except for their first occurrence; re-sort in ascending order.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get only the first incidence of an issue-creator posting.</span>
@@ -560,13 +535,13 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="new-issue-creators-over-time">
-<h2>New issue creators over time<a class="headerlink" href="#new-issue-creators-over-time" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<div class="section" id="first-time-issue-creators-over-time">
+<h3>First-time issue creators over time<a class="headerlink" href="#first-time-issue-creators-over-time" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the index of creation vs. the creation date.</span>
 <span class="n">df_issues</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;created_at&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# of New Augur Issue Creators vs. Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -574,16 +549,78 @@ The resulting plot will show the growth in the number of novel issue submitors v
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# of New Augur Issue Creators vs. Time&#39;}, xlabel=&#39;created_at&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/community_metrics_14_1.png" src="../_images/community_metrics_14_1.png" />
+<img alt="../_images/community_metrics_15_1.png" src="../_images/community_metrics_15_1.png" />
+</div>
+</div>
+<p><strong>First-time issue creators by day</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_issues_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Day&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time issue creators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur Issue Creators vs. Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_17_0.png" src="../_images/community_metrics_17_0.png" />
+</div>
+</div>
+<p><strong>First-time issue creators by week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time issue creators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur Issue Creators vs. Weeks&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_19_0.png" src="../_images/community_metrics_19_0.png" />
+</div>
+</div>
+<p><strong>First-time issue creators by month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_monthly</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="s2">&quot;created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_issues_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_monthly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time issue creators&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur Issue Creators vs. Months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_21_0.png" src="../_images/community_metrics_21_0.png" />
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="growth-of-novel-first-time-pr-submitters-over-time">
-<h1>Growth of novel (first-time) PR submitters over time<a class="headerlink" href="#growth-of-novel-first-time-pr-submitters-over-time" title="Permalink to this headline">¶</a></h1>
-<p>We use the same logic as that of novel issue-submitters to find the rate of novel PR’ing for the repo.</p>
-<div class="section" id="query-for-user-who-made-pr-and-timestamp-of-pr">
-<h2>Query for user who made PR and timestamp of PR<a class="headerlink" href="#query-for-user-who-made-pr-and-timestamp-of-pr" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="growth-of-first-time-pr-submitters-over-time">
+<h2>Growth of first-time PR submitters over time<a class="headerlink" href="#growth-of-first-time-pr-submitters-over-time" title="Permalink to this headline">¶</a></h2>
+<p>We use the same ideas from issue-submitters to find the rate of novel PR’ing for the repo.</p>
+<p><strong>Query for user who made PR and timestamp of PR.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -663,9 +700,7 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </table>
 </div></div></div>
 </div>
-</div>
-<div class="section" id="drop-all-duplicate-pr-src-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-<h2>Drop all duplicate pr_src_id’s except for their first occurrence; re-sort in ascending order.<a class="headerlink" href="#drop-all-duplicate-pr-src-id-s-except-for-their-first-occurrence-re-sort-in-ascending-order" title="Permalink to this headline">¶</a></h2>
+<p><strong>Drop all duplicate pr_src_id’s except for their first occurrence; re-sort in ascending order.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get only the first incidence of a user making a pr.</span>
@@ -684,35 +719,96 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="new-pr-makers-over-time">
-<h2>New PR makers over time<a class="headerlink" href="#new-pr-makers-over-time" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="growth-of-aggregate-first-time-pr-submitters">
+<h3>Growth of aggregate first-time PR submitters<a class="headerlink" href="#growth-of-aggregate-first-time-pr-submitters" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the index of creation vs. the creation date of PR.</span>
-<span class="n">df_pr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;pr_created_at&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur PR Makers vs. Time&quot;</span><span class="p">)</span>
+<span class="n">df_pr</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;pr_created_at&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur PR Submitters vs. Time&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# Novel Augur PR Makers vs. Time&#39;}, xlabel=&#39;pr_created_at&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# Novel Augur PR Submitters vs. Time&#39;}, xlabel=&#39;pr_created_at&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/community_metrics_22_1.png" src="../_images/community_metrics_22_1.png" />
+<img alt="../_images/community_metrics_29_1.png" src="../_images/community_metrics_29_1.png" />
+</div>
+</div>
+<p><strong>First-time PR submitters by day</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_daily</span> <span class="o">=</span> <span class="n">df_pr</span><span class="p">[</span><span class="s2">&quot;pr_created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr</span><span class="o">.</span><span class="n">pr_created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Day&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time PR submitters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur PR Submitters vs. Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_31_0.png" src="../_images/community_metrics_31_0.png" />
+</div>
+</div>
+<p><strong>First-time PR submitters by week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_weekly</span> <span class="o">=</span> <span class="n">df_pr</span><span class="p">[</span><span class="s2">&quot;pr_created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr</span><span class="o">.</span><span class="n">pr_created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time PR submitters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur PR Submitters vs. Weeks&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_33_0.png" src="../_images/community_metrics_33_0.png" />
+</div>
+</div>
+<p><strong>First-time PR submitters by month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_monthly</span> <span class="o">=</span> <span class="n">df_pr</span><span class="p">[</span><span class="s2">&quot;pr_created_at&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr</span><span class="o">.</span><span class="n">pr_created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# First-time PR submitters&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of New Augur PR Submitters vs. Months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_35_0.png" src="../_images/community_metrics_35_0.png" />
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="number-of-augur-contributors-differentiated-as-committer-and-author">
-<h1>Number of Augur contributors, differentiated as “Committer” and “Author<a class="headerlink" href="#number-of-augur-contributors-differentiated-as-committer-and-author" title="Permalink to this headline">¶</a></h1>
-<p>“GitHub defines a Contributor as: “This user has previously committed to the &lt;repo name&gt; repository.”</p>
+<h2>Number of Augur contributors, differentiated as “Committer” and “Author”<a class="headerlink" href="#number-of-augur-contributors-differentiated-as-committer-and-author" title="Permalink to this headline">¶</a></h2>
+<p><strong>Definition of a Contributor: (A) user (that) has previously committed to (the) repository.</strong></p>
 <p>Ref: <a class="reference external" href="https://stackoverflow.com/questions/28866799/difference-between-collaborator-and-contributor">https://stackoverflow.com/questions/28866799/difference-between-collaborator-and-contributor</a></p>
-<p>Each commit has a ‘committer’ and an ‘author.’ In most cases, these are the same person. This is the case when one someone commits their own code.</p>
-<p>It can also be the case, however, that someone might commit the code of another author, e.g. if cherry-picking some changes from another fork’s branch, without having written any code themselves. In this case, the author would be credited separately from the committer. But both of these individuals are considered contributors and are credited in the commit.</p>
-<p>Therefore we can get the growth of contributorship by splitting commits into novel committers and novel authors.</p>
-<p>We would expect to see the two grow together, as more often than not, one is both the committer and the author.</p>
-<div class="section" id="query-for-first-time-committers-and-first-time-authors-each-sorted-in-ascending-order">
-<h2>Query for first-time committers and first-time authors, each sorted in ascending order<a class="headerlink" href="#query-for-first-time-committers-and-first-time-authors-each-sorted-in-ascending-order" title="Permalink to this headline">¶</a></h2>
+<p>For our purposes, we’ll include both those who have authored code for the project and those who have committed that authored code as ‘contributors.’</p>
+<p>We can analyze the growth of contributorship by splitting commits into novel committers and novel authors.</p>
+<p><strong>Definition of an Author: An individual who writes or has written code that has become a part of the repository’s code base. One does not necessarily need to have committed their authored code to be considered an author.</strong></p>
+<p><strong>Definition of a Committer: An individiual who has one or more commits as part(s) of the commit-history of the repository’s code base. One does not necessarily need to have authored the code that they included in their commits to be considered a committer.</strong></p>
+<p><strong>For any further difficulty understanding this division, please refer to the following: <a class="reference external" href="https://stackoverflow.com/questions/18750808/difference-between-author-and-committer-in-git">https://stackoverflow.com/questions/18750808/difference-between-author-and-committer-in-git</a></strong></p>
+<p>Through this split, we can visualize the growth of contributors who are writing new code for the project (authors). This population will likely be a near-complete match with the population of individuals who have committed changes to the project (committers), via some workflow similar to the one described above.</p>
+<p>An explanation of the divergence between the two populations requires more inquiry.</p>
+<p><strong>Query for first-time committers and first-time authors, each sorted in ascending order</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_committers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -722,9 +818,8 @@ The resulting plot will show the growth in the number of novel issue submitors v
 
     <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                SELECT</span>
-<span class="s2">                    c.cmt_commit_hash,</span>
 <span class="s2">                    c.cmt_committer_name,</span>
-<span class="s2">                    c.cmt_committer_timestamp</span>
+<span class="s2">                    c.cmt_committer_timestamp as timestamp</span>
 <span class="s2">                FROM</span>
 <span class="s2">                	commits c</span>
 <span class="s2">                WHERE</span>
@@ -739,9 +834,8 @@ The resulting plot will show the growth in the number of novel issue submitors v
 
     <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">                SELECT</span>
-<span class="s2">                    c.cmt_commit_hash,</span>
 <span class="s2">                    c.cmt_author_name,</span>
-<span class="s2">                    c.cmt_author_timestamp</span>
+<span class="s2">                    c.cmt_author_timestamp as timestamp</span>
 <span class="s2">                FROM</span>
 <span class="s2">                	commits c</span>
 <span class="s2">                WHERE</span>
@@ -761,9 +855,7 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="drop-all-duplicate-cmt-committer-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-<h2>Drop all duplicate cmt_committer_name’s except for their first occurrence; re-sort in ascending order<a class="headerlink" href="#drop-all-duplicate-cmt-committer-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order" title="Permalink to this headline">¶</a></h2>
+<p><strong>Drop all duplicate cmt_committer_name’s except for their first occurrence; re-sort in ascending order</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort the committers by the commit timestamp and then keep only the first occurrence of a name.</span>
@@ -772,33 +864,210 @@ The resulting plot will show the growth in the number of novel issue submitors v
 <span class="n">df_pr_committers_unique</span> <span class="o">=</span> <span class="n">df_pr_committers</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;cmt_committer_name&quot;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
 
 <span class="c1"># Sort by the time of their first commit.</span>
-<span class="n">df_pr_committers_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_committers_unique</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;cmt_committer_timestamp&quot;</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_committers_unique</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
 
 <span class="c1"># Finagle the index as a column to count number of committers.</span>
 <span class="n">df_pr_committers_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df_pr_committers_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="first-time-commit-makers-over-time">
-<h2>First-time commit makers over time<a class="headerlink" href="#first-time-commit-makers-over-time" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot number of unique committers over time.</span>
-<span class="n">ax_committers</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;cmt_committer_timestamp&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur Commit Makers vs. Time&quot;</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/community_metrics_30_0.png" src="../_images/community_metrics_30_0.png" />
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>cmt_committer_name</th>
+      <th>timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>Derek Howard</td>
+      <td>2017-01-05 18:34:55+01:00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>GitHub</td>
+      <td>2017-01-11 00:16:37+01:00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>Matt Germonprez</td>
+      <td>2017-01-31 17:44:19+01:00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>Jake Harding</td>
+      <td>2017-02-01 21:31:19+01:00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>Micah</td>
+      <td>2017-02-01 21:35:07+01:00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>76</td>
+      <td>Brenda Kamangara</td>
+      <td>2021-07-15 19:53:18+02:00</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>77</td>
+      <td>Josh Berkus</td>
+      <td>2021-07-17 01:02:31+02:00</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>78</td>
+      <td>devika34</td>
+      <td>2021-07-25 15:02:47+02:00</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>79</td>
+      <td>arunima811</td>
+      <td>2021-07-26 20:56:22+02:00</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>80</td>
+      <td>anujlamoria</td>
+      <td>2021-08-13 22:07:48+02:00</td>
+    </tr>
+  </tbody>
+</table>
+<p>81 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="section" id="first-time-commiters-over-time">
+<h3>First-time commiters over time<a class="headerlink" href="#first-time-commiters-over-time" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot number of unique committers over time.</span>
+<span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur Committers vs. Time&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# Novel Augur Committers vs. Time&#39;}, xlabel=&#39;timestamp&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/community_metrics_43_1.png" src="../_images/community_metrics_43_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index                               int64
+cmt_committer_name                 object
+timestamp                          object
+date_time             datetime64[ns, UTC]
+dtype: object
+</pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="drop-all-duplicate-cmt-author-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order">
-<h2>Drop all duplicate cmt_author_name’s except for their first occurrence; re-sort in ascending order<a class="headerlink" href="#drop-all-duplicate-cmt-author-name-s-except-for-their-first-occurrence-re-sort-in-ascending-order" title="Permalink to this headline">¶</a></h2>
+<p><strong>First-time commit makers by day</strong></p>
+<p>Note: Graph only shows those days on which a commit was made.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_committers_sorted_unique_daily</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_committers_sorted_unique_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Committers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of First-time Augur Committers vs. Years&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_46_0.png" src="../_images/community_metrics_46_0.png" />
+</div>
+</div>
+<p><strong>First-time commit makers by week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_committers_sorted_unique_weekly</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_committers_sorted_unique_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Committers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# First-time Augur Committers vs. Weeks&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_48_0.png" src="../_images/community_metrics_48_0.png" />
+</div>
+</div>
+<p><strong>First-time commit makers by month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_committers_sorted_unique_monthly</span> <span class="o">=</span> <span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_committers_sorted_unique_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_committers_sorted_unique_monthly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Committers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# First-time Augur Committers vs. Months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_50_0.png" src="../_images/community_metrics_50_0.png" />
+</div>
+</div>
+<p><strong>Drop all duplicate cmt_author_name’s except for their first occurrence; re-sort in ascending order.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort the authors by the author timestamp and then keep only the first occurrence of a name.</span>
@@ -807,7 +1076,7 @@ The resulting plot will show the growth in the number of novel issue submitors v
 <span class="n">df_pr_authors_unique</span> <span class="o">=</span> <span class="n">df_pr_authors</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s2">&quot;cmt_author_name&quot;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s2">&quot;first&quot;</span><span class="p">)</span>
 
 <span class="c1"># Sort by the time of their first authorship.</span>
-<span class="n">df_pr_authors_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_authors_unique</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;cmt_author_timestamp&quot;</span><span class="p">)</span>
+<span class="n">df_pr_authors_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_authors_unique</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
 
 <span class="c1"># Finagle the index as a column to count number of authors.</span>
 <span class="n">df_pr_authors_sorted_unique</span> <span class="o">=</span> <span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -819,29 +1088,94 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </div>
 </div>
 <div class="section" id="first-time-commit-authors-over-time">
-<h2>First-time commit authors over time<a class="headerlink" href="#first-time-commit-authors-over-time" title="Permalink to this headline">¶</a></h2>
+<h3>First-time commit authors over time<a class="headerlink" href="#first-time-commit-authors-over-time" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot number of unique authors over time.</span>
-<span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;cmt_author_timestamp&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur Commit Authors vs. Time&quot;</span><span class="p">)</span>
+<span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;# Novel Augur Authors vs. Time&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# Novel Augur Commit Authors vs. Time&#39;}, xlabel=&#39;cmt_author_timestamp&#39;&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot:title={&#39;center&#39;:&#39;# Novel Augur Authors vs. Time&#39;}, xlabel=&#39;timestamp&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/community_metrics_34_1.png" src="../_images/community_metrics_34_1.png" />
+<img alt="../_images/community_metrics_54_1.png" src="../_images/community_metrics_54_1.png" />
+</div>
+</div>
+<p><strong>First-time Commit Authors by day</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s1">&#39;date_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df_pr_authors_sorted_unique_daily</span> <span class="o">=</span> <span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_authors_sorted_unique_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Day&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_authors_sorted_unique_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Authors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# First-time Authors vs. Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_56_0.png" src="../_images/community_metrics_56_0.png" />
+</div>
+</div>
+<p><strong>First-time Commit Authors makers by week</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_authors_sorted_unique_weekly</span> <span class="o">=</span> <span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_authors_sorted_unique_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_authors_sorted_unique_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%d</span><span class="s1"> %b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Authors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# First-time Authors vs. Weeks&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_58_0.png" src="../_images/community_metrics_58_0.png" />
+</div>
+</div>
+<p><strong>First-time PR Commit Authors by month</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_authors_sorted_unique_monthly</span> <span class="o">=</span> <span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;date_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="o">.</span><span class="n">date_time</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<span class="n">df_pr_authors_sorted_unique_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_pr_authors_sorted_unique_monthly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# New Authors&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# First-time Authors vs. Months&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/community_metrics_60_0.png" src="../_images/community_metrics_60_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="comparison-of-growth-between-new-authors-and-new-committers">
-<h2>Comparison of growth between new authors and new committers<a class="headerlink" href="#comparison-of-growth-between-new-authors-and-new-committers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="comparison-of-growth-between-new-commit-authors-and-new-commit-makers">
+<h3>Comparison of growth between new commit authors and new commit makers.<a class="headerlink" href="#comparison-of-growth-between-new-commit-authors-and-new-commit-makers" title="Permalink to this headline">¶</a></h3>
 <p>We see that the two growth-rates have similar shapes but non-identical growth rates. There are more novel authors than there are novel committers, indicating that in this project, some committers create commits on behalf of one or more authors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;cmt_committer_timestamp&quot;</span><span class="p">],</span> <span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;committers&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;cmt_author_timestamp&quot;</span><span class="p">],</span> <span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;authors&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">df_pr_committers_sorted_unique</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;committers&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">df_pr_authors_sorted_unique</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;authors&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Growth of Novel Authors vs. Novel Committers&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -849,16 +1183,17 @@ The resulting plot will show the growth in the number of novel issue submitors v
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/community_metrics_37_0.png" src="../_images/community_metrics_37_0.png" />
+<img alt="../_images/community_metrics_63_0.png" src="../_images/community_metrics_63_0.png" />
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="organizational-diversity">
-<h1>Organizational diversity<a class="headerlink" href="#organizational-diversity" title="Permalink to this headline">¶</a></h1>
-<p>Deriving organizational diversity is more difficult than doing so for first-degree measurements as we did previously. There are some likely sources of this information including ‘cntrb_canonical’ and ‘cntrb_company.’ It would also likely be useful to relate these to ‘cntrb_location.’ There also exists a table called ‘contributor_affiliations’ that we can cross-reference. However, we need to agree on these derivations and to estimate the extent to which we can rely on our agreed-upon derivations.</p>
-<p>e.g. We might agree that we want to use ‘cntrb_canonical’ which gives us the contributors emails. But it can be the case that a significant portion of contributors use their personal emails for these contributions even if they’re acting as representatives of another org. If we use their emails to measure organizational diversity, we will be under-counting their organization.</p>
-<p>Once we agree on which fields constitute an organizational diversity measurement we can show this diversity plotted as a pie chart.</p>
+<div class="section" id="organizational-diversity-wip">
+<h2>Organizational diversity [WIP]<a class="headerlink" href="#organizational-diversity-wip" title="Permalink to this headline">¶</a></h2>
+<p>There are some likely sources of this information including ‘cntrb_canonical’ and ‘cntrb_company.’ There also exists a table called ‘contributor_affiliations’ that we can cross-reference. Augur tracks the aliases of contributors and unifies them under a unique ‘cntrb_id’ which keys to all emails linked to the same account.</p>
+<p>This presents one layer of effective analysis- we can pin activity to a single user across emails. However, it would also be nice if we could identify an individual across different accounts and different emails. For example, it would be convenient if we could see which projects an individual is working on during their corporate work, versus their personal contributions.</p>
+<p>One suggested solution is to use fuzzy-matching between names / emails. It’s likely that an individual will have overlapping emails between two accounts and potentialls overlapping names / themes for their personal / professional VC accounts.</p>
+<p>This is an interesting problem, and one that will likely not be solved quickly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_o_divers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
@@ -953,52 +1288,53 @@ The resulting plot will show the growth in the number of novel issue submitors v
       <td>...</td>
     </tr>
     <tr>
-      <th>3449</th>
-      <td>eykd</td>
+      <th>3495</th>
+      <td>jumping</td>
+      <td>None</td>
+      <td>Shanghai, China</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3496</th>
+      <td>foundatron</td>
+      <td>None</td>
+      <td>Seattle, WA</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3497</th>
+      <td>krionbsd</td>
+      <td>None</td>
+      <td>Europe</td>
+      <td>krion@freebsd.org</td>
+    </tr>
+    <tr>
+      <th>3498</th>
+      <td>wilcovian</td>
       <td>None</td>
       <td>None</td>
       <td>None</td>
     </tr>
     <tr>
-      <th>3450</th>
-      <td>huyquocvu</td>
+      <th>3499</th>
+      <td>thr27</td>
       <td>None</td>
       <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>3451</th>
-      <td>sharkbruhaha</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>3452</th>
-      <td>ricekab</td>
-      <td>Pixel-Nexus</td>
-      <td>None</td>
-      <td>contact@kevinchiyantang.com</td>
-    </tr>
-    <tr>
-      <th>3453</th>
-      <td>Bacon-Unlimited</td>
-      <td>Bacon Unlimited</td>
-      <td>Los Angeles</td>
       <td>None</td>
     </tr>
   </tbody>
 </table>
-<p>3454 rows × 4 columns</p>
+<p>3500 rows × 4 columns</p>
 </div></div></div>
 </div>
 </div>
-<div class="section" id="number-of-users">
-<h1>Number of Users<a class="headerlink" href="#number-of-users" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="number-of-users-wip">
+<h2>Number of Users [WIP]<a class="headerlink" href="#number-of-users-wip" title="Permalink to this headline">¶</a></h2>
 <p>We must decide how to define a ‘user’ in this context.</p>
 <p>The set of accounts that have (1) submitted an issue, (2) authored a change in a commit, (3) made a commit, (4) made a PR, (5) forked the repo, (6) merged a PR as an admit, etc. is almost certainly an imperfect subset of the users of the software itself (i.e. contributors don’t necessarily use the software, users aren’t necessaryily contributors). Additionally, it is likely that we can never arrive at a way of measuring the exact number of users a piece of open source software has.</p>
 <p>We might agree that we can get an imprecise lower-bound on the number of users by summing ( contributors + maintainers + owners + issue makers), which could be useful.</p>
 <p>More conversation on this topic is needed in the future.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -1010,46 +1346,26 @@ The resulting plot will show the growth in the number of novel issue submitors v
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: ".env"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: ".env",
+            kernelName: "python3",
             path: "./notebooks"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = '.env'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="commits_activity.html" title="previous page">Github Activity Metrics-Commits</a>
+    <a class='right-next' id="next-link" href="issue_activity.html" title="next page">Github Activity Metrics-Issues</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="pr_activity.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Github Activity Metrics-Pull Requests</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="demo_augur/new_contributor_template.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">New Contributor Analysis</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>

@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -42,17 +42,18 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Github Activity Metrics-Pull Requests" href="pr_activity.html" />
-    <link rel="prev" title="Github Activity Metrics-Commits" href="commits_activity.html" />
+    <link rel="prev" title="Github Metrics- Growth of a Repo’s Community" href="community_metrics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -78,7 +79,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -101,13 +102,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Preliminary Analysis
+  GitHub Community Metrics
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="commits_activity.html">
    Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -120,15 +126,10 @@
    Github Activity Metrics-Pull Requests
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="community_metrics.html">
-   Github Metrics- Growth of a Repo’s Community
-  </a>
- </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Community Reports
+  Community Analysis
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -150,6 +151,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
    PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Performance Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance/issues_performance.html">
+   Github Performance Metrics- Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="performance/pr_performance.html">
+   Github Performance Metrics- Pull Requests
   </a>
  </li>
 </ul>
@@ -260,7 +278,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gather-and-process-data">
@@ -318,6 +336,18 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numer-of-issues-open-over-time">
+   Numer of Issues Open over time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot">
+     Plot
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -334,7 +364,8 @@
 <p><strong>Activity by Repo</strong></p>
 <p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
 <p>Any necessary computations from the data to get the metric value will be done as the queries are determined</p>
-<div class="cell docutils container">
+<p><em><strong>Note: There is updates that are needed on the Augur side so this data is not 100% accurate</strong></em></p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
@@ -342,6 +373,7 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
@@ -350,7 +382,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
 
@@ -362,7 +394,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
 <span class="n">repo_name_set</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;augur&#39;</span><span class="p">,</span> <span class="s1">&#39;grimoirelab&#39;</span><span class="p">]</span>
@@ -394,7 +426,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number(s)</span>
 <span class="c1">#repo_set = [25440]</span>
@@ -419,7 +451,8 @@
 <span class="s2">					i.gh_issue_number AS issue_number,</span>
 <span class="s2">					i.gh_issue_id AS gh_issue,</span>
 <span class="s2">					i.created_at AS created, </span>
-<span class="s2">					i.closed_at AS closed</span>
+<span class="s2">					i.closed_at AS closed,</span>
+<span class="s2">                    i.pull_request_id</span>
 <span class="s2">                FROM</span>
 <span class="s2">                	repo r,</span>
 <span class="s2">                    issues i</span>
@@ -462,6 +495,7 @@
       <th>gh_issue</th>
       <th>created</th>
       <th>closed</th>
+      <th>pull_request_id</th>
     </tr>
   </thead>
   <tbody>
@@ -473,6 +507,7 @@
       <td>213149529</td>
       <td>2017-03-09 20:06:18</td>
       <td>2017-04-07 21:18:01</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
@@ -482,6 +517,7 @@
       <td>682259157</td>
       <td>2020-08-20 00:09:30</td>
       <td>2020-08-20 00:16:50</td>
+      <td>343231.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -491,6 +527,7 @@
       <td>679627659</td>
       <td>2020-08-15 19:11:45</td>
       <td>2020-08-17 14:30:04</td>
+      <td>343226.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -500,6 +537,7 @@
       <td>724668885</td>
       <td>2020-10-19 14:21:08</td>
       <td>2020-10-19 14:21:34</td>
+      <td>967.0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -509,6 +547,7 @@
       <td>628534692</td>
       <td>2020-06-01 15:34:33</td>
       <td>2020-08-20 10:48:14</td>
+      <td>NaN</td>
     </tr>
     <tr>
       <th>...</th>
@@ -518,56 +557,70 @@
       <td>...</td>
       <td>...</td>
       <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
-      <th>1855</th>
-      <td>grimoirelab</td>
-      <td>735294</td>
-      <td>437</td>
-      <td>941801983</td>
-      <td>2021-07-12 08:23:29</td>
-      <td>2021-07-28 08:58:49</td>
-    </tr>
-    <tr>
-      <th>1856</th>
+      <th>1891</th>
       <td>grimoirelab</td>
       <td>735295</td>
       <td>436</td>
       <td>924259145</td>
       <td>2021-06-17 19:24:54</td>
       <td>NaT</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>1857</th>
+      <th>1892</th>
       <td>grimoirelab</td>
       <td>340606</td>
       <td>284</td>
       <td>559853733</td>
       <td>2020-02-04 17:00:31</td>
       <td>NaT</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>1858</th>
+      <th>1893</th>
+      <td>grimoirelab</td>
+      <td>735292</td>
+      <td>439</td>
+      <td>944334429</td>
+      <td>2021-07-14 11:37:24</td>
+      <td>2021-07-21 10:30:35</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1894</th>
       <td>grimoirelab</td>
       <td>734649</td>
       <td>429</td>
       <td>889819068</td>
       <td>2021-05-12 08:28:28</td>
       <td>NaT</td>
+      <td>NaN</td>
     </tr>
     <tr>
-      <th>1859</th>
+      <th>1895</th>
       <td>grimoirelab</td>
       <td>734631</td>
       <td>428</td>
       <td>875296742</td>
       <td>2021-05-04 09:52:41</td>
       <td>NaT</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
-<p>1860 rows × 6 columns</p>
+<p>1896 rows × 7 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues</span> <span class="o">=</span> <span class="n">df_issues</span><span class="p">[</span><span class="n">df_issues</span><span class="p">[</span><span class="s1">&#39;pull_request_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+<span class="n">df_issues</span> <span class="o">=</span> <span class="n">df_issues</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="s1">&#39;pull_request_id&#39;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -588,24 +641,55 @@
 <h3>By Day<a class="headerlink" href="#by-day" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_years</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="mi">365</span><span class="p">)</span>
+<span class="n">df_issues_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">two_years</span><span class="p">]</span>
+
+<span class="n">df_issues_daily</span> <span class="o">=</span> <span class="n">df_issues_daily</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_daily</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>created
+2019-09-12    1
+2019-09-13    1
+2019-09-20    1
+2019-09-21    1
+2019-09-23    2
+             ..
+2021-08-11    2
+2021-08-13    2
+2021-08-16    3
+2021-08-19    1
+2021-08-30    1
+Freq: D, Name: created, Length: 123, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; Repo&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_12_0.png" src="../_images/issue_activity_12_0.png" />
+<img alt="../_images/issue_activity_14_0.png" src="../_images/issue_activity_14_0.png" />
 </div>
 </div>
 </div>
@@ -620,17 +704,21 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Weekly issues Created for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_15_0.png" src="../_images/issue_activity_15_0.png" />
+<img alt="../_images/issue_activity_17_0.png" src="../_images/issue_activity_17_0.png" />
 </div>
 </div>
 </div>
@@ -655,7 +743,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_18_0.png" src="../_images/issue_activity_18_0.png" />
+<img alt="../_images/issue_activity_20_0.png" src="../_images/issue_activity_20_0.png" />
 </div>
 </div>
 </div>
@@ -666,16 +754,21 @@
 <h3>By Day<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">two_years</span><span class="p">]</span>
+<span class="n">df_issues_closed_daily</span> <span class="o">=</span> <span class="n">df_issues_closed_daily</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_closed_daily</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_daily</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_closed_daily</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Daily issues Closed for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -683,7 +776,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_22_0.png" src="../_images/issue_activity_22_0.png" />
+<img alt="../_images/issue_activity_24_0.png" src="../_images/issue_activity_24_0.png" />
 </div>
 </div>
 </div>
@@ -698,9 +791,13 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_weekly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_weekly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Week&quot;</span><span class="p">)</span>
+<span class="n">locs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">()</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">locs</span><span class="p">[::</span><span class="n">N</span><span class="p">],</span> <span class="n">df_issues_closed_weekly</span><span class="o">.</span><span class="n">index</span><span class="p">[::</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%b %Y&#39;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# Issues&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# Weekly issues Closed for &quot;</span><span class="o">+</span> <span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span><span class="s2">&quot; repo&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -708,7 +805,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_25_0.png" src="../_images/issue_activity_25_0.png" />
+<img alt="../_images/issue_activity_27_0.png" src="../_images/issue_activity_27_0.png" />
 </div>
 </div>
 </div>
@@ -733,7 +830,73 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/issue_activity_28_0.png" src="../_images/issue_activity_28_0.png" />
+<img alt="../_images/issue_activity_30_0.png" src="../_images/issue_activity_30_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="numer-of-issues-open-over-time">
+<h2>Numer of Issues Open over time<a class="headerlink" href="#numer-of-issues-open-over-time" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_created</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s2">&quot;created&quot;</span><span class="p">])</span>
+<span class="n">df_created</span><span class="p">[</span><span class="s2">&quot;issue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_created</span><span class="p">[</span><span class="s2">&quot;created&quot;</span><span class="p">]</span>
+<span class="n">df_created</span><span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">df_created</span> <span class="o">=</span> <span class="n">df_created</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;created&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_closed</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s2">&quot;closed&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df_closed</span><span class="p">[</span><span class="s2">&quot;issue&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_closed</span><span class="p">[</span><span class="s2">&quot;closed&quot;</span><span class="p">]</span>
+<span class="n">df_closed</span><span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">df_closed</span> <span class="o">=</span> <span class="n">df_closed</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="s2">&quot;closed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_open</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_created</span><span class="p">,</span> <span class="n">df_closed</span><span class="p">])</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;issue&quot;</span><span class="p">)</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_open</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_open</span><span class="p">[</span><span class="s2">&quot;open&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">df_open</span><span class="p">[</span><span class="s1">&#39;issue&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_open</span><span class="p">[</span><span class="s1">&#39;issue&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_open</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_created</span><span class="p">,</span> <span class="n">df_closed</span><span class="p">])</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;issue&quot;</span><span class="p">)</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_open</span><span class="p">[</span><span class="s2">&quot;total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_open</span><span class="p">[</span><span class="s2">&quot;open&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="c1">#df_open[&#39;issue&#39;] = df_open[&#39;issue&#39;].apply(lambda x: x.replace(hour = 0, minute=0, second=0))</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="s1">&#39;issue&#39;</span><span class="p">,</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span>
+<span class="n">df_open</span> <span class="o">=</span> <span class="n">df_open</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span> <span class="s1">&#39;open&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plot">
+<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_open</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s2">&quot;issue&quot;</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;date&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;# of issues open&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;# of issues open for &quot;</span><span class="o">+</span><span class="n">repo_focus</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/issue_activity_37_0.png" src="../_images/issue_activity_37_0.png" />
 </div>
 </div>
 </div>
@@ -763,32 +926,12 @@
               </div>
               
         
+        <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="community_metrics.html" title="previous page">Github Metrics- Growth of a Repo’s Community</a>
+    <a class='right-next' id="next-link" href="pr_activity.html" title="next page">Github Activity Metrics-Pull Requests</a>
 
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="commits_activity.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Github Activity Metrics-Commits</p>
-            </div>
-        </a>
-    </div>
-     <div id="next">
-        <a class="right-next" href="pr_activity.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Github Activity Metrics-Pull Requests</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
+        </div>
         
         </div>
     </div>
