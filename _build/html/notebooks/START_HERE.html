@@ -1,0 +1,1279 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction to connecting and Querying the Augur DB &#8212; Sandiego</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="New Contributor Analysis" href="demo_augur/new_contributor_template.html" />
+    <link rel="prev" title="Project Sandiego" href="../README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Demo Augur
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/START_HERE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/START_HERE.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/START_HERE.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/START_HERE.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-your-database">
+   Connect to your database
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#retrieve-available-respositories">
+     Retrieve Available Respositories
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries">
+     Create a Simpler List for quickly Identifying repo_group_id’s and repo_id’s for other queries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries">
+     Create a list of all of the tables with the total number of data entries
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-from-the-messages">
+     Data from the messages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#contributor-affiliation-data">
+     Contributor affiliation data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduction-to-connecting-and-querying-the-augur-db">
+<h1>Introduction to connecting and Querying the Augur DB<a class="headerlink" href="#introduction-to-connecting-and-querying-the-augur-db" title="Permalink to this headline">¶</a></h1>
+<p>If you made to this point, welcome! :) This short tutorial will show how to connect to the database and how to do a simple query. If you need the config file please email <a class="reference external" href="mailto:cdolfi&#37;&#52;&#48;redhat&#46;com">cdolfi<span>&#64;</span>redhat<span>&#46;</span>com</a></p>
+<p>For Project Sandiego’s data, we will be using a personal instance of Augur. Augur is a software suite for collecting and measuring structured data about free and open-source software (FOSS) communities.</p>
+<p>Augur gather’s trace data for a group of repositories, normalize it into the data model, and provide a variety of metrics about said data. The structure of the data model enables us to synthesize data across various platforms to provide meaningful context for meaningful questions about the way these communities evolve.</p>
+<p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
+<div class="section" id="connect-to-your-database">
+<h2>Connect to your database<a class="headerlink" href="#connect-to-your-database" title="Permalink to this headline">¶</a></h2>
+<p>Until the Operate First enviroment can connect to the DB, use config file to access. Do not push config file to Github repo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="retrieve-available-respositories">
+<h3>Retrieve Available Respositories<a class="headerlink" href="#retrieve-available-respositories" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT a.rg_name,</span>
+<span class="s2">                a.repo_group_id,</span>
+<span class="s2">                b.repo_name,</span>
+<span class="s2">                b.repo_id,</span>
+<span class="s2">                b.forked_from,</span>
+<span class="s2">                b.repo_archived,</span>
+<span class="s2">                b.repo_git</span>
+<span class="s2">            FROM</span>
+<span class="s2">                repo_groups a,</span>
+<span class="s2">                repo b</span>
+<span class="s2">            WHERE</span>
+<span class="s2">                a.repo_group_id = b.repo_group_id</span>
+<span class="s2">            ORDER BY</span>
+<span class="s2">                rg_name,</span>
+<span class="s2">                repo_name;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">repolist</span><span class="p">)</span>
+<span class="n">repolist</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rg_name</th>
+      <th>repo_group_id</th>
+      <th>repo_name</th>
+      <th>repo_id</th>
+      <th>forked_from</th>
+      <th>repo_archived</th>
+      <th>repo_git</th>
+      <th>repo_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>augur</td>
+      <td>25440</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/augur</td>
+      <td>github.com/chaoss/</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>augur-license</td>
+      <td>25460</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/augur-license</td>
+      <td>github.com/chaoss/</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>community-reports</td>
+      <td>25558</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/community-reports</td>
+      <td>github.com/chaoss</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>governance</td>
+      <td>25449</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/governance</td>
+      <td>github.com/chaoss/</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>chaoss</td>
+      <td>25155</td>
+      <td>grimoirelab</td>
+      <td>25448</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/chaoss/grimoirelab</td>
+      <td>github.com/chaoss/</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>salt-winrepo-ng</td>
+      <td>30356</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/saltstack/salt-winrepo-ng</td>
+      <td>github.com/saltstack/</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>salty-vagrant</td>
+      <td>30362</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/saltstack/salty-vagrant</td>
+      <td>github.com/saltstack/</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>sublime-text</td>
+      <td>30347</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/saltstack/sublime-text</td>
+      <td>github.com/saltstack/</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>takara</td>
+      <td>30380</td>
+      <td>Parent not available</td>
+      <td>1</td>
+      <td>https://github.com/saltstack/takara</td>
+      <td>github.com/saltstack/</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>SaltStack</td>
+      <td>60017</td>
+      <td>windows-test-states</td>
+      <td>30346</td>
+      <td>Parent not available</td>
+      <td>0</td>
+      <td>https://github.com/saltstack/windows-test-states</td>
+      <td>github.com/saltstack/</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 8 columns</p>
+</div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rg_name          object
+repo_group_id     int64
+repo_name        object
+repo_id           int64
+forked_from      object
+repo_archived     int64
+repo_git         object
+repo_path        object
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries">
+<h3>Create a Simpler List for quickly Identifying repo_group_id’s and repo_id’s for other queries<a class="headerlink" href="#create-a-simpler-list-for-quickly-identifying-repo-group-id-s-and-repo-id-s-for-other-queries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT b.repo_id,</span>
+<span class="s2">                a.repo_group_id,</span>
+<span class="s2">                b.repo_name,</span>
+<span class="s2">                a.rg_name,</span>
+<span class="s2">                b.repo_git</span>
+<span class="s2">            FROM</span>
+<span class="s2">                repo_groups a,</span>
+<span class="s2">                repo b </span>
+<span class="s2">            WHERE</span>
+<span class="s2">                a.repo_group_id = b.repo_group_id </span>
+<span class="s2">            ORDER BY</span>
+<span class="s2">                rg_name,</span>
+<span class="s2">                repo_name;   </span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>repo_id</th>
+      <th>repo_group_id</th>
+      <th>repo_name</th>
+      <th>rg_name</th>
+      <th>repo_git</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25440</td>
+      <td>25155</td>
+      <td>augur</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/augur</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>25460</td>
+      <td>25155</td>
+      <td>augur-license</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/augur-license</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>25558</td>
+      <td>25155</td>
+      <td>community-reports</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/community-reports</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>25449</td>
+      <td>25155</td>
+      <td>governance</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/governance</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>25448</td>
+      <td>25155</td>
+      <td>grimoirelab</td>
+      <td>chaoss</td>
+      <td>https://github.com/chaoss/grimoirelab</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>30356</td>
+      <td>60017</td>
+      <td>salt-winrepo-ng</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/salt-winrepo-ng</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>30362</td>
+      <td>60017</td>
+      <td>salty-vagrant</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/salty-vagrant</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>30347</td>
+      <td>60017</td>
+      <td>sublime-text</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/sublime-text</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>30380</td>
+      <td>60017</td>
+      <td>takara</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/takara</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>30346</td>
+      <td>60017</td>
+      <td>windows-test-states</td>
+      <td>SaltStack</td>
+      <td>https://github.com/saltstack/windows-test-states</td>
+    </tr>
+  </tbody>
+</table>
+<p>80 rows × 5 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries">
+<h3>Create a list of all of the tables with the total number of data entries<a class="headerlink" href="#create-a-list-of-all-of-the-tables-with-the-total-number-of-data-entries" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                ANALYZE;</span>
+<span class="s2">                SELECT schemaname,relname,n_live_tup </span>
+<span class="s2">                  FROM pg_stat_user_tables </span>
+<span class="s2">                  ORDER BY n_live_tup DESC;</span>
+
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>schemaname</th>
+      <th>relname</th>
+      <th>n_live_tup</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>augur_data</td>
+      <td>commits</td>
+      <td>320271</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>augur_data</td>
+      <td>repo_labor</td>
+      <td>312000</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>augur_data</td>
+      <td>pull_request_files</td>
+      <td>149825</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>augur_data</td>
+      <td>message</td>
+      <td>93410</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>augur_data</td>
+      <td>issue_events</td>
+      <td>79373</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>174</th>
+      <td>augur_data</td>
+      <td>pull_request_analysis</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>175</th>
+      <td>augur_data</td>
+      <td>message_sentiment_summary</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>augur_data</td>
+      <td>message_sentiment</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>177</th>
+      <td>augur_data</td>
+      <td>message_analysis_summary</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>178</th>
+      <td>augur_data</td>
+      <td>message_analysis</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>179 rows × 3 columns</p>
+</div></div></div>
+</div>
+<p>Congrats you have done your first queries! There will be a few more simple examples below on how to pull an entire table. If you would like to explore on your own, the schema.png on the home sandiego directory will be greatly helpful in your explorations! Happy querying :)</p>
+</div>
+<div class="section" id="data-from-the-messages">
+<h3>Data from the messages<a class="headerlink" href="#data-from-the-messages" title="Permalink to this headline">¶</a></h3>
+<p>This data is the collection of all comments from any issue, PR, commit, etc opened. This example shows another side of the database and the types of data we can pull from it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT * FROM message</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>msg_id</th>
+      <th>rgls_id</th>
+      <th>msg_text</th>
+      <th>msg_timestamp</th>
+      <th>msg_sender_email</th>
+      <th>msg_header</th>
+      <th>pltfrm_id</th>
+      <th>tool_source</th>
+      <th>tool_version</th>
+      <th>data_source</th>
+      <th>data_collection_date</th>
+      <th>cntrb_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1715557</td>
+      <td>None</td>
+      <td>All of these are repeated. Why don't you creat...</td>
+      <td>2015-12-17 22:54:17</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>NaT</td>
+      <td>279368</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1715697</td>
+      <td>None</td>
+      <td>@acs, @valeriocos:\r\n\r\nMappings should foll...</td>
+      <td>2018-02-28 20:08:50</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>NaT</td>
+      <td>279373</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1691709</td>
+      <td>None</td>
+      <td>All of these are repeated. Why don't you creat...</td>
+      <td>2015-12-17 22:54:17</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>0.0.3</td>
+      <td>GitHub API</td>
+      <td>NaT</td>
+      <td>277140</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1691710</td>
+      <td>None</td>
+      <td>this change does not seem related to the purpo...</td>
+      <td>2015-12-17 22:57:10</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>0.0.3</td>
+      <td>GitHub API</td>
+      <td>NaT</td>
+      <td>277140</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1691711</td>
+      <td>None</td>
+      <td>I think that function like this, and  `read_fi...</td>
+      <td>2015-12-17 23:07:08</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub API Worker</td>
+      <td>0.0.3</td>
+      <td>GitHub API</td>
+      <td>NaT</td>
+      <td>277140</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>93405</th>
+      <td>1785136</td>
+      <td>None</td>
+      <td>I see! Yes. The only problem here is, what if ...</td>
+      <td>2013-04-02 14:23:34</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub Pull Request Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
+    </tr>
+    <tr>
+      <th>93406</th>
+      <td>1785137</td>
+      <td>None</td>
+      <td>Ya, that would an issue if there are multiple ...</td>
+      <td>2013-04-02 14:36:33</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub Pull Request Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280725</td>
+    </tr>
+    <tr>
+      <th>93407</th>
+      <td>1785138</td>
+      <td>None</td>
+      <td>Not sure how you can do the math if you don't ...</td>
+      <td>2013-04-02 14:43:21</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub Pull Request Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
+    </tr>
+    <tr>
+      <th>93408</th>
+      <td>1785139</td>
+      <td>None</td>
+      <td>Currently though the: _x unknown yet to accept...</td>
+      <td>2013-04-02 14:58:46</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub Pull Request Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280725</td>
+    </tr>
+    <tr>
+      <th>93409</th>
+      <td>1785140</td>
+      <td>None</td>
+      <td>Yeah, I understand that the current method als...</td>
+      <td>2013-04-02 15:07:27</td>
+      <td>None</td>
+      <td>None</td>
+      <td>25150</td>
+      <td>GitHub Pull Request Worker</td>
+      <td>1.0.0</td>
+      <td>GitHub API</td>
+      <td>2021-08-17 21:16:34</td>
+      <td>280738</td>
+    </tr>
+  </tbody>
+</table>
+<p>93410 rows × 12 columns</p>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="contributor-affiliation-data">
+<h3>Contributor affiliation data<a class="headerlink" href="#contributor-affiliation-data" title="Permalink to this headline">¶</a></h3>
+<p>This data tells us what is the company affiliation of many open source contributors. This can help tell us which companies are involved in a certian open source project.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT * FROM contributor_affiliations</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">repolist</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">repo_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="n">repolist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ca_id</th>
+      <th>ca_domain</th>
+      <th>ca_start_date</th>
+      <th>tool_source</th>
+      <th>tool_version</th>
+      <th>data_source</th>
+      <th>data_collection_date</th>
+      <th>ca_last_used</th>
+      <th>ca_affiliation</th>
+      <th>ca_active</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>25152</td>
+      <td>goggins.com</td>
+      <td>2016-03-03</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>2019-10-29 17:22:30</td>
+      <td>2020-04-17 21:06:25</td>
+      <td>None</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>samsung.com</td>
+      <td>1970-01-01</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>Samsung</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>linuxfoundation.org</td>
+      <td>1970-01-01</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>Linux Foundation</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>ibm.com</td>
+      <td>1970-01-01</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-08-01 18:37:54</td>
+      <td>IBM</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>8</td>
+      <td>walmart.com</td>
+      <td>1970-01-01</td>
+      <td>load</td>
+      <td>1.0</td>
+      <td>load</td>
+      <td>1970-01-01 00:00:00</td>
+      <td>2018-09-01 06:00:00</td>
+      <td>Walmart</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>703</th>
+      <td>25325</td>
+      <td>dgarnier@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>704</th>
+      <td>25326</td>
+      <td>git@garnier.wf</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>705</th>
+      <td>25327</td>
+      <td>matthew.heidemann@gmail.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>706</th>
+      <td>25328</td>
+      <td>me@lurraca.com</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>707</th>
+      <td>25329</td>
+      <td>lurraca@pivotal.io</td>
+      <td>1970-01-01</td>
+      <td>Helper Script</td>
+      <td>None</td>
+      <td>Dawn's vmware_mapping JSON</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>2020-04-28 18:52:49</td>
+      <td>VMware</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>708 rows × 10 columns</p>
+</div></div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../README.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Project Sandiego</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="demo_augur/new_contributor_template.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">New Contributor Analysis</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,672 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PR Response Time Analysis (Business Days) &#8212; Sandiego</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Pull Request Analysis" href="pull_request_analysis_template.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../START_HERE.html">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Demo Augur
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/notebooks/demo_augur/response_time_bus_days_template.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/demo_augur/response_time_bus_days_template.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/demo_augur/response_time_bus_days_template.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/demo_augur/response_time_bus_days_template.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-cell-set-variables-and-filters">
+   Control Cell - Set Variables and Filters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gathering-and-processing-the-data">
+   Gathering and Processing the Data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-the-data-from-your-augur-database">
+     Getting the data from your Augur database
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setting-up-the-dataframe">
+     Setting up the Dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-results">
+   Plotting the Results
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-step-if-you-would-like-to-save-the-figure">
+     Optional step if you would like to save the figure
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="pr-response-time-analysis-business-days">
+<h1>PR Response Time Analysis (Business Days)<a class="headerlink" href="#pr-response-time-analysis-business-days" title="Permalink to this headline">¶</a></h1>
+<p>Learn whether your community is responding to pull requests within
+a reasonable timeframe by comparing response times to a number of business
+days threshold / expectation that you set.</p>
+<hr class="docutils" />
+<p>All the notebooks in this folder are based on <a class="reference external" href="https://github.com/chaoss/augur-community-reports">https://github.com/chaoss/augur-community-reports</a> templates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">pandas.tseries.offsets</span> <span class="kn">import</span> <span class="n">BusinessDay</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
+<span class="kn">from</span> <span class="nn">dateutil.relativedelta</span> <span class="kn">import</span> <span class="n">relativedelta</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+
+<span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="control-cell-set-variables-and-filters">
+<h2>Control Cell - Set Variables and Filters<a class="headerlink" href="#control-cell-set-variables-and-filters" title="Permalink to this headline">¶</a></h2>
+<p>The cell below is for generating repo_ids from the repo names. For this to work, the repo must already be in the database. If you want to manually assign a repo_id skip the cell below and read the comments on the next cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name here of the repo you want to query if known (and in the database)</span>
+<span class="n">repo_name</span> <span class="o">=</span> <span class="s1">&#39;augur&#39;</span>
+
+<span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">             SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">             SELECT </span>
+<span class="s2">                b.repo_id</span>
+<span class="s2">            FROM</span>
+<span class="s2">                repo_groups a,</span>
+<span class="s2">                repo b</span>
+<span class="s2">            WHERE</span>
+<span class="s2">                a.repo_group_id = b.repo_group_id AND</span>
+<span class="s2">                b.repo_name = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">repo_query</span><span class="p">)</span>
+<span class="n">repo_id</span> <span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">mappings</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repo_id&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>25440
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Take this out of quotes if you want to manually assign a repo_id number</span>
+<span class="n">repo_id</span> <span class="o">=</span> <span class="mi">25440</span>
+
+<span class="c1"># Provide number of business days threshold. This is the number of business days</span>
+<span class="c1"># within which you expect people to respond to PRs. Default is 2 business days.</span>
+<span class="n">bus_days</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1">#specify dates for filtering - a typical default would be one year of data</span>
+<span class="c1">#if the end_date is in the future, the end_date will default to the current_date</span>
+<span class="n">begin_date</span> <span class="o">=</span> <span class="s1">&#39;2020-02-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2021-01-31&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gathering-and-processing-the-data">
+<h2>Gathering and Processing the Data<a class="headerlink" href="#gathering-and-processing-the-data" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getting-the-data-from-your-augur-database">
+<h3>Getting the data from your Augur database<a class="headerlink" href="#getting-the-data-from-your-augur-database" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 SELECT</span>
+<span class="s2">                    repo.repo_id AS repo_id,</span>
+<span class="s2">                    pull_requests.pr_src_id AS pr_src_id,</span>
+<span class="s2">                    repo.repo_name AS repo_name,</span>
+<span class="s2">                    pr_src_author_association,</span>
+<span class="s2">                    repo_groups.rg_name AS repo_group,</span>
+<span class="s2">                    pull_requests.pr_src_state,</span>
+<span class="s2">                    pull_requests.pr_merged_at,</span>
+<span class="s2">                    pull_requests.pr_created_at AS pr_created_at,</span>
+<span class="s2">                    pull_requests.pr_closed_at AS pr_closed_at,</span>
+<span class="s2">                    date_part( &#39;year&#39;, pr_created_at :: DATE ) AS CREATED_YEAR,</span>
+<span class="s2">                    date_part( &#39;month&#39;, pr_created_at :: DATE ) AS CREATED_MONTH,</span>
+<span class="s2">                    date_part( &#39;year&#39;, pr_closed_at :: DATE ) AS CLOSED_YEAR,</span>
+<span class="s2">                    date_part( &#39;month&#39;, pr_closed_at :: DATE ) AS CLOSED_MONTH,</span>
+<span class="s2">                    pr_src_meta_label,</span>
+<span class="s2">                    pr_head_or_base,</span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM pull_requests.pr_closed_at ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 3600 AS hours_to_close,</span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM pull_requests.pr_closed_at ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 86400 AS days_to_close, </span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM first_response_time ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 3600 AS hours_to_first_response,</span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM first_response_time ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 86400 AS days_to_first_response, </span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM last_response_time ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 3600 AS hours_to_last_response,</span>
+<span class="s2">                    ( EXTRACT ( EPOCH FROM last_response_time ) - EXTRACT ( EPOCH FROM pull_requests.pr_created_at ) ) / 86400 AS days_to_last_response, </span>
+<span class="s2">                    first_response_time,</span>
+<span class="s2">                    last_response_time,</span>
+<span class="s2">                    average_time_between_responses,</span>
+<span class="s2">                    assigned_count,</span>
+<span class="s2">                    review_requested_count,</span>
+<span class="s2">                    labeled_count,</span>
+<span class="s2">                    subscribed_count,</span>
+<span class="s2">                    mentioned_count,</span>
+<span class="s2">                    referenced_count,</span>
+<span class="s2">                    closed_count,</span>
+<span class="s2">                    head_ref_force_pushed_count,</span>
+<span class="s2">                    merged_count,</span>
+<span class="s2">                    milestoned_count,</span>
+<span class="s2">                    unlabeled_count,</span>
+<span class="s2">                    head_ref_deleted_count,</span>
+<span class="s2">                    comment_count,</span>
+<span class="s2">                    lines_added, </span>
+<span class="s2">                    lines_removed,</span>
+<span class="s2">                    commit_count, </span>
+<span class="s2">                    file_count</span>
+<span class="s2">                FROM</span>
+<span class="s2">                repo,</span>
+<span class="s2">                repo_groups,</span>
+<span class="s2">                pull_requests LEFT OUTER JOIN ( </span>
+<span class="s2">                        SELECT pull_requests.pull_request_id,</span>
+<span class="s2">                            MIN(message.msg_timestamp) AS first_response_time,</span>
+<span class="s2">                            COUNT(DISTINCT message.msg_timestamp) AS comment_count,</span>
+<span class="s2">                            MAX(message.msg_timestamp) AS last_response_time,</span>
+<span class="s2">                            (MAX(message.msg_timestamp) - MIN(message.msg_timestamp)) / COUNT(DISTINCT message.msg_timestamp) AS average_time_between_responses</span>
+<span class="s2">                        FROM repo, </span>
+<span class="s2">                            pull_requests left outer join pull_request_message_ref </span>
+<span class="s2">                            on pull_requests.pull_request_id = pull_request_message_ref.pull_request_id</span>
+<span class="s2">                            left outer join message on pull_request_message_ref.msg_id = message.msg_id and cntrb_id not in (select cntrb_id from contributors where cntrb_login like &#39;%[bot]&#39;)</span>
+<span class="s2">                        WHERE repo.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                        AND repo.repo_id = pull_requests.repo_id</span>
+<span class="s2">                        GROUP BY pull_requests.pull_request_id</span>
+<span class="s2">                ) response_times</span>
+<span class="s2">                ON pull_requests.pull_request_id = response_times.pull_request_id</span>
+<span class="s2">                left outer join (</span>
+<span class="s2">                        SELECT pull_requests.pull_request_id,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;assigned&#39;) AS assigned_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;review_requested&#39;) AS review_requested_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;labeled&#39;) AS labeled_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;unlabeled&#39;) AS unlabeled_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;subscribed&#39;) AS subscribed_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;mentioned&#39;) AS mentioned_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;referenced&#39;) AS referenced_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;closed&#39;) AS closed_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;head_ref_force_pushed&#39;) AS head_ref_force_pushed_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;head_ref_deleted&#39;) AS head_ref_deleted_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;milestoned&#39;) AS milestoned_count,</span>
+<span class="s2">                            count(*) FILTER (WHERE action = &#39;merged&#39;) AS merged_count</span>
+<span class="s2">                        from repo, pull_requests left outer join pull_request_events </span>
+<span class="s2">                            on pull_requests.pull_request_id = pull_request_events.pull_request_id</span>
+<span class="s2">                        WHERE repo.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                            AND repo.repo_id = pull_requests.repo_id</span>
+<span class="s2">                        GROUP BY pull_requests.pull_request_id</span>
+<span class="s2">                ) event_counts on event_counts.pull_request_id = pull_requests.pull_request_id</span>
+<span class="s2">                LEFT OUTER JOIN (</span>
+<span class="s2">                        SELECT pull_request_commits.pull_request_id, count(DISTINCT pr_cmt_sha) AS commit_count                                FROM pull_request_commits, pull_requests, pull_request_meta</span>
+<span class="s2">                        WHERE pull_requests.pull_request_id = pull_request_commits.pull_request_id</span>
+<span class="s2">                        AND pull_requests.pull_request_id = pull_request_meta.pull_request_id</span>
+<span class="s2">                        AND pull_requests.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                        AND pr_cmt_sha &lt;&gt; pull_requests.pr_merge_commit_sha</span>
+<span class="s2">                        AND pr_cmt_sha &lt;&gt; pull_request_meta.pr_sha</span>
+<span class="s2">                        GROUP BY pull_request_commits.pull_request_id</span>
+<span class="s2">                ) all_commit_counts</span>
+<span class="s2">                ON pull_requests.pull_request_id = all_commit_counts.pull_request_id</span>
+<span class="s2">                LEFT OUTER JOIN (</span>
+<span class="s2">                        SELECT MAX(pr_repo_meta_id), pull_request_meta.pull_request_id, pr_head_or_base, pr_src_meta_label</span>
+<span class="s2">                        FROM pull_requests, pull_request_meta</span>
+<span class="s2">                        WHERE pull_requests.pull_request_id = pull_request_meta.pull_request_id</span>
+<span class="s2">                        AND pull_requests.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                        AND pr_head_or_base = &#39;base&#39;</span>
+<span class="s2">                        GROUP BY pull_request_meta.pull_request_id, pr_head_or_base, pr_src_meta_label</span>
+<span class="s2">                ) base_labels</span>
+<span class="s2">                ON base_labels.pull_request_id = pull_requests.pull_request_id</span>
+<span class="s2">                LEFT OUTER JOIN (</span>
+<span class="s2">                        SELECT sum(cmt_added) AS lines_added, sum(cmt_removed) AS lines_removed, pull_request_commits.pull_request_id, count(DISTINCT cmt_filename) AS file_count</span>
+<span class="s2">                        FROM pull_request_commits, commits, pull_requests, pull_request_meta</span>
+<span class="s2">                        WHERE cmt_commit_hash = pr_cmt_sha</span>
+<span class="s2">                        AND pull_requests.pull_request_id = pull_request_commits.pull_request_id</span>
+<span class="s2">                        AND pull_requests.pull_request_id = pull_request_meta.pull_request_id</span>
+<span class="s2">                        AND pull_requests.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                        AND commits.repo_id = pull_requests.repo_id</span>
+<span class="s2">                        AND commits.cmt_commit_hash &lt;&gt; pull_requests.pr_merge_commit_sha</span>
+<span class="s2">                        AND commits.cmt_commit_hash &lt;&gt; pull_request_meta.pr_sha</span>
+<span class="s2">                        GROUP BY pull_request_commits.pull_request_id</span>
+<span class="s2">                ) master_merged_counts </span>
+<span class="s2">                ON pull_requests.pull_request_id = master_merged_counts.pull_request_id                   </span>
+<span class="s2">                WHERE </span>
+<span class="s2">                    repo.repo_group_id = repo_groups.repo_group_id </span>
+<span class="s2">                    AND repo.repo_id = pull_requests.repo_id </span>
+<span class="s2">                    AND repo.repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">                    AND pr_created_at &gt;= &#39;</span><span class="si">{</span><span class="n">begin_date</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">                    AND pr_created_at &lt;= &#39;</span><span class="si">{</span><span class="n">end_date</span><span class="si">}</span><span class="s2">&#39;</span>
+<span class="s2">                ORDER BY</span>
+<span class="s2">                   merged_count DESC</span>
+<span class="s2">                   &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">pr_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span> 
+    <span class="n">pr_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">pr_all</span><span class="p">,</span> <span class="n">pr_a</span><span class="p">])</span> 
+<span class="k">else</span><span class="p">:</span> 
+    <span class="c1"># first repo</span>
+    <span class="n">pr_all</span> <span class="o">=</span> <span class="n">pr_a</span>
+
+<span class="n">get_repo_name_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT repo_name from repo where repo_id = </span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="s2">;</span>
+<span class="s2">       &quot;&quot;&quot;</span>
+<span class="n">get_repo_name</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">get_repo_name_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">repo_name</span> <span class="o">=</span> <span class="n">get_repo_name</span><span class="o">.</span><span class="n">repo_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-up-the-dataframe">
+<h3>Setting up the Dataframe<a class="headerlink" href="#setting-up-the-dataframe" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bd</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">tseries</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">BusinessDay</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">bus_days</span><span class="p">)</span> 
+
+<span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">first_response_time</span> <span class="o">-</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">pr_created_at</span>
+<span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;bus_days&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">pr_created_at</span> <span class="o">+</span> <span class="n">bd</span>
+<span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;yearmonth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;pr_created_at&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m&#39;</span><span class="p">)</span>
+
+<span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;in_guidelines&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;bus_days&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">pr_all</span><span class="p">[</span><span class="s1">&#39;first_response_time&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">year_month_list</span> <span class="o">=</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">yearmonth</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">year_month_list</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">first_response</span> <span class="o">=</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;repo_name&#39;</span><span class="p">,</span> <span class="s1">&#39;yearmonth&#39;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()[[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">,</span> <span class="s1">&#39;yearmonth&#39;</span><span class="p">,</span> <span class="s1">&#39;in_guidelines&#39;</span><span class="p">]]</span>
+
+<span class="c1"># counts total number of PRs each month</span>
+<span class="n">total_by_month</span> <span class="o">=</span> <span class="n">pr_all</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;repo_name&#39;</span><span class="p">,</span> <span class="s1">&#39;yearmonth&#39;</span><span class="p">],</span> <span class="n">as_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()[[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">,</span> <span class="s1">&#39;yearmonth&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_created_at&#39;</span><span class="p">]]</span>
+
+<span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;total_prs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_by_month</span><span class="p">[</span><span class="s1">&#39;pr_created_at&#39;</span><span class="p">]</span>
+<span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;out_percent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;total_prs&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;in_guidelines&#39;</span><span class="p">]</span>
+<span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;in_percent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;in_guidelines&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;total_prs&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Calculating Whether Responses are within Business Days Threshold and Adding Analysis to Title</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">risk_num</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">six_months</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()</span> <span class="o">+</span> <span class="n">relativedelta</span><span class="p">(</span><span class="n">months</span><span class="o">=-</span><span class="mi">7</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">first_response</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">year_month</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;yearmonth&#39;</span><span class="p">]</span>
+    <span class="n">percent</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;out_percent&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">percent</span> <span class="o">&gt;</span> <span class="mf">0.10</span> <span class="ow">and</span> <span class="n">year_month</span> <span class="o">&gt;=</span> <span class="n">six_months</span><span class="p">):</span>
+        <span class="n">risk_num</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="n">title</span> <span class="o">=</span> <span class="n">repo_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Timely Responses:&quot;</span>
+
+<span class="k">if</span> <span class="n">risk_num</span> <span class="o">&gt;=</span> <span class="n">bus_days</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">+=</span> <span class="s2">&quot; AT RISK</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">risk_num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; month(s) with &gt; 10</span><span class="si">% o</span><span class="s2">f pull requests not responded to within &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bus_days</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; business days in the past 6 months.&quot;</span>
+    <span class="n">title_color</span> <span class="o">=</span> <span class="s1">&#39;firebrick&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">+=</span> <span class="s2">&quot; Healthy</span><span class="se">\n</span><span class="s2">More than 90</span><span class="si">% o</span><span class="s2">f pull requests responded to within &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bus_days</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; business days for &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">6</span> <span class="o">-</span> <span class="n">risk_num</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; out of the past 6 months.&quot;</span>
+    <span class="n">title_color</span> <span class="o">=</span> <span class="s1">&#39;forestgreen&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plotting-the-results">
+<h2>Plotting the Results<a class="headerlink" href="#plotting-the-results" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;ticks&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">,</span> <span class="n">font_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">integer</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+<span class="c1"># the size of A4 paper</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="n">bus_label</span> <span class="o">=</span> <span class="s2">&quot;Response &lt; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bus_days</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; business days&quot;</span>
+    
+<span class="n">plottermonth</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;yearmonth&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;total_prs&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">first_response</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+<span class="n">plottermonth</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;yearmonth&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;in_guidelines&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">first_response</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">bus_label</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">title_color</span><span class="p">)</span> 
+
+<span class="n">plottermonthlabels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">first_response</span><span class="p">[</span><span class="s1">&#39;yearmonth&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plottermonthlabels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Number of PRs&#39;</span><span class="p">)</span>
+<span class="n">plottermonthlabels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Year Month</span><span class="se">\n\n</span><span class="s1">Interpretation: Healthy projects will have little or no gap. A large or increasing gap requires attention.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/response_time_bus_days_template_12_0.png" src="../../_images/response_time_bus_days_template_12_0.png" />
+</div>
+</div>
+<div class="section" id="optional-step-if-you-would-like-to-save-the-figure">
+<h3>Optional step if you would like to save the figure<a class="headerlink" href="#optional-step-if-you-would-like-to-save-the-figure" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;outputs/bus_days.png&#39;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/demo_augur"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pull_request_analysis_template.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Pull Request Analysis</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,12 @@
+format: jb-book
+root: README
+parts:
+  - caption: Getting started
+    chapters:
+    - file: notebooks/START_HERE
+  - caption: Demo Augur
+    chapters:
+    - file: notebooks/demo_augur/new_contributor_template
+    - file: notebooks/demo_augur/contributor_risk_template
+    - file: notebooks/demo_augur/pull_request_analysis_template
+    - file: notebooks/demo_augur/response_time_bus_days_template
