@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -33,17 +33,17 @@
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -52,6 +52,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Github PR Analysis" href="pr_delta.html" />
     <link rel="prev" title="Github Performance Metrics- Issues" href="issues_performance.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -72,13 +73,14 @@
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">Sandiego</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -87,7 +89,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -99,7 +101,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   GitHub Community Metrics
  </span>
@@ -126,7 +128,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Community Analysis
  </span>
@@ -153,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Performance Analysis
  </span>
@@ -167,6 +169,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Github Performance Metrics- Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_delta.html">
+   Github PR Analysis
   </a>
  </li>
 </ul>
@@ -277,7 +284,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#query-for-pull-request-analysis">
@@ -288,6 +295,45 @@
   <a class="reference internal nav-link" href="#median-time-to-close-merge">
    Median Time to Close/Merge
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-granularity-and-normalization">
+     Time Granularity and Normalization
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#line-plot">
+   Line Plot
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bar-plot">
+   Bar Plot
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-days">
+     Median Time in Days
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-hours">
+     Median Time in Hours
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-minutes">
+     Median Time in Minutes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-seconds">
+     Median Time in Seconds
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#monthly-prs-close-merged">
@@ -306,15 +352,47 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#pie-chart-reponse-percent">
-     Pie Chart- Reponse Percent
+     Pie Chart: Reponse Percent
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bar-chart-median-time-of-first-reponse">
-     Bar Chart: Median time of First Reponse
+    <a class="reference internal nav-link" href="#bar-chart-mean-time-to-first-reponse">
+     Bar Chart: Mean Time To First Reponse
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Time Granularity and Normalization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-days">
+       Mean Time in Days
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-hours">
+       Mean Time in Hours
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-minutes">
+       Mean Time in Minutes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-seconds">
+       Mean Time in Seconds
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
  </li>
 </ul>
 
@@ -327,7 +405,7 @@
         
               <div>
                 
-  <div class="section" id="github-performance-metrics-pull-requests">
+  <div class="tex2jax_ignore mathjax_ignore section" id="github-performance-metrics-pull-requests">
 <h1>Github Performance Metrics- Pull Requests<a class="headerlink" href="#github-performance-metrics-pull-requests" title="Permalink to this headline">¶</a></h1>
 <p><strong>Activity by Repo</strong></p>
 <p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
@@ -340,6 +418,7 @@
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -644,33 +723,184 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_closed_monthly</span> <span class="o">=</span> <span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_closed</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
 <span class="n">df_pr_merged_monthly</span> <span class="o">=</span> <span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_merged</span><span class="o">.</span><span class="n">created</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;median&#39;</span><span class="p">)</span>
-<span class="n">df_pr_closed_monthly</span> <span class="o">=</span> <span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
-<span class="n">df_pr_merged_monthly</span> <span class="o">=</span> <span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>created
+2017-01   0 days 02:30:35
+2017-02   0 days 20:09:59
+2017-03   0 days 00:00:48
+2017-04   0 days 00:32:35
+2017-05   0 days 01:05:17
+Freq: M, Name: time_to_merge, dtype: timedelta64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="time-granularity-and-normalization">
+<h3>Time Granularity and Normalization<a class="headerlink" href="#time-granularity-and-normalization" title="Permalink to this headline">¶</a></h3>
+<p>We can visualize the trend in median time to close/merge PRs by month. However, in order to best capture all the median values including the outliers we can normalize the data by taking the <code class="docutils literal notranslate"><span class="pre">log</span></code> of the values before plotting. We should also consider the level of granularity we would like to capture and visualize the median time in i.e. days vs hours vs minutes vs seconds.</p>
+<p>Let us first consider the different levels of granularity for the median time to close/merge PRs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># days</span>
+<span class="n">df_pr_closed_monthly_days</span> <span class="o">=</span> <span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_days</span> <span class="o">=</span> <span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<span class="c1"># hours</span>
+<span class="n">df_pr_closed_monthly_hours</span> <span class="o">=</span> <span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[h]&#39;</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_hours</span> <span class="o">=</span> <span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[h]&#39;</span><span class="p">)</span>
+<span class="c1"># minutes</span>
+<span class="n">df_pr_closed_monthly_minutes</span> <span class="o">=</span> <span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[m]&#39;</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_minutes</span> <span class="o">=</span> <span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[m]&#39;</span><span class="p">)</span>
+<span class="c1"># seconds</span>
+<span class="n">df_pr_closed_monthly_seconds</span> <span class="o">=</span> <span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_seconds</span> <span class="o">=</span> <span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now proceed to normalizing the values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalize PRs closed</span>
+<span class="n">df_pr_closed_monthly_days_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_monthly_days</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_hours_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_monthly_hours</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_minutes_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_monthly_minutes</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_seconds_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_monthly_seconds</span><span class="p">)</span>
+<span class="c1"># Normalize PRs merged</span>
+<span class="n">df_pr_merged_monthly_days_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_monthly_days</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_hours_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_monthly_hours</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_minutes_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_monthly_minutes</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_seconds_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_monthly_seconds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="line-plot">
+<h2>Line Plot<a class="headerlink" href="#line-plot" title="Permalink to this headline">¶</a></h2>
+<p>We will now consider the granularity level to be “days” and plot the median time to close/merge PRs grouped by months.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (days)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close/Merge (Monthly)&quot;</span><span class="p">)</span>
 
-<span class="n">df_pr_merged_monthly</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">df_pr_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_merged_monthly_days</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_days</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;line&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pr_performance_14_0.png" src="../../_images/pr_performance_14_0.png" />
+<img alt="../../_images/pr_performance_23_0.png" src="../../_images/pr_performance_23_0.png" />
+</div>
+</div>
+<p>PRs can be merged/closed within seconds/minutes/hours/days, hence it is important to consider all possible time units for better visualizations. We can further expand the above line graph by plotting a bar graph with the normalized log values.</p>
+</div>
+<div class="section" id="bar-plot">
+<h2>Bar Plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+<p>Let’s plot the bar graph for different time granularity levels by considering the normalized log values to attain a better perspective.</p>
+<div class="section" id="median-time-in-days">
+<h3>Median Time in Days<a class="headerlink" href="#median-time-in-days" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close/Merge (Monthly)&quot;</span><span class="p">)</span>
+
+<span class="n">df_pr_merged_monthly_days_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_days_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_27_0.png" src="../../_images/pr_performance_27_0.png" />
+</div>
+</div>
+<p>From the above graph we see that there are a few missing values which can be misleading, hence its worthwhile to explore the median time in other time units such as hours, seconds or minutes.</p>
+</div>
+<div class="section" id="median-time-in-hours">
+<h3>Median Time in Hours<a class="headerlink" href="#median-time-in-hours" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log hours)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close/Merge (Monthly)&quot;</span><span class="p">)</span>
+
+<span class="n">df_pr_merged_monthly_hours_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_hours_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_30_0.png" src="../../_images/pr_performance_30_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="median-time-in-minutes">
+<h3>Median Time in Minutes<a class="headerlink" href="#median-time-in-minutes" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close/Merge (Monthly)&quot;</span><span class="p">)</span>
+
+<span class="n">df_pr_merged_monthly_minutes_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_minutes_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_32_0.png" src="../../_images/pr_performance_32_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="median-time-in-seconds">
+<h3>Median Time in Seconds<a class="headerlink" href="#median-time-in-seconds" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log seconds)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close/Merge (Monthly)&quot;</span><span class="p">)</span>
+
+<span class="n">df_pr_merged_monthly_seconds_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_merge&#39;</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pr_closed_monthly_seconds_norm</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;time_to_close&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_34_0.png" src="../../_images/pr_performance_34_0.png" />
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="monthly-prs-close-merged">
 <h2>Monthly PRs Close/Merged<a class="headerlink" href="#monthly-prs-close-merged" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now plot the number of PRs closed/merged monthly</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_c_m_monthly</span> <span class="o">=</span> <span class="n">df_pr_focus</span><span class="p">[[</span><span class="s1">&#39;merged&#39;</span><span class="p">,</span><span class="s1">&#39;closed&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr</span><span class="o">.</span><span class="n">closed</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span>
@@ -690,12 +920,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pr_performance_17_0.png" src="../../_images/pr_performance_17_0.png" />
+<img alt="../../_images/pr_performance_37_0.png" src="../../_images/pr_performance_37_0.png" />
 </div>
 </div>
+<p>From the above graph, we see that for the <code class="docutils literal notranslate"><span class="pre">augur</span></code> repo highest number of PRs were merged/closed in March 2020.</p>
 </div>
 <div class="section" id="percent-pull-requests-merged-vs-not">
 <h2>Percent Pull Requests merged vs not<a class="headerlink" href="#percent-pull-requests-merged-vs-not" title="Permalink to this headline">¶</a></h2>
+<p>Let us now find out what percentage of the PRs were merged and not merged.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_compare</span> <span class="o">=</span> <span class="n">df_pr_focus</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">])</span>
@@ -723,12 +955,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pr_performance_21_0.png" src="../../_images/pr_performance_21_0.png" />
+<img alt="../../_images/pr_performance_42_0.png" src="../../_images/pr_performance_42_0.png" />
 </div>
 </div>
+<p>From the above graph, we see that ~82% of the PRs were merged in the <code class="docutils literal notranslate"><span class="pre">augur</span></code> repo.</p>
 </div>
 <div class="section" id="time-to-first-response-pr">
 <h2>Time to First Response PR<a class="headerlink" href="#time-to-first-response-pr" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now identify the time taken for a first response in a PR.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_focus</span> <span class="o">=</span> <span class="n">df_pr_comments</span><span class="p">[</span><span class="n">df_pr_comments</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
@@ -748,7 +982,8 @@
 </div>
 </div>
 <div class="section" id="pie-chart-reponse-percent">
-<h3>Pie Chart- Reponse Percent<a class="headerlink" href="#pie-chart-reponse-percent" title="Permalink to this headline">¶</a></h3>
+<h3>Pie Chart: Reponse Percent<a class="headerlink" href="#pie-chart-reponse-percent" title="Permalink to this headline">¶</a></h3>
+<p>We can visualize the response percentage by plotting a pie chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Answered&quot;</span><span class="p">,</span><span class="s2">&quot;Not Answered&quot;</span><span class="p">]</span>
@@ -761,9 +996,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pr_performance_26_0.png" src="../../_images/pr_performance_26_0.png" />
+<img alt="../../_images/pr_performance_48_0.png" src="../../_images/pr_performance_48_0.png" />
 </div>
 </div>
+<p>From the above pie chart, we see that ~74% of the PRs response in the <code class="docutils literal notranslate"><span class="pre">augur</span></code> repo were not answered.</p>
+</div>
+<div class="section" id="bar-chart-mean-time-to-first-reponse">
+<h3>Bar Chart: Mean Time To First Reponse<a class="headerlink" href="#bar-chart-mean-time-to-first-reponse" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_pr_comments_focus</span><span class="o">.</span><span class="n">msg_time</span> <span class="o">-</span> <span class="n">df_pr_comments_focus</span><span class="o">.</span><span class="n">pr_created_at</span><span class="p">)</span>
@@ -775,26 +1014,107 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly</span> <span class="o">=</span> <span class="n">df_pr_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_pr_comments_focus</span><span class="o">.</span><span class="n">pr_created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-<span class="n">df_pr_comments_monthly</span> <span class="o">=</span> <span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="bar-chart-median-time-of-first-reponse">
-<h3>Bar Chart: Median time of First Reponse<a class="headerlink" href="#bar-chart-median-time-of-first-reponse" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>Time Granularity and Normalization<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>We can visualize the trend in median time of first response by month. However, in order to best capture all the median values including the outliers we can normalize the data by taking the <code class="docutils literal notranslate"><span class="pre">log</span></code> of the values before plotting. We should also consider the level of granularity we would like to capture and visualize the median time in i.e. days vs hours vs minutes vs seconds.</p>
+<p>Let us first consider the different levels of granularity for the mean time to first response.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># days</span>
+<span class="n">df_pr_comments_monthly_days</span> <span class="o">=</span> <span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<span class="c1"># hours</span>
+<span class="n">df_pr_comments_monthly_hours</span> <span class="o">=</span> <span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[h]&#39;</span><span class="p">)</span>
+<span class="c1"># minutes</span>
+<span class="n">df_pr_comments_monthly_minutes</span> <span class="o">=</span> <span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[m]&#39;</span><span class="p">)</span>
+<span class="c1"># seconds</span>
+<span class="n">df_pr_comments_monthly_seconds</span> <span class="o">=</span> <span class="n">df_pr_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now proceed to normalizing the values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly_days_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_comments_monthly_days</span><span class="p">)</span>
+<span class="n">df_pr_comments_monthly_hours_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_comments_monthly_hours</span><span class="p">)</span>
+<span class="n">df_pr_comments_monthly_minutes_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_comments_monthly_minutes</span><span class="p">)</span>
+<span class="n">df_pr_comments_monthly_seconds_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_comments_monthly_seconds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will now consider the different granularity levels of time i.e. days, hours, minutes and seconds and plot the mean time to first response grouped by months.</p>
+</div>
+<div class="section" id="mean-time-in-days">
+<h4>Mean Time in Days<a class="headerlink" href="#mean-time-in-days" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly_days_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean time to first response (log days)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/pr_performance_30_0.png" src="../../_images/pr_performance_30_0.png" />
+<img alt="../../_images/pr_performance_61_0.png" src="../../_images/pr_performance_61_0.png" />
+</div>
+</div>
+<p>From the above graph we see that there are a few missing values which can be misleading, hence its worthwhile to explore the mean time in other time units such as hours, seconds or minutes.</p>
+</div>
+<div class="section" id="mean-time-in-hours">
+<h4>Mean Time in Hours<a class="headerlink" href="#mean-time-in-hours" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly_hours_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean time to first response (log hours)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_64_0.png" src="../../_images/pr_performance_64_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mean-time-in-minutes">
+<h4>Mean Time in Minutes<a class="headerlink" href="#mean-time-in-minutes" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly_minutes_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean time to first response (log minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_66_0.png" src="../../_images/pr_performance_66_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mean-time-in-seconds">
+<h4>Mean Time in Seconds<a class="headerlink" href="#mean-time-in-seconds" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_comments_monthly_seconds_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean time to first response (log seconds)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_performance_68_0.png" src="../../_images/pr_performance_68_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -883,6 +1203,11 @@
 </div>
 </div>
 </div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook we have visualized some of the performance metrics measured for GitHub PRs and considered different time granularity levels such as days, hours, minutes and seconds to gain a better understanding of the metrics behavior.</p>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -907,15 +1232,36 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="issues_performance.html" title="previous page">Github Performance Metrics- Issues</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="issues_performance.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Github Performance Metrics- Issues</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="pr_delta.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Github PR Analysis</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

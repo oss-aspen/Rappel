@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -33,17 +33,17 @@
     
   <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -73,13 +73,14 @@
     <a class="navbar-brand text-wrap" href="../../index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">Sandiego</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -88,7 +89,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Getting started
  </span>
@@ -100,7 +101,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   GitHub Community Metrics
  </span>
@@ -127,7 +128,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Community Analysis
  </span>
@@ -154,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p class="caption" role="heading">
  <span class="caption-text">
   Performance Analysis
  </span>
@@ -168,6 +169,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="pr_performance.html">
    Github Performance Metrics- Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_delta.html">
+   Github PR Analysis
   </a>
  </li>
 </ul>
@@ -278,7 +284,7 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#query-for-issue-analysis">
@@ -291,6 +297,11 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-granularity-and-normalization">
+     Time Granularity and Normalization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#line-plot">
      Line Plot
     </a>
@@ -301,6 +312,28 @@
   <a class="reference internal nav-link" href="#bar-plot">
    Bar Plot
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-days">
+     Median Time in Days
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-hours">
+     Median Time in Hours
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-minutes">
+     Median Time in Minutes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#median-time-in-seconds">
+     Median Time in Seconds
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#number-of-issues-open">
@@ -308,8 +341,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plot">
-     Plot
+    <a class="reference internal nav-link" href="#monthly-issues-open">
+     Monthly Issues Open
     </a>
    </li>
   </ul>
@@ -328,8 +361,40 @@
     <a class="reference internal nav-link" href="#bar-plot-mean-time-to-first-reponse">
      Bar Plot- Mean Time to First Reponse
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Time Granularity and Normalization
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-days">
+       Mean Time in Days
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-hours">
+       Mean Time in Hours
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-minutes">
+       Mean Time in Minutes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mean-time-in-seconds">
+       Mean Time in Seconds
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusion">
+   Conclusion
+  </a>
  </li>
 </ul>
 
@@ -342,7 +407,7 @@
         
               <div>
                 
-  <div class="section" id="github-performance-metrics-issues">
+  <div class="tex2jax_ignore mathjax_ignore section" id="github-performance-metrics-issues">
 <h1>Github Performance Metrics- Issues<a class="headerlink" href="#github-performance-metrics-issues" title="Permalink to this headline">¶</a></h1>
 <p><strong>Activity by Repo</strong></p>
 <p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
@@ -354,8 +419,11 @@
 <span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
@@ -749,19 +817,6 @@
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The overal median time to close issues for the augur repo</span>
-<span class="n">df_issues_focus</span><span class="o">.</span><span class="n">time_to_close</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Timedelta(&#39;0 days 09:40:58&#39;)
-</pre></div>
-</div>
-</div>
-</div>
 <p>Now let’s find out the median time taken to close issues grouped by month.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -770,19 +825,60 @@
 </div>
 </div>
 </div>
-<p>We can visualize the trend in median time to close issues by month</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>created
+2017-01     8 days 21:02:04
+2017-02     3 days 17:04:44
+2017-03    29 days 01:11:43
+2017-04     2 days 21:05:05
+2017-05   129 days 08:59:07
+Freq: M, Name: time_to_close, dtype: timedelta64[ns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="time-granularity-and-normalization">
+<h3>Time Granularity and Normalization<a class="headerlink" href="#time-granularity-and-normalization" title="Permalink to this headline">¶</a></h3>
+<p>We can visualize the trend in median time to close issues by month. However, in order to best capture all the median values including the outliers we can normalize the data by taking the <code class="docutils literal notranslate"><span class="pre">log</span></code> of the values before plotting. We should also consider the level of granularity we would like to capture and visualize the median time in i.e. days vs hours vs minutes vs seconds.</p>
+<p>Let us first consider the different levels of granularity for the median time to close issues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># days</span>
+<span class="n">df_issues_closed_monthly_days</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<span class="c1"># hours</span>
+<span class="n">df_issues_closed_monthly_hours</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[h]&#39;</span><span class="p">)</span>
+<span class="c1"># minutes</span>
+<span class="n">df_issues_closed_monthly_minutes</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[m]&#39;</span><span class="p">)</span>
+<span class="c1"># seconds</span>
+<span class="n">df_issues_closed_monthly_seconds</span> <span class="o">=</span> <span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now proceed to normalizing the values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly_days_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_closed_monthly_days</span><span class="p">)</span>
+<span class="n">df_issues_closed_monthly_hours_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_closed_monthly_hours</span><span class="p">)</span>
+<span class="n">df_issues_closed_monthly_minutes_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_closed_monthly_minutes</span><span class="p">)</span>
+<span class="n">df_issues_closed_monthly_seconds_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_closed_monthly_seconds</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="line-plot">
 <h3>Line Plot<a class="headerlink" href="#line-plot" title="Permalink to this headline">¶</a></h3>
+<p>We will now consider the granularity level to be “days” and plot the median time to close issues grouped by months.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly_days</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (days)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
@@ -791,19 +887,23 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/issues_performance_20_0.png" src="../../_images/issues_performance_20_0.png" />
+<img alt="../../_images/issues_performance_24_0.png" src="../../_images/issues_performance_24_0.png" />
 </div>
 </div>
-<p>We can also plot a bar graph as follows</p>
+<p>Issues can be closed within seconds/minutes/hours/days, hence making it important to consider all possible time units for better visualizations. We can further expand the above line graph by plotting a bar graph with the normalized log values.</p>
 </div>
 </div>
 <div class="section" id="bar-plot">
 <h2>Bar Plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+<p>Let’s plot the bar graph for different time granularity levels by considering the normalized log values to attain a better perspective.</p>
+<div class="section" id="median-time-in-days">
+<h3>Median Time in Days<a class="headerlink" href="#median-time-in-days" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_closed_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the normalized log values</span>
+<span class="n">df_issues_closed_monthly_days_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log days)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -812,7 +912,68 @@
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Median Time to Close Issues (Monthly)&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/issues_performance_23_1.png" src="../../_images/issues_performance_23_1.png" />
+<img alt="../../_images/issues_performance_28_1.png" src="../../_images/issues_performance_28_1.png" />
+</div>
+</div>
+<p>From the above graph we see that there are a few missing values which can be misleading, hence its worthwhile to explore the median time in other time units such as hours, seconds or minutes.</p>
+</div>
+<div class="section" id="median-time-in-hours">
+<h3>Median Time in Hours<a class="headerlink" href="#median-time-in-hours" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the normalized log values</span>
+<span class="n">df_issues_closed_monthly_hours_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log hours)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Median Time to Close Issues (Monthly)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/issues_performance_31_1.png" src="../../_images/issues_performance_31_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="median-time-in-minutes">
+<h3>Median Time in Minutes<a class="headerlink" href="#median-time-in-minutes" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the normalized log values</span>
+<span class="n">df_issues_closed_monthly_minutes_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Median Time to Close Issues (Monthly)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/issues_performance_33_1.png" src="../../_images/issues_performance_33_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="median-time-in-seconds">
+<h3>Median Time in Seconds<a class="headerlink" href="#median-time-in-seconds" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the normalized log values</span>
+<span class="n">df_issues_closed_monthly_seconds_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to close (log seconds)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Close Issues (Monthly)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Median Time to Close Issues (Monthly)&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/issues_performance_35_1.png" src="../../_images/issues_performance_35_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -836,9 +997,10 @@ Name: time_to_close, dtype: object
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="number-of-issues-open">
 <h2>Number of Issues Open<a class="headerlink" href="#number-of-issues-open" title="Permalink to this headline">¶</a></h2>
-<p>Let’s now identify the issues which are still open and view them by the month they were openned originally</p>
+<p>Let’s now identify the issues which are still open and view them by the month they were opened originally</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open</span> <span class="o">=</span> <span class="n">df_issues_focus</span><span class="p">[</span><span class="n">df_issues_focus</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
@@ -870,13 +1032,13 @@ Name: time_to_close, dtype: object
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count                            101
-mean     130 days 18:03:09.518855800
+mean     169 days 19:28:19.258754784
 std      118 days 08:39:25.371506794
-min           6 days 18:03:55.310935
-25%          40 days 18:07:30.310935
-50%          71 days 00:03:07.310935
-75%         186 days 23:10:14.310935
-max         514 days 01:34:43.310935
+min          45 days 19:29:05.050834
+25%          79 days 19:32:40.050834
+50%         110 days 01:28:17.050834
+75%         226 days 00:35:24.050834
+max         553 days 02:59:53.050834
 Name: time_open, dtype: object
 </pre></div>
 </div>
@@ -891,8 +1053,9 @@ Name: time_open, dtype: object
 </div>
 </div>
 <p>We can visualize the median time issues are open with a bar graph</p>
-<div class="section" id="plot">
-<h3>Plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="monthly-issues-open">
+<h3>Monthly Issues Open<a class="headerlink" href="#monthly-issues-open" title="Permalink to this headline">¶</a></h3>
+<p>Let’s plot the number of issues currently open by created months.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_open_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
@@ -906,13 +1069,15 @@ Name: time_open, dtype: object
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Number of Issues&#39;)
 </pre></div>
 </div>
-<img alt="../../_images/issues_performance_35_1.png" src="../../_images/issues_performance_35_1.png" />
+<img alt="../../_images/issues_performance_47_1.png" src="../../_images/issues_performance_47_1.png" />
 </div>
 </div>
+<p>From the above graph we see that for the <code class="docutils literal notranslate"><span class="pre">augur</span></code> repo, the months of July and August 2021 had the highest number of open issues.</p>
 </div>
 </div>
 <div class="section" id="time-to-first-response-issues">
 <h2>Time to First Response Issues<a class="headerlink" href="#time-to-first-response-issues" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now identify the time taken for first responses in issues.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_focus</span> <span class="o">=</span> <span class="n">df_issues_comments</span><span class="p">[</span><span class="n">df_issues_comments</span><span class="p">[</span><span class="s1">&#39;repo_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">repo_focus</span><span class="p">]</span>
@@ -933,6 +1098,7 @@ Name: time_open, dtype: object
 </div>
 <div class="section" id="pie-chart-response-percent">
 <h3>Pie Chart-Response Percent<a class="headerlink" href="#pie-chart-response-percent" title="Permalink to this headline">¶</a></h3>
+<p>We can visualize the response percentage by plotting a pie chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Answered&quot;</span><span class="p">,</span><span class="s2">&quot;Not Answered&quot;</span><span class="p">]</span>
@@ -945,9 +1111,14 @@ Name: time_open, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/issues_performance_40_0.png" src="../../_images/issues_performance_40_0.png" />
+<img alt="../../_images/issues_performance_53_0.png" src="../../_images/issues_performance_53_0.png" />
 </div>
 </div>
+<p>From the above pie chart, we see that ~54% of the issues response in the <code class="docutils literal notranslate"><span class="pre">augur</span></code> repo were not answered.</p>
+</div>
+<div class="section" id="bar-plot-mean-time-to-first-reponse">
+<h3>Bar Plot- Mean Time to First Reponse<a class="headerlink" href="#bar-plot-mean-time-to-first-reponse" title="Permalink to this headline">¶</a></h3>
+<p><em><strong>Note: this is the time for only the issues that have a response</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">msg_time</span> <span class="o">-</span> <span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">created_at</span><span class="p">)</span>
@@ -959,27 +1130,107 @@ Name: time_open, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly</span> <span class="o">=</span> <span class="n">df_issues_comments_focus</span><span class="p">[</span><span class="s1">&#39;time_to_response&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_issues_comments_focus</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
-<span class="n">df_issues_comments_monthly</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="bar-plot-mean-time-to-first-reponse">
-<h3>Bar Plot- Mean Time to First Reponse<a class="headerlink" href="#bar-plot-mean-time-to-first-reponse" title="Permalink to this headline">¶</a></h3>
-<p><em><strong>Note: this is the time for only the issues that have a response</strong></em></p>
+<div class="section" id="id1">
+<h4>Time Granularity and Normalization<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>We can visualize the trend in median time of first response by month. However, in order to best capture all the median values including the outliers we can normalize the data by taking the <code class="docutils literal notranslate"><span class="pre">log</span></code> of the values before plotting. We should also consider the level of granularity we would like to capture and visualize the median time in i.e. days vs hours vs minutes vs seconds.</p>
+<p>Let us first consider the different levels of granularity for the mean time to first response.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># days</span>
+<span class="n">df_issues_comments_monthly_days</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
+<span class="c1"># hours</span>
+<span class="n">df_issues_comments_monthly_hours</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[h]&#39;</span><span class="p">)</span>
+<span class="c1"># minutes</span>
+<span class="n">df_issues_comments_monthly_minutes</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[m]&#39;</span><span class="p">)</span>
+<span class="c1"># seconds</span>
+<span class="n">df_issues_comments_monthly_seconds</span> <span class="o">=</span> <span class="n">df_issues_comments_monthly</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now proceed to normalizing the values</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly_days_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_comments_monthly_days</span><span class="p">)</span>
+<span class="n">df_issues_comments_monthly_hours_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_comments_monthly_hours</span><span class="p">)</span>
+<span class="n">df_issues_comments_monthly_minutes_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_comments_monthly_minutes</span><span class="p">)</span>
+<span class="n">df_issues_comments_monthly_seconds_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_issues_comments_monthly_seconds</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will now consider the different granularity levels of time i.e. days, hours, minutes and seconds and plot the mean time to first response grouped by months.</p>
+</div>
+<div class="section" id="mean-time-in-days">
+<h4>Mean Time in Days<a class="headerlink" href="#mean-time-in-days" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly_days_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Median time to Comment (days)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Median Time to Issue Comment (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Time to first response (log days)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/issues_performance_44_0.png" src="../../_images/issues_performance_44_0.png" />
+<img alt="../../_images/issues_performance_66_0.png" src="../../_images/issues_performance_66_0.png" />
+</div>
+</div>
+<p>From the above graph we see that there are a few missing values which can be misleading, hence its worthwhile to explore the mean time in other time units such as hours, seconds or minutes.</p>
+</div>
+<div class="section" id="mean-time-in-hours">
+<h4>Mean Time in Hours<a class="headerlink" href="#mean-time-in-hours" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly_hours_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Time to first response (log hours)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_69_0.png" src="../../_images/issues_performance_69_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mean-time-in-minutes">
+<h4>Mean Time in Minutes<a class="headerlink" href="#mean-time-in-minutes" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly_minutes_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Time to first response (log minutes)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_71_0.png" src="../../_images/issues_performance_71_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="mean-time-in-seconds">
+<h4>Mean Time in Seconds<a class="headerlink" href="#mean-time-in-seconds" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_issues_comments_monthly_seconds_norm</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Mean Time to first response (log seconds)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Mean Time to First Response (Monthly)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/issues_performance_73_0.png" src="../../_images/issues_performance_73_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1022,13 +1273,13 @@ Name: time_open, dtype: object
     <tr>
       <th>mean</th>
       <td>376210.860140</td>
-      <td>1.204971e+06</td>
+      <td>1.204957e+06</td>
       <td>10 days 06:48:15.858391608</td>
     </tr>
     <tr>
       <th>std</th>
       <td>113390.064602</td>
-      <td>8.001126e+03</td>
+      <td>8.001959e+03</td>
       <td>28 days 08:16:20.265810224</td>
     </tr>
     <tr>
@@ -1040,13 +1291,13 @@ Name: time_open, dtype: object
     <tr>
       <th>25%</th>
       <td>339728.750000</td>
-      <td>1.200566e+06</td>
+      <td>1.200565e+06</td>
       <td>0 days 04:26:28.500000</td>
     </tr>
     <tr>
       <th>50%</th>
       <td>339945.500000</td>
-      <td>1.200936e+06</td>
+      <td>1.200932e+06</td>
       <td>1 days 13:58:46.500000</td>
     </tr>
     <tr>
@@ -1066,6 +1317,11 @@ Name: time_open, dtype: object
 </div></div></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>In this notebook we have visualized some of the performance metrics measured for GitHub issues and considered different time granularity levels such as days, hours, minutes and seconds to gain a better understanding of the metrics behavior.</p>
 </div>
 </div>
 
@@ -1092,16 +1348,36 @@ Name: time_open, dtype: object
               </div>
               
         
-        <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../demo_augur/response_time_bus_days_template.html" title="previous page">PR Response Time Analysis (Business Days)</a>
-    <a class='right-next' id="next-link" href="pr_performance.html" title="next page">Github Performance Metrics- Pull Requests</a>
 
-        </div>
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../demo_augur/response_time_bus_days_template.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">PR Response Time Analysis (Business Days)</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="pr_performance.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Github Performance Metrics- Pull Requests</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         

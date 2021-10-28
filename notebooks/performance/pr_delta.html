@@ -1,0 +1,1125 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github PR Analysis &#8212; Sandiego</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Github Performance Metrics- Pull Requests" href="pr_performance.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Sandiego</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   Project Sandiego
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Getting started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../START_HERE.html">
+   Introduction to connecting and Querying the Augur DB
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  GitHub Community Metrics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../commits_activity.html">
+   Github Activity Metrics-Commits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../community_metrics.html">
+   Github Metrics- Growth of a Repo’s Community
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issue_activity.html">
+   Github Activity Metrics-Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../pr_activity.html">
+   Github Activity Metrics-Pull Requests
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Community Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/new_contributor_template.html">
+   New Contributor Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/contributor_risk_template.html">
+   Contributor Risk Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/pull_request_analysis_template.html">
+   Pull Request Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../demo_augur/response_time_bus_days_template.html">
+   PR Response Time Analysis (Business Days)
+  </a>
+ </li>
+</ul>
+<p class="caption" role="heading">
+ <span class="caption-text">
+  Performance Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="issues_performance.html">
+   Github Performance Metrics- Issues
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pr_performance.html">
+   Github Performance Metrics- Pull Requests
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Github PR Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/notebooks/performance/pr_delta.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/sandiego-rh/sandiego"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/sandiego-rh/sandiego/issues/new?title=Issue%20on%20page%20%2Fnotebooks/performance/pr_delta.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/sandiego-rh/sandiego/master?urlpath=lab/tree/notebooks/performance/pr_delta.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://jupyterhub-opf-jupyterhub.apps.zero.massopen.cloud/hub/user-redirect/git-pull?repo=https://github.com/sandiego-rh/sandiego&urlpath=lab/tree/sandiego/notebooks/performance/pr_delta.ipynb&branch=master"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Github PR Analysis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#files-and-lines-of-code-changed-per-pr">
+   Files and Lines of Code changed per PR
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-prs-were-closed-without-being-merged">
+     Which PRs were closed without being merged?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-prs-are-still-open-and-how-long-have-they-been-open">
+     Which PRs are still open and how long have they been open?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#which-prs-have-been-merged-and-closed">
+     Which PRs have been merged and closed?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#does-of-lines-changed-correlate-visually-with-time-to-merge-and-or-merge-status">
+     Does # of lines changed correlate visually with time-to-merge (and/or) merge-status?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#survival-analysis">
+     Survival Analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="github-pr-analysis">
+<h1>Github PR Analysis<a class="headerlink" href="#github-pr-analysis" title="Permalink to this headline">¶</a></h1>
+<p><strong>Merge-timeline vs. (Lines of Code | Files Changed)</strong></p>
+<p>This notebook will aim to query the Augur DB to access the neccessary information to be able to get the following issue metrics dirived from the GitHub Community Metrics working document <a class="reference external" href="https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing">https://docs.google.com/document/d/1Yocr6fk0J8EsVZnJwoIl3kRQaI94tI-XHe7VSMFT0yM/edit?usp=sharing</a></p>
+<p>Any necessary computations from the data to get the metric value will be done as the queries are determined</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">salc</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;../config_temp.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">config_file</span><span class="p">:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">database_connection_string</span> <span class="o">=</span> <span class="s1">&#39;postgresql+psycopg2://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;host&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;port&#39;</span><span class="p">],</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;database&#39;</span><span class="p">])</span>
+
+<span class="n">dbschema</span><span class="o">=</span><span class="s1">&#39;augur_data&#39;</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span>
+    <span class="n">database_connection_string</span><span class="p">,</span>
+    <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;options&#39;</span><span class="p">:</span> <span class="s1">&#39;-csearch_path=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dbschema</span><span class="p">)})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#add your repo name(s) here of the repo(s) you want to query if known (and in the database)</span>
+<span class="n">repo_name_set</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;augur&#39;</span><span class="p">]</span>
+<span class="n">repo_set</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">repo_name</span> <span class="ow">in</span> <span class="n">repo_name_set</span><span class="p">:</span>
+    <span class="n">repo_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                 SET SCHEMA &#39;augur_data&#39;;</span>
+<span class="s2">                 SELECT </span>
+<span class="s2">                    b.repo_id</span>
+<span class="s2">                FROM</span>
+<span class="s2">                    repo_groups a,</span>
+<span class="s2">                    repo b</span>
+<span class="s2">                WHERE</span>
+<span class="s2">                    a.repo_group_id = b.repo_group_id AND</span>
+<span class="s2">                    b.repo_name = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_name</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"></span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">repo_query</span><span class="p">)</span>
+    <span class="n">repo_id</span> <span class="o">=</span><span class="n">t</span><span class="o">.</span><span class="n">mappings</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;repo_id&#39;</span><span class="p">)</span>
+    <span class="n">repo_set</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">repo_id</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">repo_set</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[840]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="files-and-lines-of-code-changed-per-pr">
+<h1>Files and Lines of Code changed per PR<a class="headerlink" href="#files-and-lines-of-code-changed-per-pr" title="Permalink to this headline">¶</a></h1>
+<p>How does a project handle contributions? In the open source model, changes to a code base are suggested in the form of Pull Requests which are composed of one or more commits made by one or more authors. They become a part of one or more branches of the project when they are ‘merged,’ and until this time they remain ‘open.’ In some cases, the suggested changes can be discarded for any number of reasons and in this situation the pull request is considered ‘closed.’</p>
+<p>We would like to analyze the PR time-to-merge and PR time-to-close behavior of a project and try to make some generalizations about this behavior. Successful projects may enforce some constraints that, if followed, dramatically increase the probability of a PR being ‘merged’ rather than ‘closed.’</p>
+<p>(A PR being ‘closed’ does not necessarily mean that the suggested changes were discarded. They could have been broken up into separate PR’s and incorporated later. However, this distinction is important to analyze because those PR’s that were ‘closed’ could represent those PR’s that don’t fit the standards of the project and are important to understand.)</p>
+<p>We will begin by visualizing this information in the hope of extracting some useful visual heuristics about these categories of PR. From there, we will go into Survival Analysis, hoping to observe trends in the project including probablistic merge behavior (e.g. there is an 80% chance that a PR of ‘x’ size will be merged in ‘y’ time).</p>
+<p><strong>Below:</strong></p>
+<p>Get all of the Pull Requests associated with a specified repository. For each PR also get information about the number of lines changed per file in the PR.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_pr_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">repo_id</span> <span class="ow">in</span> <span class="n">repo_set</span><span class="p">:</span> 
+
+    <span class="n">pr_query</span> <span class="o">=</span> <span class="n">salc</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                SELECT</span>
+<span class="s2">					pr.pull_request_id AS pr_id,</span>
+<span class="s2">                    prf.pr_file_id as file_id,</span>
+<span class="s2">                    prf.pr_file_additions as additions,</span>
+<span class="s2">                    prf.pr_file_deletions as deletions,</span>
+<span class="s2">                    prf.pr_file_additions + prf.pr_file_deletions as total_changes,</span>
+<span class="s2">                    pr.pr_created_at as created,</span>
+<span class="s2">                    pr.pr_merged_at as merged,</span>
+<span class="s2">                    pr.pr_closed_at as closed</span>
+<span class="s2">                    </span>
+<span class="s2">                FROM</span>
+<span class="s2">                	repo r,</span>
+<span class="s2">                    pull_requests pr,</span>
+<span class="s2">                    pull_request_files prf</span>
+
+<span class="s2">                WHERE</span>
+<span class="s2">                	r.repo_id = pr.repo_id AND</span>
+<span class="s2">                    r.repo_id = </span><span class="se">\&#39;</span><span class="si">{</span><span class="n">repo_id</span><span class="si">}</span><span class="se">\&#39;</span><span class="s2"> AND</span>
+<span class="s2">                    prf.pull_request_id = pr.pull_request_id</span>
+<span class="s2">                ORDER BY</span>
+<span class="s2">                    pr_id</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">df_current_repo</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">pr_query</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">df_pr_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_pr_files</span><span class="p">,</span> <span class="n">df_current_repo</span><span class="p">])</span>
+
+<span class="n">df_pr_files</span> <span class="o">=</span> <span class="n">df_pr_files</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_pr_files</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+<span class="n">df_pr_files</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pr_id</th>
+      <th>file_id</th>
+      <th>additions</th>
+      <th>deletions</th>
+      <th>total_changes</th>
+      <th>created</th>
+      <th>merged</th>
+      <th>closed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>293071</td>
+      <td>1123096</td>
+      <td>86</td>
+      <td>3</td>
+      <td>89</td>
+      <td>2017-01-23 18:50:08</td>
+      <td>2017-01-23 20:49:42</td>
+      <td>2017-01-23 20:49:42</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>293072</td>
+      <td>1123097</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2017-01-31 17:08:16</td>
+      <td>2017-01-31 20:09:52</td>
+      <td>2017-01-31 20:09:52</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>293073</td>
+      <td>1123099</td>
+      <td>5</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2017-02-01 20:33:36</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>2017-02-02 16:52:19</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>293073</td>
+      <td>1123098</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2017-02-01 20:33:36</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>2017-02-02 16:52:19</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>293074</td>
+      <td>1123103</td>
+      <td>52</td>
+      <td>0</td>
+      <td>52</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="which-prs-were-closed-without-being-merged">
+<h2>Which PRs were closed without being merged?<a class="headerlink" href="#which-prs-were-closed-without-being-merged" title="Permalink to this headline">¶</a></h2>
+<p>For a variety of reasons, some PRs are closed without being merged. These PRs will have a ‘closed’ time but no ‘merged’ time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">These are the PRs that were closed without being merged.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">df_pr_closed</span> <span class="o">=</span> <span class="n">df_pr_files</span><span class="p">[</span><span class="n">df_pr_files</span><span class="p">[</span><span class="s1">&#39;merged&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">df_pr_files</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span>
+<span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_pr_closed</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pr_id</th>
+      <th>file_id</th>
+      <th>additions</th>
+      <th>deletions</th>
+      <th>total_changes</th>
+      <th>created</th>
+      <th>merged</th>
+      <th>closed</th>
+      <th>close_window</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>293074</td>
+      <td>1123103</td>
+      <td>52</td>
+      <td>0</td>
+      <td>52</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>293074</td>
+      <td>1123104</td>
+      <td>273</td>
+      <td>0</td>
+      <td>273</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>293074</td>
+      <td>1123105</td>
+      <td>141</td>
+      <td>0</td>
+      <td>141</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>293074</td>
+      <td>1123100</td>
+      <td>271</td>
+      <td>0</td>
+      <td>271</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>293074</td>
+      <td>1123101</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>2017-02-01 20:39:53</td>
+      <td>NaT</td>
+      <td>2017-02-02 16:50:19</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map the total number of lines changed per PR</span>
+<span class="n">df_pr_closed_fc</span> <span class="o">=</span> <span class="n">df_pr_closed</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sumChanges</span> <span class="o">=</span> <span class="n">df_pr_closed</span><span class="p">[</span><span class="s1">&#39;pr_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df_pr_closed</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)[</span><span class="s1">&#39;total_changes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+<span class="c1"># drop any extra columns so we just see the PR, the days required to merge, and the number of changes made across all files.</span>
+<span class="n">df_pr_closed_fc</span> <span class="o">=</span> <span class="n">df_pr_closed_fc</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;file_id&#39;</span><span class="p">,</span> <span class="s1">&#39;additions&#39;</span><span class="p">,</span> <span class="s1">&#39;deletions&#39;</span><span class="p">,</span> <span class="s1">&#39;total_changes&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;merged&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_pr_closed_fc</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Of Code Changed vs. Days Until Close&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Changed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_delta_13_0.png" src="../../_images/pr_delta_13_0.png" />
+</div>
+</div>
+<p>In the above graph we can see that there is little correlation between the amount of changes in a PR and the amount of time it takes for that PR to be closed.
+This is very interesting behavior- one might intuit that small PR’s would be spurriously closed often for not meeting community guidelines, for one example.
+It seems that instead, large PRs are the most often closed.</p>
+</div>
+<div class="section" id="which-prs-are-still-open-and-how-long-have-they-been-open">
+<h2>Which PRs are still open and how long have they been open?<a class="headerlink" href="#which-prs-are-still-open-and-how-long-have-they-been-open" title="Permalink to this headline">¶</a></h2>
+<p>Those PRs with no ‘merged’ or ‘closed’ date are still open as of this analysis. Therefore they currently exist in the
+limbo between “going to be merged” and “going to be closed.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">These are the PRs that have yet to be merged or closed (are still open).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">df_pr_open</span> <span class="o">=</span> <span class="n">df_pr_files</span><span class="p">[</span><span class="n">df_pr_files</span><span class="p">[</span><span class="s1">&#39;merged&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">df_pr_files</span><span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+<span class="n">df_pr_open</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">df_pr_open</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span>
+<span class="n">df_pr_open</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pr_open</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_pr_open</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pr_id</th>
+      <th>file_id</th>
+      <th>additions</th>
+      <th>deletions</th>
+      <th>total_changes</th>
+      <th>created</th>
+      <th>merged</th>
+      <th>closed</th>
+      <th>open_window</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>32121</th>
+      <td>294093</td>
+      <td>1155220</td>
+      <td>376</td>
+      <td>0</td>
+      <td>376</td>
+      <td>2021-08-18 13:32:39</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>32122</th>
+      <td>294093</td>
+      <td>1155217</td>
+      <td>240</td>
+      <td>0</td>
+      <td>240</td>
+      <td>2021-08-18 13:32:39</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>32123</th>
+      <td>294093</td>
+      <td>1155218</td>
+      <td>7</td>
+      <td>0</td>
+      <td>7</td>
+      <td>2021-08-18 13:32:39</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>32124</th>
+      <td>294093</td>
+      <td>1155219</td>
+      <td>182</td>
+      <td>0</td>
+      <td>182</td>
+      <td>2021-08-18 13:32:39</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>71</td>
+    </tr>
+    <tr>
+      <th>32125</th>
+      <td>294093</td>
+      <td>1155221</td>
+      <td>4</td>
+      <td>23</td>
+      <td>27</td>
+      <td>2021-08-18 13:32:39</td>
+      <td>NaT</td>
+      <td>NaT</td>
+      <td>71</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map the total number of lines changed per PR</span>
+<span class="n">df_pr_open_fc</span> <span class="o">=</span> <span class="n">df_pr_open</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sumChanges</span> <span class="o">=</span> <span class="n">df_pr_open</span><span class="p">[</span><span class="s1">&#39;pr_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df_pr_open</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)[</span><span class="s1">&#39;total_changes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+<span class="c1"># drop any extra columns so we just see the PR, the days required to merge, and the number of changes made across all files.</span>
+<span class="n">df_pr_open_fc</span> <span class="o">=</span> <span class="n">df_pr_open_fc</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;file_id&#39;</span><span class="p">,</span> <span class="s1">&#39;additions&#39;</span><span class="p">,</span> <span class="s1">&#39;deletions&#39;</span><span class="p">,</span> <span class="s1">&#39;total_changes&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;merged&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_pr_open_fc</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_open_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Of Code Changed vs. Days Open&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Changed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_delta_18_0.png" src="../../_images/pr_delta_18_0.png" />
+</div>
+</div>
+<p>There does not appear to be any visual correlation between the number of days that a PR has remained open and the size of that PR, besides the greater mass of the PRs being more concentrated to smaller change-volumes.</p>
+</div>
+<div class="section" id="which-prs-have-been-merged-and-closed">
+<h2>Which PRs have been merged and closed?<a class="headerlink" href="#which-prs-have-been-merged-and-closed" title="Permalink to this headline">¶</a></h2>
+<p>Those PRs that have been ‘closed’ and ‘merged’ are the successful PRs. They have become a part of the code base.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">These are the PRs that have been merged and closed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">df_pr_merged</span> <span class="o">=</span> <span class="n">df_pr_files</span><span class="p">[</span><span class="n">df_pr_files</span><span class="p">[</span><span class="s1">&#39;merged&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notna</span><span class="p">()]</span>
+<span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;merged&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]</span>
+<span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">days</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df_pr_merged</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pr_id</th>
+      <th>file_id</th>
+      <th>additions</th>
+      <th>deletions</th>
+      <th>total_changes</th>
+      <th>created</th>
+      <th>merged</th>
+      <th>closed</th>
+      <th>merge_window</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>293071</td>
+      <td>1123096</td>
+      <td>86</td>
+      <td>3</td>
+      <td>89</td>
+      <td>2017-01-23 18:50:08</td>
+      <td>2017-01-23 20:49:42</td>
+      <td>2017-01-23 20:49:42</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>293072</td>
+      <td>1123097</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2017-01-31 17:08:16</td>
+      <td>2017-01-31 20:09:52</td>
+      <td>2017-01-31 20:09:52</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>293073</td>
+      <td>1123099</td>
+      <td>5</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2017-02-01 20:33:36</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>293073</td>
+      <td>1123098</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2017-02-01 20:33:36</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>2017-02-02 16:52:19</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>293075</td>
+      <td>1123106</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2017-02-01 20:41:17</td>
+      <td>2017-02-02 16:51:16</td>
+      <td>2017-02-02 16:51:16</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># map the total number of lines changed per PR</span>
+<span class="n">df_pr_merged_fc</span> <span class="o">=</span> <span class="n">df_pr_merged</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">sumChanges</span> <span class="o">=</span> <span class="n">df_pr_merged</span><span class="p">[</span><span class="s1">&#39;pr_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">df_pr_merged</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)[</span><span class="s1">&#39;total_changes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+
+<span class="c1"># drop any extra columns so we just see the PR, the days required to merge, and the number of changes made across all files.</span>
+<span class="n">df_pr_merged_fc</span> <span class="o">=</span> <span class="n">df_pr_merged_fc</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;file_id&#39;</span><span class="p">,</span> <span class="s1">&#39;additions&#39;</span><span class="p">,</span> <span class="s1">&#39;deletions&#39;</span><span class="p">,</span> <span class="s1">&#39;total_changes&#39;</span><span class="p">,</span> <span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;merged&#39;</span><span class="p">,</span> <span class="s1">&#39;closed&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="s1">&#39;pr_id&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_pr_merged_fc</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Of Code Changed vs. Days to Merge&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Changed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pr_delta_23_0.png" src="../../_images/pr_delta_23_0.png" />
+</div>
+</div>
+<p>Again, there appears to be very minimal correspondence between the size of the PR and its time-to-merge. Most PRs have &lt;20 open-timespans irrespective of their size (from visual inspection).</p>
+</div>
+<div class="section" id="does-of-lines-changed-correlate-visually-with-time-to-merge-and-or-merge-status">
+<h2>Does # of lines changed correlate visually with time-to-merge (and/or) merge-status?<a class="headerlink" href="#does-of-lines-changed-correlate-visually-with-time-to-merge-and-or-merge-status" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">80</span> <span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Days&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines Changed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;(log_10) Lines of Code vs. Days (to Merge|to Close|while Open)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span> <span class="n">df_pr_closed_fc</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_closed_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Closed&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span> <span class="n">df_pr_open_fc</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_open_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Open&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span> <span class="n">df_pr_merged_fc</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df_pr_merged_fc</span><span class="p">[</span><span class="s1">&#39;sumChanges&#39;</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Merged&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;Closed&quot;</span><span class="p">,</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span> <span class="s2">&quot;Merged&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb4a0159370&gt;
+</pre></div>
+</div>
+<img alt="../../_images/pr_delta_26_1.png" src="../../_images/pr_delta_26_1.png" />
+</div>
+</div>
+<p>Having plotted all three population of PR oon the same axes, the distributions of the data don’t appear to be significantly different. Open PRs definitely dominate the right-most field of open-time, however, which could be a suggestion of some interesting project-specific phenomenon.</p>
+</div>
+<div class="section" id="survival-analysis">
+<h2>Survival Analysis<a class="headerlink" href="#survival-analysis" title="Permalink to this headline">¶</a></h2>
+<p>We would like to be able to make some observations about the lifespan of PRs.</p>
+<p>Specifically, we would like to model the experience of the contributors to a project probablistically. For example, we would like to know the probability that a user, in general, has a reasonably quick decision made about their contribution as a function of time.</p>
+<p>This is done with Survival Analysis. The below plots show the probability of a PR being merged or closed after some number of days.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lifelines</span> <span class="kn">import</span> <span class="n">KaplanMeierFitter</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Need durations of all PR&#39;s as a column.</span>
+<span class="sd">    This is just a total time bin up to today. </span>
+<span class="sd">    If a PR is still open we keep duration BUT we</span>
+<span class="sd">    also park it as having been censored.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">closed_dur</span> <span class="o">=</span> <span class="n">df_pr_closed_fc</span><span class="p">[</span><span class="s1">&#39;close_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">merged_dur</span> <span class="o">=</span> <span class="n">df_pr_merged_fc</span><span class="p">[</span><span class="s1">&#39;merge_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">open_dur</span> <span class="o">=</span> <span class="n">df_pr_open_fc</span><span class="p">[</span><span class="s1">&#39;open_window&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+<span class="n">total_durs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">closed_dur</span><span class="p">,</span> <span class="n">merged_dur</span><span class="p">)),</span> <span class="n">open_dur</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">total_durs</span><span class="p">)</span>
+
+<span class="n">censorship</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">total_durs</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">censorship</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">closed_dur</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged_dur</span><span class="p">):</span> <span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1  6  1 ... 16 16 16]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">total_durs</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">censorship</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="n">kmf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Survival function of PR Merge Prob vs. Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days to Merge/Close&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability of Close&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Probability of Close&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/pr_delta_32_1.png" src="../../_images/pr_delta_32_1.png" />
+</div>
+</div>
+<p>By convention, we would like optimize the experience of roughly 80% of the contributions. This means that we would like to look at the above plot and observe the worst-case decision time for roughly 80% of PRs, which in this case is found at (~1 day, 0.2) as a coordinate. This is an exceptional result- likely being the case because the repo that we’re working with is a smaller project with a core group of developers- but nonetheless it is an illustration of very good response-time to PRs.</p>
+<p>One gap in this analysis is that the populations of ‘closed’ and ‘merged’ PRs are considered to be the same. However, this is obviously not true.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmf2</span> <span class="o">=</span> <span class="n">KaplanMeierFitter</span><span class="p">()</span>
+<span class="n">kmf2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">closed_dur</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">closed_dur</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Closed PR&#39;s&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">kmf2</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">kmf2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">merged_dur</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">merged_dur</span><span class="p">)),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Merged PR&#39;s&quot;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">kmf2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Survival function of PR Prob (across types) vs. Time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days to Merge/Close&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability of Close&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Probability of Close&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/pr_delta_34_1.png" src="../../_images/pr_delta_34_1.png" />
+</div>
+</div>
+<p>This is a very informative visualization. It demonstrates some different behavior of the project with respect to the two different prior distributions of PRs- those that will be closed, and those that will be merged.</p>
+<p>PRs that will be closed have a less aggressive decision-timeframe whereas those that are merged have a similarly rapid respone as the previous visualization demonstrates.</p>
+<p>This visualization could be informative to projects, capturing a need of maintainers to make quicker decisions about PRs that they would like to close, or encouraging them to take more time to decide whether a PR should indeed be merged.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks/performance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="pr_performance.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Github Performance Metrics- Pull Requests</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Red Hat Open Source Program Office<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
