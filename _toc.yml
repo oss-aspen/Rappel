@@ -20,3 +20,4 @@ parts:
     chapters:
     - file: notebooks/performance/issues_performance
     - file: notebooks/performance/pr_performance
+    - file: notebooks/performance/pr_delta
