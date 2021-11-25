@@ -1,0 +1,142 @@
+---
+title: "Interactive STL"
+author: "Greg Sutcliffe"
+date: "23/11/2021"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(dbplyr)
+library(lubridate)
+library(RPostgreSQL)
+library(prophet)
+library(config)
+
+m   <- DBI::dbDriver("PostgreSQL")
+con <- DBI::dbConnect(m,
+                      user=config::get('user', config = 'prod'),
+                      password=config::get('password', config = 'prod'),
+                      dbname=config::get('database', config = 'prod'),
+                      host=config::get('host', config = 'prod'),
+                      port=config::get('port', config = 'prod')
+)
+
+repo_names <- con %>%
+  tbl(in_schema("augur_data", "repo")) %>%
+  select(repo_name, repo_path, repo_id) %>%
+  collect()
+
+# Augur is annoying...
+repo_names %>%
+  mutate(repo_org = str_split(repo_path, '/') %>% map_chr(nth, n=-2),
+         label = glue::glue('{repo_org}/{repo_name}')) %>%
+  arrange(label) -> repo_names
+
+df <- reactiveValues() # reactive cache
+```
+
+
+This is an example of an interactive report written in
+[RMarkdown](https://bookdown.org/yihui/rmarkdown/) using
+[Flexdashboard](https://pkgs.rstudio.com/flexdashboard/) and
+[Shiny](shiny.rstudio.com/) as the engine.
+
+Flexdashboard is the simpler option for a Shiny app - it uses a more familiar
+single-file notebook-style format, with all the UI and Server code in one place.
+However, this limits the UI design to a report format, so bear in mind that this
+is a Flexdashboard limitation, not a Shiny limitation.
+
+## Links
+
+- Live Version: https://stats.eng.ansible.com/apps/SanDiego/
+- Code PR: https://github.com/sandiego-rh/sandiego/pull/117
+
+## Seasonality of a repo
+
+For this demo, we'll revisit the [STL example (PR
+83)](https://github.com/sandiego-rh/sandiego/pull/83) and see how interactivity
+can help explore the data.
+
+### Inputs
+
+First we'll create a selectInput for the repo choice, and because the
+computation is long, we'll add a Go button rather than recompute on every change
+of the selectInput. We could obviously do more here such as time-sliders, commit
+filters, etc - all would operate on the cache (although filters could be applied
+earlier to minimise db-loading of course).
+
+```{r datablock, echo=FALSE}
+inputPanel(
+  selectInput("repo", label = "Repo to process:", width = "600px",
+              choices = repo_names$label, selected = 'augur'),
+  actionButton("go", "Go!", class = "btn-success"),
+)
+
+observeEvent(input$go, {
+  repo_names %>%
+    filter(label == input$repo) %>%
+    pull(repo_id) -> id
+  
+  con %>%
+    tbl(in_schema("augur_data", "commits")) %>%
+    filter(repo_id == id) %>%
+    group_by(cmt_commit_hash) %>%             # cmt_commit_hash has_many files
+    summarise(ds = min(cmt_author_date)) %>%  # just get the date of the commit
+    collect() %>%
+    mutate(ds    = ymd(ds),                    # convert from string to time
+           week  = cut(ds, 'week')) %>%        # Bucket date to the nearest week
+    count(ds,name = "y") -> df$commits         # Count commits in a given week
+  
+  
+  # Build the Prophet model
+  m <- prophet(df$commits)#, daily.seasonality = F,
+               #weekly.seasonality = T, yearly.seasonality = T)
+  forecast <- predict(m)
+  
+  df$model <- m
+  df$forecast <- forecast
+})
+
+renderText({
+  total <- df$commits$y %>% sum()
+  print(glue::glue("Commits counted: {total}"))
+})
+```
+
+Note we've cached the resulting db objects and printed a debug statement of the total number of commits.
+
+### Outputs 
+
+We'll do two outputs - the raw data & model, and the STL. To show the caching is working, I've added a button to change the Y-axis to log-scale. You'll note that toggling this is super-fast, it's not recomputing the model or getting new data from the db.
+
+```{r prophet, echo=FALSE}
+inputPanel(
+  checkboxInput("log", label = "Log-scale y-axis")
+)
+renderPlot({
+  req(df$model, df$forecast)
+  plot(df$model, df$forecast) -> p
+  
+  if (input$log) {
+    p <- p + scale_y_log10(name = 'Count (Log-scale)')
+  }
+  
+  p +
+    labs(title = 'Commits per Day', subtitle = 'Raw count data', x = 'Date')
+})
+```
+
+```{r stl, echo=FALSE}
+renderPlot({
+  req(df$model, df$forecast)
+  prophet_plot_components(df$model, df$forecast)
+})
+```
+
+## Conclusion
+
+This concludes the Flexdashboard example!
