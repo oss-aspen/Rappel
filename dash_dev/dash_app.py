@@ -37,4 +37,10 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    """
+    James:
+    Small change here from the docs, exposing specific port here
+    in the run_server line - 
+    https://community.plotly.com/t/running-dash-app-in-docker-container/16067
+    """
+    app.run_server(host="0.0.0.0",debug=True, port=8050)
