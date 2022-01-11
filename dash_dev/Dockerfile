@@ -1,7 +1,8 @@
-FROM fedora:34
-MAINTAINER James Kunstle <jkunstle@redhat.com>
-RUN dnf install -y python3-pip
+FROM python:3.8.12-bullseye 
+LABEL James Kunstle <jkunstle@redhat.com>
 COPY . /dash_app
+COPY ../config_temp.json /dash_app
 RUN pip3 install -r /dash_app/requirements.txt
 EXPOSE 8050
-CMD python3 /dash_app/dash_app.py
+WORKDIR /dash_app
+CMD python3 dash_app.py

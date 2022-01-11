@@ -1,3 +1,7 @@
 dash
 pandas
 dash-core-components
+psycopg2
+sqlalchemy
+matplotlib
+numpy
