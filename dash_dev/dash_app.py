@@ -111,6 +111,10 @@ df_pr_closed_fc = df_pr_closed.assign(sumChanges = df_pr_closed['pr_id'].map(df_
 df_pr_closed_fc = df_pr_closed_fc.drop(['file_id', 'additions', 'deletions', 'total_changes', 'created', 'merged', 'closed'], axis=1).drop_duplicates('pr_id')
 
 
+"""
+    This is the beginning of the Dash / Plotly code.
+"""
+
 app = dash.Dash(__name__)
 
 df_pr_closed_fc["sumChanges"] = np.log(df_pr_closed_fc["sumChanges"])
