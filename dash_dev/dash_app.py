@@ -25,7 +25,7 @@ app.layout = html.Div(children=[
             
     html.H1(children='Augur Community Dashboard'),
 
-    html.Div(children='Select a repo to analyze:'),
+    html.H3(children='Select a project to analyze:'),
 
     html.Div(id='current-project'),
     
@@ -45,7 +45,12 @@ app.layout = html.Div(children=[
                     style={'width': '49%', 'display': 'inline-block'})
     ]),
 
-    dcc.Graph(id='num-issues-graph')
+    dcc.Graph(id='num-issues-graph'),
+
+    html.Div([
+        html.H3(children = "Users active in the last 6 months, between 6 months and 12 months, and those not active in the last 12 months."),
+        dcc.Graph(id='active-drifting-pie')
+    ])
 ])
 
 
@@ -62,8 +67,8 @@ def get_issue_creator_dataframe(project_name):
     creator_df = db_new_issue_creators.new_issue_creators(project_name)
     return px.line(creator_df, 
                     x='created_at', 
-                    y='index', 
-                    title=f"# of New {project_name} Issue-Creators vs. Time",
+                    y='index',
+                    title=f"# of New {project_name} Issue-Creators vs. Time", 
                     labels={'created_at': 'Time (Months)', 'index': '# Individuals'})
 
 @app.callback(
@@ -89,16 +94,16 @@ def get_num_issues_dataframe(project_name):
                     title=f'# of Issues Open for {project_name}',
                     labels={'total': "# of Issues Open", 'issue': 'date'})
 
-# @app.callback(
-#     Output('active-drifting-pie', 'figure'),
-#     Input('dropdown-label', 'value')
-# )
-# def get_active_drifting_dataframe_pie(project_name):
-#     active_drifting_df = df_active_vs_drifting.get_df_active_drifting_users(project_name)
-#     return px.pie(active_drifting_df,
-#                     values='Count',
-#                     names='Name',
-#                     title=f'Active vs. Drifting Users for {project_name}')
+@app.callback(
+    Output('active-drifting-pie', 'figure'),
+    Input('dropdown-label', 'value')
+)
+def get_active_drifting_dataframe_pie(project_name):
+    active_drifting_df = df_active_vs_drifting.get_df_active_drifting_users(project_name)
+    return px.pie(active_drifting_df,
+                    values='Count',
+                    names='Name',
+                    title=f'Active vs. Drifting Users for {project_name}')
 
 
 

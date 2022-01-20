@@ -184,10 +184,12 @@ def get_df_active_drifting_users(project: str):
 
     # df of "active contributors" vs df of "drifting contributors"
     df_active = df_recent[ df_recent["most_recent"] >= sixmosago]
-    df_drifting = df_recent[sixmosago > df_recent["most_recent"] >= twelvemosago]
+    df_drifting = df_recent[(sixmosago > df_recent["most_recent"]) & (df_recent["most_recent"] >= twelvemosago)]
+    df_gone = df_recent[(df_recent['most_recent'] < twelvemosago)]
 
     data = [['active', df_active.shape[0]],
-            ['drifting', df_drifting.shape[0]]]
+            ['drifting', df_drifting.shape[0]],
+            ['gone', df_gone.shape[0]]]
     
     df_summary = pd.DataFrame(data, columns=['Name', 'Count'])
     return df_summary
