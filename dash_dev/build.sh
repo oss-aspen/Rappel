@@ -1,1 +1,1 @@
-docker build -t dash_app .
+sudo docker build -t dash_app .
