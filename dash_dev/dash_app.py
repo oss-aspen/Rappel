@@ -12,6 +12,8 @@ import plotly.express as px
 
 import db_new_issue_creators
 import db_new_pr_submitters
+import db_num_issues_open
+import df_active_vs_drifting
 
 """
     This is the beginning of the Dash / Plotly code.
@@ -31,8 +33,7 @@ app.layout = html.Div(children=[
         id='dropdown-label',
         options=[
             {'label': "Augur", 'value': 'augur'},
-            {'label': "Grimoirelab", 'value': 'grimoirelab'},
-            {'label': "Ansible", 'value': 'ansible'}
+            {'label': "GrimoireLab", 'value': 'grimoirelab'}
         ],
         value='augur'
     ),
@@ -42,7 +43,9 @@ app.layout = html.Div(children=[
                     style={'width': '49%', 'display': 'inline-block'}),
         dcc.Graph(id='pr-submitter-graph',
                     style={'width': '49%', 'display': 'inline-block'})
-    ])
+    ]),
+
+    dcc.Graph(id='num-issues-graph')
 ])
 
 
@@ -61,7 +64,7 @@ def get_issue_creator_dataframe(project_name):
                     x='created_at', 
                     y='index', 
                     title=f"# of New {project_name} Issue-Creators vs. Time",
-                    labels={'created_at': 'Time', 'index': '# Individuals'})
+                    labels={'created_at': 'Time (Months)', 'index': '# Individuals'})
 
 @app.callback(
     Output('pr-submitter-graph', 'figure'),
@@ -72,7 +75,31 @@ def get_pr_submitter_dataframe(project_name):
                     x='pr_created_at', 
                     y='index', 
                     title=f'# Novel {project_name} PR Submitters vs. Time',
-                    labels={'pr_created_at': 'Time', 'index': '# Individuals'})
+                    labels={'pr_created_at': 'Time (Months)', 'index': '# Individuals'})
+
+@app.callback(
+    Output('num-issues-graph', 'figure'),
+    Input('dropdown-label', 'value')
+)
+def get_num_issues_dataframe(project_name):
+    issues_df = db_num_issues_open.issues_open_over_time(project_name)
+    return px.line(issues_df,
+                    x='issue',
+                    y='total',
+                    title=f'# of Issues Open for {project_name}',
+                    labels={'total': "# of Issues Open", 'issue': 'date'})
+
+# @app.callback(
+#     Output('active-drifting-pie', 'figure'),
+#     Input('dropdown-label', 'value')
+# )
+# def get_active_drifting_dataframe_pie(project_name):
+#     active_drifting_df = df_active_vs_drifting.get_df_active_drifting_users(project_name)
+#     return px.pie(active_drifting_df,
+#                     values='Count',
+#                     names='Name',
+#                     title=f'Active vs. Drifting Users for {project_name}')
+
 
 
 if __name__ == '__main__':
