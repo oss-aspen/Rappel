@@ -1,0 +1,6 @@
+dash
+pandas
+dash-core-components
+matplotlib
+numpy
+plotly
