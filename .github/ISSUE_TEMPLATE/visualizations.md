@@ -15,6 +15,7 @@ A clear and concise description of the type of graph or metric thats to be creat
 - [ ] Preprocess data into DF format for visualization
 - [ ] Plotly graph creation
 - [ ] Notes with any background context that would be useful for dash integration 
+- [ ] Open issue on explorer for visualization integration using template
 
 **Additional context**
 Add any other context or screenshots about the feature request here.
