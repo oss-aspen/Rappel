@@ -6,8 +6,9 @@ The mission of this project is to be able to create a system to:
 
 * Monitor the health and sustainability of individual open source projects
 * Identify and monitor projects within the surrounding ecosystem to identify issues
+* Create a network analysis mapping to identify projects in related ecosystems
 
-This will be an external upstream service-oriented tool to enable users from across the business units and open source communities to view trends and answer questions about the at-large open source ecosystem. This will be a web-based service offered to anyone interested in open source projects, providing on-demand generated statistics about “the state of open source,” and the ability to be able to look at the health of the projects that individuals are involved in.
+This will be an external upstream service-oriented tool to enable users from across the business units and open source communities to view trends and answer questions about the at-large open source ecosystem. Sandiego is a web-based service offered to anyone interested in open source projects, providing on-demand generated statistics about “the state of open source,” and the capability to be able to look at the health of the projects in which individuals are involved.
 
 ## Deliverables
 
@@ -41,8 +42,6 @@ When searching by project, each metric will have an aggregate comparison to thei
 
 The data sources that will generate the metrics for the dashboard:
 
-* Augur (Github data collection software suite from the CHAOSS project)
-* Cauldron (Github data collection software based on Kibana and OpenElastic)
 * Meetup data
 * Social media content of OSS “influencers” (analysts, experts, known innovators)
 * Conference data
@@ -51,7 +50,7 @@ The data sources that will generate the metrics for the dashboard:
 
 From the dashboard, there may be some user response to the analysis to help develop the grouping algorithm for sector ecosystems and train any prediction models.
 
-### Dataset
+### Ecosystem mapping
 
 The dataset will be a snapshot of all the open source projects that are vaguely related to enterprise software.
 
@@ -79,4 +78,4 @@ This project will depend on cross-team help throughout Red Hat. These are the fo
 
 ## Repos/code/project
 
-Repo: [https://github.com/OSAS/sandiego](https://github.com/OSAS/sandiego)
+Repo: [https://github.com/sandiego-rh/sandiego](https://github.com/sandiego-rh/sandiego/)
