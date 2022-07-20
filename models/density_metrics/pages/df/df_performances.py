@@ -2,7 +2,7 @@ import pandas as pd
 import json
 import sqlalchemy as salc
 import psycopg2
-from df.df_activities import engine
+from pages.df.df_activities import engine
 
 pr_query = salc.sql.text(f"""
 /*
@@ -169,4 +169,6 @@ SELECT x.repo_group_id,
 """)
 
 dframe_issue = pd.read_sql(issue_query, con=engine)
+
+# iterate through the Bar_Color function to unify the color for different groups
 dframe_issue['color'] = list(map(Bar_Color, dframe_issue['segment']))
