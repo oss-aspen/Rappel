@@ -3,7 +3,7 @@ import json
 import sqlalchemy as salc
 import psycopg2
 
-with open("/home/yunlee/Desktop/config.json") as config_file:
+with open("../config.json") as config_file:
     config = json.load(config_file)
 
 database_connection_string = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(
@@ -23,6 +23,18 @@ engine = salc.create_engine(
 dframe = pd.DataFrame()
 
 repo_query = salc.sql.text(f"""
+/*
+In subquery x, left join repo table, repo_groups table, and repo_info table to get the repo org and repo name.
+
+Compute the average value for number of stars, number of commits, etc based on repo org, repo, and month of the year.
+In the main select statement, the CASE WHEN condition set to compares the previous row only if within the same repo_id;
+the statement is ordered in chronology order so that the window function captures the increase or decrease in 
+average number of stars, average number of commits, etc compared to previous month in record.
+
+Adding the increase/decrease in average number of star, and average number of commits, etc times the assigned weight
+all together will be the final activity score for a repository.
+*/ 
+
     select 
         x.repo_id,
         x.rg_name,
@@ -114,17 +126,16 @@ breakdown_frame = dframe
 
 
 # calculating activeness percentage based on org and repo_name
-df2 = dframe.groupby(['rg_name', 'repo_name']).agg({'total': 'sum'})
-df3 = df2.groupby(level=0).apply(lambda x:100 * x / float(abs(x.sum())))
-df4 = df3['total'].to_frame().sort_values(by = 'total', ascending=False).reset_index()
-df4 = df4[df4['total'] != 0.0]
-df4 = df4.rename(columns={'rg_name':'org', 'total':'percentage'})
-# df4.head()
+dframe_group = dframe.groupby(['rg_name', 'repo_name']).agg({'total': 'sum'})
+dframe_perc = dframe_group.groupby(level=0).apply(lambda x:100 * x / float(abs(x.sum())))
+dframe_perc = dframe_perc['total'].to_frame().sort_values(by = 'total', ascending=False).reset_index()
+dframe_perc = dframe_perc[dframe_perc['total'] != 0.0]
+dframe_perc = dframe_perc.rename(columns={'rg_name':'org', 'total':'percentage'})
 
 
 
-ho = df2['total'].to_frame().reset_index()
-hoo = ho.groupby(['rg_name']).agg({'total': 'sum'})
-drank = hoo.reset_index()
-drank.sort_values(by = 'total', ascending=False).reset_index()
-drank = drank.rename(columns={'rg_name':'org', 'total':'total_activity_score'})
+# ho = dframe_group['total'].to_frame().reset_index()
+# hoo = ho.groupby(['rg_name']).agg({'total': 'sum'})
+# drank = hoo.reset_index()
+# drank.sort_values(by = 'total', ascending=False).reset_index()
+# drank = drank.rename(columns={'rg_name':'org', 'total':'total_activity_score'})

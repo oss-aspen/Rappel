@@ -3,15 +3,15 @@ import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Output, Input
 from app import app
 from df.df_performances import dframe_issue, dframe_pr
 
 
 # layout of thrid (performance) tab ******************************************
-performances_layout = html.Div([
+performances_layout = dbc.Container([
     dbc.Row([
         dbc.Col([
         ], width=12)
@@ -52,18 +52,18 @@ performances_layout = html.Div([
 @app.callback(
     Output(component_id='p_graph1', component_property="figure"),
     Output(component_id="p_graph2", component_property="figure"),
-    [Input(component_id='select_continent', component_property='value')]
+    [Input(component_id='select_org', component_property='value')]
 )
 
-def update_graph(select_continent):
+def update_graph(select_org):
 
     test1 = dframe_pr.groupby(['rg_name', 'repo_name']).sum()
     test1 = test1.reset_index()
-    pr_final = test1[test1['rg_name'] == select_continent].sort_values(by='total', ascending=False)[:10]
+    pr_final = test1[test1['rg_name'] == select_org].sort_values(by='total', ascending=False)[:10]
     
     test2 = dframe_issue.groupby(['rg_name', 'repo_name']).sum()
     test2 = test2.reset_index()
-    issue_final = test2[test2['rg_name'] == select_continent].sort_values(by='total', ascending=False)[:10]
+    issue_final = test2[test2['rg_name'] == select_org].sort_values(by='total', ascending=False)[:10]
 
     piechart1 = px.pie(
         data_frame=pr_final,
@@ -99,10 +99,10 @@ def update_graph(select_continent):
     Input(component_id='p_graph1', component_property='hoverData'),
     Input(component_id='p_graph1', component_property='clickData'),
     Input(component_id='p_graph1', component_property='selectedData'),
-    Input(component_id='select_continent', component_property='value')
+    Input(component_id='select_org', component_property='value')
 )
 
-def update_side_graph1(hov_data, clk_data, slct_data, select_continent):
+def update_side_graph1(hov_data, clk_data, slct_data, select_org):
     if clk_data is None:
         dff1 = dframe_pr[dframe_pr['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment', 'color']).sum().reset_index()
@@ -124,10 +124,9 @@ def update_side_graph1(hov_data, clk_data, slct_data, select_continent):
         return sub_piechart1
     
     else:
-        # print(f'hover data: {hov_data}')
         print(f'click data: {clk_data}')
         clk_repo = clk_data['points'][0]['label']
-        dff1 = dframe_pr[dframe_pr['rg_name'] == select_continent]
+        dff1 = dframe_pr[dframe_pr['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo].groupby(['yearmonth', 'segment', 'color']).sum().reset_index()
         # sub_piechart2 = px.bar(dff2, x="yearmonth", y="num", color="segment", title=f'{clk_repo}')
 
@@ -154,11 +153,11 @@ def update_side_graph1(hov_data, clk_data, slct_data, select_continent):
     Input(component_id='p_graph2', component_property='hoverData'),
     Input(component_id='p_graph2', component_property='clickData'),
     Input(component_id='p_graph2', component_property='selectedData'),
-    Input(component_id='select_continent', component_property='value')
+    Input(component_id='select_org', component_property='value')
 )
 
 
-def update_side_graph2(hov_data, clk_data, slct_data, select_continent):
+def update_side_graph2(hov_data, clk_data, slct_data, select_org):
     if clk_data is None:
         dff1 = dframe_issue[dframe_issue['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment','color']).sum().reset_index()
@@ -181,7 +180,7 @@ def update_side_graph2(hov_data, clk_data, slct_data, select_continent):
     else:
         print(f'click data: {clk_data}')
         clk_repo = clk_data['points'][0]['label']
-        dff1 = dframe_issue[dframe_issue['rg_name'] == select_continent]
+        dff1 = dframe_issue[dframe_issue['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo].groupby(['yearmonth', 'segment','color']).sum().reset_index()
         # sub_piechart4 = px.bar(dff2, x="yearmonth", y="num", color="segment", title=f'{clk_repo}')
 

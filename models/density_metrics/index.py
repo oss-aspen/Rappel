@@ -9,11 +9,11 @@ from app import app
 from activities import activities_layout
 from communities import communities_layout
 from performances import performances_layout
-from df.df_activities import df4
+from df.df_activities import dframe_perc
 
 
 # our app's Tabs *********************************************************
-app_tabs = html.Div(
+app_tabs = dbc.Container(
     [
         dbc.Tabs(
             [
@@ -27,15 +27,15 @@ app_tabs = html.Div(
     ], className="mt-3"
 )
 
-dropdown_layout = html.Div([
-    html.Div([
-        html.Div([
-            html.Div([
+dropdown_layout = dbc.Container([
+    dbc.Container([
+        dbc.Container([
+            dbc.Container([
             ], className = 'adjust_title'),
-            html.Div([
+            dbc.Container([
                 html.H5('Density of repo in an org', className = 'title_text'),
 
-                dcc.Dropdown(id = 'select_continent',
+                dcc.Dropdown(id = 'select_org',
                              multi = False,
                              clearable = True,
                              disabled = False,
@@ -43,9 +43,9 @@ dropdown_layout = html.Div([
                              value = 'kubernetes',
                              placeholder = 'Select Organization',
                              options = [{'label': c, 'value': c}
-                                        for c in df4['org'].unique()], className = 'dcc_compon'),
+                                        for c in dframe_perc['org'].unique()], className = 'dcc_compon'),
 
-                # dcc.Dropdown(id = 'select_countries',
+                # dcc.Dropdown(id = 'select_repo',
                 #              multi = True,
                 #              clearable = True,
                 #              disabled = False,
@@ -64,17 +64,17 @@ app.layout = dbc.Container([
                             style={"textAlign": "center"}), width=12)),
     dbc.Row(dbc.Col(dropdown_layout, width=12), className="mb-3"),
     dbc.Row(dbc.Col(app_tabs, width=12), className="mb-3"),
-    html.Div(id='content', children=[])
+    dbc.Container(id='content', children=[])
 
 ])
 
 
 @app.callback(
-    Output('select_countries', 'options'),
-    Input('select_continent', 'value'))
-def get_country_options(select_continent):
-    data1 = df4[df4['org'] == select_continent]
-    return [{'label': i, 'value': i} for i in data1['org'].unique()]
+    Output('select_repo', 'options'),
+    Input('select_org', 'value'))
+def get_country_options(select_org):
+    org_data = dframe_perc[dframe_perc['org'] == select_org]
+    return [{'label': i, 'value': i} for i in org_data['org'].unique()]
 
 
 @app.callback(

@@ -2,24 +2,24 @@ import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Output, Input, State
 from app import app
-from df.df_activities import df4,drank, breakdown_frame
+from df.df_activities import dframe_perc, breakdown_frame
 
 
 # layout of first (activity) tab ******************************************
-activities_layout = html.Div([
+activities_layout = dbc.Container([
     dbc.Row([
         dbc.Col([
         ], width=12)
     ]),
     dbc.Row([
-        dbc.Col([
-            html.H5('Org Density by Activities', className = 'title_text'),
-            dcc.Graph(id='scatter2', figure={})
-        ], width=6),
+        # dbc.Col([
+        #     html.H5('Org Density by Activities', className = 'title_text'),
+        #     dcc.Graph(id='scatter2', figure={})
+        # ], width=6),
         dbc.Col([
             html.H5('Density within an Organization', className = 'title_text'),
             dcc.Graph(id='scatter', figure={}, clickData=None, hoverData=None,
@@ -33,7 +33,7 @@ activities_layout = html.Div([
         dbc.Col([
             html.H5('Selected repo breakdown in activities by time', className = 'title_text'),
             dcc.Graph(id='breakdown', figure={})
-        ], width=20),
+        ], width=6),
     dcc.Markdown('''
         #### Activities Metrics:
         Activities metrics are the metrics for activiness within each repo. Activities are calculated based on:
@@ -56,33 +56,33 @@ activities_layout = html.Div([
 #-------------------------------------------------------------------------building graph
 
 @app.callback(
-    Output(component_id='scatter2', component_property="figure"),
+    # Output(component_id='scatter2', component_property="figure"),
     Output(component_id="scatter", component_property="figure"),
-    [Input(component_id='select_continent', component_property='value')]
+    [Input(component_id='select_org', component_property='value')]
 )
 
-def update_graph(select_continent):
+def update_graph(select_org):
 
-    dff = df4[df4['org'] == select_continent]
-    input_data = drank
+    dframe_org = dframe_perc[dframe_perc['org'] == select_org]
+    # input_data = drank
 
-    linechart = px.bar(
-        data_frame=input_data,
-        x="total_activity_score",
-        y="org",
-        orientation='h',
-    )
-    linechart.update_layout(yaxis={'categoryorder':'total ascending'})
+    # linechart = px.bar(
+    #     data_frame=input_data,
+    #     x="total_activity_score",
+    #     y="org",
+    #     orientation='h',
+    # )
+    # linechart.update_layout(yaxis={'categoryorder':'total ascending'})
 
     barchart=px.bar(
-        data_frame=dff,
+        data_frame=dframe_org,
         x="org",
         y="percentage",
         color="repo_name",
         text="repo_name"
     )
 
-    return (linechart, barchart)
+    return (barchart)
 
 
 #-------------------------------------------------------------------------hoverData
@@ -91,12 +91,13 @@ def update_graph(select_continent):
     Input(component_id='scatter', component_property='hoverData'),
     Input(component_id='scatter', component_property='clickData'),
     Input(component_id='scatter', component_property='selectedData'),
-    Input(component_id='select_continent', component_property='value')
+    Input(component_id='select_org', component_property='value')
 )
 
-def update_side_graph(hov_data, clk_data, slct_data, select_continent):
+def update_side_graph(hov_data, clk_data, slct_data, select_org):
     if clk_data is None:
-        dff2 = breakdown_frame[breakdown_frame['repo_name'] == 'kubernetes']
+        dff1 = breakdown_frame[breakdown_frame['rg_name'] == 'kubernetes']
+        dff2 = dff1[dff1['repo_name'] == 'kubernetes']
         fig2 = go.Figure(
             data = [
                 go.Bar(
@@ -135,10 +136,9 @@ def update_side_graph(hov_data, clk_data, slct_data, select_continent):
         return fig2
     
     else:
-        # print(f'hover data: {hov_data}')
-        print(f'click data: {clk_data}')
+
         clk_repo = clk_data['points'][0]['text']
-        dff1 = breakdown_frame[breakdown_frame['rg_name'] == select_continent]
+        dff1 = breakdown_frame[breakdown_frame['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo].groupby(['rg_name', 'repo_name','yearmonth']).sum().reset_index()
         fig2 = go.Figure(
             data = [
