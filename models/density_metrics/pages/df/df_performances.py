@@ -169,4 +169,6 @@ SELECT x.repo_group_id,
 """)
 
 dframe_issue = pd.read_sql(issue_query, con=engine)
+
+# iterate through the Bar_Color function to unify the color for different groups
 dframe_issue['color'] = list(map(Bar_Color, dframe_issue['segment']))

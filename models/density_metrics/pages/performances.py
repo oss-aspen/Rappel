@@ -112,17 +112,14 @@ def update_graph(select_org):
 
 @callback(
     Output(component_id='breakdown_performance', component_property='figure'),
-    Input(component_id='p_graph1', component_property='hoverData'),
     Input(component_id='p_graph1', component_property='clickData'),
-    Input(component_id='p_graph1', component_property='selectedData'),
     Input(component_id='select_org', component_property='value')
 )
 
-def update_side_graph1(hov_data, clk_data, slct_data, select_org):
+def update_side_graph1(clk_data, select_org):
     if clk_data is None:
         dff1 = dframe_pr[dframe_pr['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment', 'color']).sum().reset_index()
-        # sub_piechart1 = px.bar(dff2, x="yearmonth", y="num", color="segment", title="kubernetes")
 
         sub_piechart1 = go.Figure(
                             data =[
@@ -144,7 +141,6 @@ def update_side_graph1(hov_data, clk_data, slct_data, select_org):
         clk_repo = clk_data['points'][0]['label']
         dff1 = dframe_pr[dframe_pr['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo].groupby(['yearmonth', 'segment', 'color']).sum().reset_index()
-        # sub_piechart2 = px.bar(dff2, x="yearmonth", y="num", color="segment", title=f'{clk_repo}')
 
         sub_piechart2 = go.Figure(
                             data = [
@@ -166,18 +162,16 @@ def update_side_graph1(hov_data, clk_data, slct_data, select_org):
 
 @callback(
     Output(component_id='breakdown_performance2', component_property='figure'),
-    Input(component_id='p_graph2', component_property='hoverData'),
     Input(component_id='p_graph2', component_property='clickData'),
-    Input(component_id='p_graph2', component_property='selectedData'),
     Input(component_id='select_org', component_property='value')
 )
 
 
-def update_side_graph2(hov_data, clk_data, slct_data, select_org):
+def update_side_graph2(clk_data, select_org):
     if clk_data is None:
         dff1 = dframe_issue[dframe_issue['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment','color']).sum().reset_index()
-        # sub_piechart3 = px.bar(dff2, x="yearmonth", y="num", color="color", title="kubernetes")
+        
         sub_piechart3 = go.Figure(
                             data = [
                                 go.Bar(
@@ -198,7 +192,6 @@ def update_side_graph2(hov_data, clk_data, slct_data, select_org):
         clk_repo = clk_data['points'][0]['label']
         dff1 = dframe_issue[dframe_issue['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo].groupby(['yearmonth', 'segment','color']).sum().reset_index()
-        # sub_piechart4 = px.bar(dff2, x="yearmonth", y="num", color="segment", title=f'{clk_repo}')
 
         sub_piechart4 = go.Figure(
                             data = [
@@ -207,7 +200,6 @@ def update_side_graph2(hov_data, clk_data, slct_data, select_org):
                                     y = dff2['num'].tolist(),
                                     marker_color= dff2['color'].tolist(),
                                     text = dff2['segment'].tolist()
-                                    # title=f'{clk_repo}'
                                 )],
                             layout = dict(
                                 title=f'{clk_repo}'
