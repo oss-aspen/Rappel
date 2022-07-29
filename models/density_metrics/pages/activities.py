@@ -7,6 +7,12 @@ import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
 from dash import dcc, html, callback
 from dash.dependencies import Output, Input, State
+
+# Plotly theme
+import plotly.io as pio
+pio.templates.default = "plotly_white"
+
+# Dataframe
 from pages.df.df_activities import dframe_perc, breakdown_frame
 
 

@@ -8,6 +8,12 @@ import numpy as np
 import dash_bootstrap_components as dbc
 from dash import dcc, html, callback
 from dash.dependencies import Output, Input
+
+# Plotly theme
+import plotly.io as pio
+pio.templates.default = "plotly_white"
+
+# Dataframe
 from pages.df.df_communities import df_pr_committers
 
 
