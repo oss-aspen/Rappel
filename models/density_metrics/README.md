@@ -1,5 +1,5 @@
 # DENSITY METRICS
-Documentation for 2022 Summer Internship with Red Hat
+Documentation for 2022 Summer Internship with OSPO
 
 ## Project Goal
 The summer project is a side project for [Sandiego](https://github.com/sandiego-rh/sandiego) and [Explorer](https://github.com/sandiego-rh/explorer). Project Sandiego is a front-end development that gleans information from open source ecosystem data sets that help drive community and business-oriented decision-making.
