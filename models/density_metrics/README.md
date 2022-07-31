@@ -40,6 +40,7 @@ Since different features indicate different importance of contribution, the foll
 
 The percentage of the repository activity within an org determines which repository within an organization has been contributing a positive (or negative) activity. By clicking on the repo, a breakdown graph will be generated and display the breakdown of each activity, so that community managers can have a sense of whether it is the decrease in committer that is slowing down the growth of open source projects, or it is the increase in pull requests that are driving the projects, etc.
 
+![Activity Metrics](https://user-images.githubusercontent.com/106325570/182034210-b274166e-00ad-420f-9bba-ecf9c3749db3.png)
 
 ### Communities
 The community metrics aim to detect which repo in an organization is growing/ declining in the number of unique committers by month.
@@ -51,7 +52,7 @@ By clicking on the repo, a breakdown table would display the name of the committ
         - #of unique contributors
         - #of commits by committer by month
 
-
+![Community Metrics](https://user-images.githubusercontent.com/106325570/182034291-666e1773-af52-4bf2-aacf-5ba82c415194.png)
 
 ### Performances (-> weight)
 The performance metrics aim to discover and segment how much time an issue/pr requires from open to close, along with consideration on how much time an issue/pr has been closed (exponential decay). The more recent an issue/pr is closed, the stronger contribution to the performance; the lesser time an issue/pr requires from open to close, indicates a better performance, thus a higher weight. 
@@ -85,6 +86,7 @@ The more recent an issue or a PR is being closed, the stronger indication it is 
     - etc…
     - PR/ issue been closed longer than 365 days ago is no longer considered
 
+![Performance Metrics](https://user-images.githubusercontent.com/106325570/182034322-02b8d188-9d8d-4590-9db2-9e50293fa2c1.png)
 
 ### Statistics
 - Elbow method for clustering
