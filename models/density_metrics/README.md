@@ -1,4 +1,4 @@
-# redhat-summer-internship
+# DENSITY METRICS
 Documentation for 2022 Summer Internship with Red Hat
 
 ## Project Goal
