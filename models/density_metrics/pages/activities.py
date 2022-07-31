@@ -22,10 +22,6 @@ layout = dbc.Card(
         dbc.CardBody(
             [
             dbc.Row([
-                # dbc.Col([
-                #     html.H5('Org Density by Activities', className = 'title_text'),
-                #     dcc.Graph(id='scatter2', figure={})
-                # ], width=6),
                 dbc.Col([
                     html.H4('Density within an Organization',
                             className = 'title_text',
@@ -69,7 +65,6 @@ layout = dbc.Card(
 #-------------------------------------------------------------------------building graph
 
 @callback(
-    # Output(component_id='scatter2', component_property="figure"),
     Output(component_id="scatter", component_property="figure"),
     [Input(component_id='select_org', component_property='value')]
 )
@@ -77,16 +72,6 @@ layout = dbc.Card(
 def update_graph(select_org):
 
     dframe_org = dframe_perc[dframe_perc['org'] == select_org]
-    # input_data = drank
-
-    # linechart = px.bar(
-    #     data_frame=input_data,
-    #     x="total_activity_score",
-    #     y="org",
-    #     orientation='h',
-    # )
-    # linechart.update_layout(yaxis={'categoryorder':'total ascending'})
-
     barchart=px.bar(
         data_frame=dframe_org,
         x="org",

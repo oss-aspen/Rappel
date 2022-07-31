@@ -131,11 +131,3 @@ dframe_perc = dframe_group.groupby(level=0).apply(lambda x:100 * x / float(abs(x
 dframe_perc = dframe_perc['total'].to_frame().sort_values(by = 'total', ascending=False).reset_index()
 dframe_perc = dframe_perc[dframe_perc['total'] != 0.0]
 dframe_perc = dframe_perc.rename(columns={'rg_name':'org', 'total':'percentage'})
-
-
-
-# ho = dframe_group['total'].to_frame().reset_index()
-# hoo = ho.groupby(['rg_name']).agg({'total': 'sum'})
-# drank = hoo.reset_index()
-# drank.sort_values(by = 'total', ascending=False).reset_index()
-# drank = drank.rename(columns={'rg_name':'org', 'total':'total_activity_score'})

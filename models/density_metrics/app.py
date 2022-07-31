@@ -17,10 +17,7 @@ app = Dash(
     }],
 )
 
-# Connect to the layout and callbacks of each tab
-# from pages.activities import layout
-# from pages.communities import layout
-# from pages.performances import layout
+# import dataframe for options to the dropdown list
 from pages.df.df_activities import dframe_perc
 
 # side bar code for page navigation
@@ -40,73 +37,6 @@ sidebar = html.Div(
     ]
 )
 
-# app's Tabs *********************************************************
-'''
-app_tabs = dbc.Container(
-    [
-        dbc.Tabs(
-            [
-                dbc.Tab(
-                    label="Activities",
-                    tab_id="tab-activities",
-                    labelClassName="text-success font-weight-bold",
-                    activeLabelClassName="text-danger",
-                ),
-                dbc.Tab(
-                    label="Communities",
-                    tab_id="tab-communities",
-                    labelClassName="text-success font-weight-bold",
-                    activeLabelClassName="text-danger",
-                ),
-                dbc.Tab(
-                    label="Performances",
-                    tab_id="tab-performances",
-                    labelClassName="text-success font-weight-bold",
-                    activeLabelClassName="text-danger",
-                ),
-            ],
-            id="tabs",
-            active_tab="tab-activities",
-        ),
-    ],
-    className="mt-3",
-)
-'''
-# create a dropdown list to select organization
-'''
-dropdown_layout = dbc.Container(
-    [
-        dbc.Container(
-            [
-                dbc.Container(
-                    [
-                        dbc.Container([], className="adjust_title"),
-                        dbc.Container(
-                            [
-                                html.Label("Select GitHub Org:", className="title_text"),
-                                dcc.Dropdown(
-                                    id="select_org",
-                                    multi=False,
-                                    clearable=True,
-                                    disabled=False,
-                                    style={"display": True},
-                                    value="kubernetes",
-                                    placeholder="Select Organization",
-                                    options=[{"label": c, "value": c} for c in dframe_perc["org"].unique()],
-                                    className="dcc_compon",
-                                )
-                            ],
-                            className="adjust_drop_down_lists",
-                        ),
-                    ],
-                    className="title_container twelve columns",
-                )
-            ],
-            className="row flex-display",
-        )
-    ]
-)
-'''
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -166,8 +96,6 @@ app.layout = dbc.Container(
                             type="dot",
                             fullscreen=True,
                         ),
-                        # dbc.Row(dbc.Col(dropdown_layout, width=12), className="mb-3"),
-                        # dbc.Container(id="content", children=[]),
                         dash.page_container,
                     ],
                     width={"size": 11},
@@ -186,18 +114,6 @@ app.layout = dbc.Container(
 def get_country_options(select_org):
     org_data = dframe_perc[dframe_perc["org"] == select_org]
     return [{"label": i, "value": i} for i in org_data["org"].unique()]
-
-'''
-@callback(Output("content", "children"), [Input("tabs", "active_tab")])
-def switch_tab(tab_chosen):
-    if tab_chosen == "tab-activities":
-        return layout
-    elif tab_chosen == "tab-communities":
-        return layout
-    elif tab_chosen == "tab-performances":
-        return layout
-    return html.P("This shouldn't be displayed for now...")
-'''
 
 
 if __name__ == "__main__":

@@ -22,10 +22,6 @@ layout = dbc.Card(
     [
         dbc.CardBody([
             dbc.Row([
-                # dbc.Col([
-                #     html.H5('Number of Commits by Month', className = 'title_text'),
-                #     dcc.Graph(id='c_graph1', figure={})
-                # ], width=6),
                 dbc.Col([
                     html.H4('Number of Unique Committers Over Time',
                             className = 'title_text',
@@ -56,7 +52,6 @@ layout = dbc.Card(
 #----------------------Call backs-------------------
 
 @callback(
-    # Output(component_id='c_graph1', component_property="figure"),
     Output(component_id="c_graph2", component_property="figure"),
     [Input(component_id='select_org', component_property='value')]
 )
@@ -64,14 +59,6 @@ layout = dbc.Card(
 def update_graph(select_org):
 
     dff = df_pr_committers[df_pr_committers['rg_name'] == select_org]
-
-    # barchart1 = px.bar(
-    #     data_frame=dff,
-    #     x="yearmonth",
-    #     y="num_of_commit",
-    #     color="repo_name",
-    #     text="repo_name"
-    # )
 
     barchart2=px.bar(
         data_frame=dff,
