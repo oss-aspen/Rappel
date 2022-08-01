@@ -59,12 +59,3 @@ committer_query = salc.sql.text(f"""
 
 
 df_pr_committers = pd.read_sql(committer_query, con=engine)
-
-sub_frame = df_pr_committers[["rg_name", "repo_name", 'yearmonth', 'cmt_committer_name', 'cntrb_company', 'cntrb_location', 'num_of_commit']]
-table = pd.pivot_table(sub_frame, values='num_of_commit',
-                        index=['cmt_committer_name', 'cntrb_company', 'cntrb_location'],
-                    columns=['yearmonth'], aggfunc=np.sum)
-table = table.fillna(0)
-table = table.reset_index().rename(columns={'2022-1':'Jan', '2022-2':'Feb', '2022-3':'Mar',
-                                            '2022-4':'Apr', '2022-5':'May', '2022-6':'Jun',
-                                            '2022-7':'Jul'})

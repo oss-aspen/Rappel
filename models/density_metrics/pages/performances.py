@@ -112,13 +112,11 @@ def update_graph(select_org):
 
 @callback(
     Output(component_id='breakdown_performance', component_property='figure'),
-    Input(component_id='p_graph1', component_property='hoverData'),
     Input(component_id='p_graph1', component_property='clickData'),
-    Input(component_id='p_graph1', component_property='selectedData'),
     Input(component_id='select_org', component_property='value')
 )
 
-def update_side_graph1(hov_data, clk_data, slct_data, select_org):
+def update_side_graph1(clk_data, select_org):
     if clk_data is None:
         dff1 = dframe_pr[dframe_pr['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment', 'color']).sum().reset_index()
@@ -164,14 +162,12 @@ def update_side_graph1(hov_data, clk_data, slct_data, select_org):
 
 @callback(
     Output(component_id='breakdown_performance2', component_property='figure'),
-    Input(component_id='p_graph2', component_property='hoverData'),
     Input(component_id='p_graph2', component_property='clickData'),
-    Input(component_id='p_graph2', component_property='selectedData'),
     Input(component_id='select_org', component_property='value')
 )
 
 
-def update_side_graph2(hov_data, clk_data, slct_data, select_org):
+def update_side_graph2(clk_data, select_org):
     if clk_data is None:
         dff1 = dframe_issue[dframe_issue['rg_name'] == 'kubernetes']
         dff2 = dff1[dff1['repo_name'] == 'kubernetes'].groupby(['yearmonth', 'segment','color']).sum().reset_index()

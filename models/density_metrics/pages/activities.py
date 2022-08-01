@@ -83,17 +83,18 @@ def update_graph(select_org):
     return (barchart)
 
 
-#-----------------------------Breakdown Data------------------------------------
+#---------------------------------Breakdown chart for repo activities-------------------------------
 @callback(
     Output(component_id='breakdown', component_property='figure'),
-    Input(component_id='scatter', component_property='hoverData'),
     Input(component_id='scatter', component_property='clickData'),
-    Input(component_id='scatter', component_property='selectedData'),
     Input(component_id='select_org', component_property='value')
 )
 
-def update_side_graph(hov_data, clk_data, slct_data, select_org):
+
+def update_side_graph(clk_data, select_org):
     if clk_data is None:
+
+        # Set kubernetes org, kubernetes repo as the default display
         dff1 = breakdown_frame[breakdown_frame["rg_name"] == "kubernetes"]
         dff2 = (
             dff1[dff1["repo_name"] == "kubernetes"].groupby(["rg_name", "repo_name", "yearmonth"]).sum().reset_index()

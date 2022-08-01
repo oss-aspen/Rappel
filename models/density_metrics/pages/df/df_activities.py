@@ -121,7 +121,11 @@ dframe = pd.read_sql(repo_query, con=engine)
 
 # Fill all NA value into zero
 dframe = dframe.fillna(0)
+
+# create a total column
 dframe['total'] = dframe['star_increment'] + dframe['commit_increment'] + dframe['fork_increment'] + dframe['watches_increment'] + dframe['committer_increment'] + dframe['issue_increment'] + dframe['pull_request_increment'] + dframe['open_pull_request_increment'] + dframe['closed_pull_request_increment'] + dframe['merged_pull_request_increment']
+
+# create a breakdown frame for the breakdown chart
 breakdown_frame = dframe
 
 
@@ -129,5 +133,7 @@ breakdown_frame = dframe
 dframe_group = dframe.groupby(['rg_name', 'repo_name']).agg({'total': 'sum'})
 dframe_perc = dframe_group.groupby(level=0).apply(lambda x:100 * x / float(abs(x.sum())))
 dframe_perc = dframe_perc['total'].to_frame().sort_values(by = 'total', ascending=False).reset_index()
+
+# exclude the repo that has no total value
 dframe_perc = dframe_perc[dframe_perc['total'] != 0.0]
 dframe_perc = dframe_perc.rename(columns={'rg_name':'org', 'total':'percentage'})

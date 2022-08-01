@@ -81,18 +81,24 @@ Input(component_id='select_org', component_property='value')
 )
 
 def update_side_graph(hov_data, clk_data, slct_data, select_org):
+
+    # Set kubernetes org, kubernetes repo as the default display
     if clk_data is None:
         dff2 = df_pr_committers[df_pr_committers['rg_name'] == 'kubernetes']
         dff2 = dff2[dff2['repo_name'] == 'kubernetes']
         sub_frame = dff2[["rg_name", "repo_name", 'yearmonth', 'cmt_committer_name', 'cntrb_company', 'cntrb_location', 'num_of_commit']]
+        
+        # create a pivot table to display the dataframe by committer
         table = pd.pivot_table(sub_frame, values='num_of_commit',
                                 index=['cmt_committer_name', 'cntrb_company', 'cntrb_location'],
                             columns=['yearmonth'], aggfunc=np.sum)
+
         table = table.fillna(0)
         table = table.reset_index().rename(columns={'2022-1':'Jan', '2022-2':'Feb', '2022-3':'Mar',
                                                     '2022-4':'Apr', '2022-5':'May', '2022-6':'Jun',
                                                     '2022-7':'Jul'})
         table = table.sort_values(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], ascending=False)
+
 
         fig = go.Figure(data=[go.Table(
                 columnwidth = [30,30,30],
@@ -105,64 +111,66 @@ def update_side_graph(hov_data, clk_data, slct_data, select_org):
                 font=dict(color='black', family="verdana", size=12),
                 height=30
                 ),
-        cells=dict(values=[table.cmt_committer_name,
-                            table.cntrb_company,
-                            table.cntrb_location,
-                            table.Jan,
-                            table.Feb,
-                            table.Mar,
-                            table.Apr,
-                            table.May,
-                            table.Jun,
-                            table.Jul],
-                line_color='darkslategray',
-                align='left',
-                font_color=[
-                    'darkslategray',
-                    'darkslategray',
-                    'darkslategray',
-                    'darkslategray',
-                    ['green' if row['Feb'] > row['Jan']
-                    else "red" if row['Feb'] < row['Jan']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Mar'] > row['Feb']
-                    else "red" if row['Mar'] < row['Feb']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Apr'] > row['Mar']
-                    else "red" if row['Apr'] < row['Mar']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['May'] > row['Apr']
-                    else "red" if row['May'] < row['Apr']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Jun'] > row['May']
-                    else "red" if row['Jun'] < row['May']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Jul'] > row['Jun']
-                    else "red" if row['Jul'] < row['Jun']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ],
-                height=30
-                ))
-            ])
+            cells = dict(values=[table.cmt_committer_name,
+                                table.cntrb_company,
+                                table.cntrb_location,
+                                table.Jan,
+                                table.Feb,
+                                table.Mar,
+                                table.Apr,
+                                table.May,
+                                table.Jun,
+                                table.Jul],
+                    line_color='darkslategray',
+                    align='left',
+                    font_color=[
+                        'darkslategray',
+                        'darkslategray',
+                        'darkslategray',
+                        'darkslategray',
+                        # for every month, if the value for next month is greater than the previous
+                        # month, then mark it with green; if it is smaller than the previous month,
+                        # then mark it with red. Black if it stays the same.
+                        ['green' if row['Feb'] > row['Jan']
+                        else "red" if row['Feb'] < row['Jan']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Mar'] > row['Feb']
+                        else "red" if row['Mar'] < row['Feb']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Apr'] > row['Mar']
+                        else "red" if row['Apr'] < row['Mar']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['May'] > row['Apr']
+                        else "red" if row['May'] < row['Apr']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Jun'] > row['May']
+                        else "red" if row['Jun'] < row['May']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Jul'] > row['Jun']
+                        else "red" if row['Jul'] < row['Jun']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ],
+                    height=30
+                    ))
+                ])
 
         fig.update_layout(title= 'kubernetes')
 
         return fig
 
     else:
-        print(f'click data: {clk_data}')
         clk_repo = clk_data['points'][0]['text']
         dff1 = df_pr_committers[df_pr_committers['rg_name'] == select_org]
         dff2 = dff1[dff1['repo_name'] == clk_repo]
@@ -187,57 +195,60 @@ def update_side_graph(hov_data, clk_data, slct_data, select_org):
                 font=dict(color='black', family="Lato", size=15),
                 height=30
                 ),
-        cells=dict(values=[table.cmt_committer_name,
-                            table.cntrb_company,
-                            table.cntrb_location,
-                            table.Jan,
-                            table.Feb,
-                            table.Mar,
-                            table.Apr,
-                            table.May,
-                            table.Jun,
-                            table.Jul],
-                line_color='darkslategray',
-                align='left',
-                font_color=[
-                    'darkslategray',
-                    'darkslategray',
-                    'darkslategray',
-                    'darkslategray',
-                    ['green' if row['Feb'] >row['Jan']
-                    else "red" if row['Feb'] < row['Jan']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Mar'] >row['Feb']
-                    else "red" if row['Mar'] < row['Feb']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Apr'] >row['Mar']
-                    else "red" if row['Apr'] < row['Mar']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['May'] >row['Apr']
-                    else "red" if row['May'] < row['Apr']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Jun'] >row['May']
-                    else "red" if row['Jun'] < row['May']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ['green' if row['Jul'] >row['Jun']
-                    else "red" if row['Jul'] < row['Jun']
-                    else 'darkslategray'
-                    for index,row in table.iterrows()
-                    ],
-                    ],
-                height=30
-                ))
-            ])
+            cells=dict(values=[table.cmt_committer_name,
+                                table.cntrb_company,
+                                table.cntrb_location,
+                                table.Jan,
+                                table.Feb,
+                                table.Mar,
+                                table.Apr,
+                                table.May,
+                                table.Jun,
+                                table.Jul],
+                    line_color='darkslategray',
+                    align='left',
+                    font_color=[
+                        'darkslategray',
+                        'darkslategray',
+                        'darkslategray',
+                        'darkslategray',
+                        # for every month, if the value for next month is greater than the previous
+                        # month, then mark it with green; if it is smaller than the previous month,
+                        # then mark it with red. Black if it stays the same.
+                        ['green' if row['Feb'] >row['Jan']
+                        else "red" if row['Feb'] < row['Jan']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Mar'] >row['Feb']
+                        else "red" if row['Mar'] < row['Feb']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Apr'] >row['Mar']
+                        else "red" if row['Apr'] < row['Mar']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['May'] >row['Apr']
+                        else "red" if row['May'] < row['Apr']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Jun'] >row['May']
+                        else "red" if row['Jun'] < row['May']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ['green' if row['Jul'] >row['Jun']
+                        else "red" if row['Jul'] < row['Jun']
+                        else 'darkslategray'
+                        for index,row in table.iterrows()
+                        ],
+                        ],
+                    height=30
+                    ))
+                ])
 
         fig2.update_layout(title=f'{clk_repo}')
 
