@@ -2,18 +2,24 @@
 Documentation for 2022 Summer Internship with OSPO
 
 ## Project Goal
-The summer project is a side project for [Sandiego](https://github.com/sandiego-rh/sandiego) and [Explorer](https://github.com/sandiego-rh/explorer). Project Sandiego is a front-end development that gleans information from open source ecosystem data sets that help drive community and business-oriented decision-making.
+The summer project is an enhancement project for [Sandiego](https://github.com/sandiego-rh/sandiego) and [Explorer](https://github.com/sandiego-rh/explorer). We identify the need to measure the contributors' presence and the level of committment in each repo within an organization.
 
-The goal for my summer project - density metrics, applied statistical methods to developing algorithms to quantify GitHub log data and user data on activity, community, and performance. 
+This project uses the [Orbit-Love model](https://orbitmodel.com/). We use relevant data about Github projects (PR, commit, user, and issue data) to create the following novel interpretations:
 
-The metrics are based on activities in PR, issue, committer, etc for repositories within an organization. The goal of the project is to assist open-source community managers monitor and diagnosing community health and making actionable decisions.
+1. The activity metrics aim to identify and weigh different levels of commitments
+2. The community metrics aim to detect the number of unique contributors an organization has, and further discover the contributor trend in each repository
+3. The purpose of performance metrics is to apply statistical methods to segment the PR/ issue response rate of each repository within an organization
+
+These visualizations might be used by a community architect or a community manager to more fully understand the contributor-ship trends of their projects.
+
 
 ## Resources
 Useful metrics link:
 
 [CHAOSS](https://chaoss.community/)
 
-[ORBIT MODEL](https://orbitmodel.com/)
+[Orbit-Love Model](https://orbitmodel.com/)
+The Orbit-Love Model is the measurement of the member's level of involvement in the community. The measurement of Love is based on how often the member participates - their presence- including frequency and recency, and the level of commitment - different types of activities a member is doing represent different level of commitment, ranging from passive to active, the member show through their actions.
 
 ## Data Source
 [AUGUR](https://github.com/chaoss/augur)
@@ -25,7 +31,7 @@ Useful metrics link:
 ### Activity (-> weight)
 The activity metrics aim to discover the repository activeness percentage within an organization. The features taken into the calculation are the increment in star, watch, fork, issue, PR, open PR, closed PR, commit PR, commit, and committer. By taking the above monthly average activities and comparing them with last month to determine the increase or decrease in the attribute.
 
-Since different features indicate different importance of contribution, the following weights are given based on [ORBIT MODEL](https://orbitmodel.com/) and domain input.
+Since different features indicate different importance of contribution, the following weights are given based on the suggestions from [ORBIT MODEL](https://orbitmodel.com/activities) and domain input.
 
 - #star increment -> weight: 0.01
 - #watch increment -> weight: 0.1
@@ -94,6 +100,28 @@ The more recent an issue or a PR is being closed, the stronger indication it is 
 
 ### Visualization
 [Dash](https://dash.plotly.com/) is an open source python framework create by plotly for creating interactive and customized web applications.
+
+# How to run the app locally...
+1. Clone this project from GitHub in your local project directory
+2. Change into the project directory
+3. Run `python3 -m venv <name_of_virtualenv>`
+4. Run `source <name_of_virtualenv>/bin/activate` in the command line to activate the virtual environment
+5. Run `pip install -r requirements.txt` to install the required dependencies
+6. Put the config.json file to the same level as index. Here is a sample of what the config.json file needs to look like:
+    `
+    {
+        "connection_string": "sqlite:///:memory:",
+        "database": "sandiegorh",
+        "host": "chaoss.tv",
+        "password": "<<Your Password>>",
+        "port": 5432,
+        "schema": "augur_data",
+        "user": "<<Your Username>>",
+        "user_type": "read_only"
+    }
+    `
+7. Run `app.py`, the application should now start loading
+
 
 ### What can be done more with the data...
 - Organizational diversity (company sponsored project)
