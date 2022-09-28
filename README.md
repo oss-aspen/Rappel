@@ -8,6 +8,21 @@ Project Discussion
 
 We have a [Matrix](https://matrix.org) room for discussion of anything Sandiego-related. Come chat with us in [#sandiego-rh:matrix.org](https://matrix.to/#/!eSeeqXiNqjrlNaeAdQ:matrix.org)!
 
+Example of config.json file:
+```
+{
+    "connection_string": "sqlite:///:memory:",
+    "database": "sandiegorh",
+    "host": "chaoss.tv",
+    "password": "<<Your Password>>",
+    "port": 5432,
+    "schema": "augur_data",
+    "user": "<<Your Username>>",
+    "user_type": "read_only"
+}
+
+```
+
 Project Organization
 ------------
 
