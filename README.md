@@ -8,7 +8,7 @@ Project Discussion
 
 We have a [Matrix](https://matrix.org) room for discussion of anything Sandiego-related. Come chat with us in [#sandiego-rh:matrix.org](https://matrix.to/#/!eSeeqXiNqjrlNaeAdQ:matrix.org)!
 
-Example of config.json file:
+[Example of config.json file](./config.json.example):
 ```
 {
     "connection_string": "sqlite:///:memory:",
