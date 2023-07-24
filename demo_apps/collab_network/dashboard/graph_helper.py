@@ -1,48 +1,6 @@
 import numpy as np
 import networkx as nx
-import pandas as pd
 
-#------------------------------------------------------ INTERVAL CALCULATION ------------------------------------------------------ 
-
-def get_intervals(start_year, start_month, end_year, end_month, interval): 
-    total_frames = ((end_year - start_year) * 12 + (end_month - start_month)) // interval
-    # generate intervals
-    intervals = []
-    for frame in range(total_frames):
-        snap_end_month = start_month + interval - 1
-        snap_end_year = start_year
-        if snap_end_month > 12:
-            snap_end_month -= 12
-            snap_end_year += 1
-
-        intervals.append(f"{start_month}/{start_year}-{snap_end_month}/{snap_end_year}")
-
-        start_year = snap_end_year
-        start_month = snap_end_month + 1
-        if start_month > 12:
-            start_month = 1
-            start_year += 1
-
-    return intervals
-
-def get_marks(start_year, start_month, end_year, end_month, interval):
-    total_frames = ((end_year - start_year) * 12 + (end_month - start_month)) // interval + 1
-    marks = []
-    for frame in range(total_frames):
-        snap_end_month = start_month + interval -1
-        snap_end_year = start_year
-        if snap_end_month > 12:
-            snap_end_month -= 12
-            snap_end_year += 1
-
-        marks.append(f"{start_month}/{start_year}") 
-
-        start_year = snap_end_year
-        start_month = snap_end_month + 1
-        if start_month > 12:
-            start_month = 1
-            start_year += 1
-    return marks 
 
 #------------------------------------------------------ THRESHOLD CALCULATION ------------------------------------------------------ 
 
@@ -76,37 +34,15 @@ def pagerank(G):
 
 #------------------------------------------------------ BUILD GRAPH OBJECT ------------------------------------------------------ 
 
-def build_graph(data, start_month, start_year, end_month, end_year, cmt_weight, ism_weight, pr_weight, prm_weight):
+def build_graph(data, start_date, end_date, cmt_weight, ism_weight, pr_weight, prm_weight):
     cmt_data, ism_data, pr_data, prm_data = data
 
     G = nx.Graph()
     # add nodes and edges to the snapshot_G graph based on the snapshot data
-    if start_month > end_month:
-        snapshot_cmt = pd.concat([
-            cmt_data[(cmt_data['year'] == start_year) & (cmt_data['month'] >= start_month)],
-            cmt_data[(cmt_data['year'] == end_year) & (cmt_data['month'] <= end_month)]
-        ])
-        snapshot_pr = pd.concat([
-            pr_data[(pr_data['year'] == start_year) & (pr_data['month'] >= start_month)],
-            pr_data[(pr_data['year'] == end_year) & (pr_data['month'] <= end_month)]
-        ])
-        snapshot_ism = pd.concat([
-            ism_data[(ism_data['year'] == start_year) & (ism_data['month'] >= start_month)],
-            ism_data[(ism_data['year'] == end_year) & (ism_data['month'] <= end_month)]
-        ])
-        snapshot_prm = pd.concat([
-            prm_data[(prm_data['year'] == start_year) & (prm_data['month'] >= start_month)],
-            prm_data[(prm_data['year'] == end_year) & (prm_data['month'] <= end_month)]
-        ])
-    else:
-        snapshot_cmt = cmt_data[(cmt_data['year'].between(start_year, end_year)) &
-                                (cmt_data['month'].between(start_month, end_month))].dropna()
-        snapshot_pr = pr_data[(pr_data['year'].between(start_year, end_year)) &
-                                (pr_data['month'].between(start_month, end_month))].dropna()
-        snapshot_ism = ism_data[(ism_data['year'].between(start_year, end_year)) &
-                                (ism_data['month'].between(start_month, end_month))].dropna()
-        snapshot_prm = prm_data[(prm_data['year'].between(start_year, end_year)) &
-                                (prm_data['month'].between(start_month, end_month))].dropna()
+    snapshot_cmt = cmt_data[(cmt_data['timestamp'] >= start_date) & (cmt_data['timestamp'] <= end_date)] 
+    snapshot_pr = pr_data[(pr_data['timestamp'] >= start_date) & (pr_data['timestamp'] <= end_date)] 
+    snapshot_ism = ism_data[(ism_data['timestamp'] >= start_date) & (ism_data['timestamp'] <= end_date)] 
+    snapshot_prm = prm_data[(prm_data['timestamp'] >= start_date) & (prm_data['timestamp'] <= end_date)] 
 
     # cmt_data
     edge_counts = snapshot_cmt.groupby(['author_id', 'committer_id']).size()
@@ -164,4 +100,6 @@ def build_graph(data, start_month, start_year, end_month, end_year, cmt_weight, 
                         G.add_edge(contributors[i], contributors[j], pr=pr_id, weight=prm_weight)
 
     return G
+
+
 

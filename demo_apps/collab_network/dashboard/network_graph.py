@@ -1,10 +1,11 @@
 import numpy as np
-from dash import dcc, html, Dash, Input, Output, State, callback
+from dash import dcc, html, Dash, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 import matplotlib.pyplot as plt
 import networkx as nx
 import dashboard.app as app
+import datetime as dt
 from dashboard.queries import fetch_data
 from dashboard.graph_helper import build_graph, pagerank, find_threshold
 
@@ -13,10 +14,8 @@ plt.switch_backend('Agg')
 
 #------------------------------------------------------ NETWORK GRAPH ------------------------------------------------------ 
 
-def draw_network(G, slider_value, slider_marks, pagerank_scores, scaled_scores, threshold_score):
+def draw_network(G, start_date, end_date, pagerank_scores, scaled_scores, threshold_score):
     # draw the network graph object
-    start_month, start_year = map(int, slider_marks[str(slider_value[0])].split("/"))
-    end_month, end_year = map(int, slider_marks[str(slider_value[1])].split("/"))
     fig, ax = plt.subplots(figsize=(20, 20))
     node_colors = ['red' if pagerank_scores[n] >= threshold_score else 'blue' for n in G.nodes()]
     node_sizes = [100 * scaled_scores[node] for node in G.nodes()]
@@ -24,11 +23,12 @@ def draw_network(G, slider_value, slider_marks, pagerank_scores, scaled_scores, 
     pos = nx.spring_layout(G, k=0.5, iterations=50)
     nx.draw_networkx_nodes(G, pos, node_size=node_sizes, node_color=node_colors, ax=ax)
     nx.draw_networkx_edges(G, pos, width=edge_widths, ax=ax)
-    ax.set_title(f"{start_month}/{start_year}-{end_month}/{end_year}", fontsize=30)
     edge_trace, node_trace = draw_traces(G, pos, node_colors)
+    start_date = start_date.strftime("%m/%Y")
+    end_date = end_date.strftime("%m/%Y")
     fig = go.Figure(data=[edge_trace, node_trace],
                 layout=go.Layout(
-                    title=(f"{start_month}/{start_year}-{end_month}/{end_year}"),
+                    title=(f"{start_date}-{end_date}"),
                     titlefont_size=20,
                     showlegend=False,
                     hovermode='closest',
@@ -122,17 +122,8 @@ network_graph_layout = html.Div(
                             children=[
                                 dcc.RangeSlider(
                                     id="graph-slider",
-                                    min=0,
-                                    max=5,
                                     value=[0, 1],
-                                    marks={
-                                        0: "1/2019",
-                                        1: "4/2019",
-                                        2: "7/2019",
-                                        3: "10/2019",
-                                        4: "1/2020",
-                                        5: "4/2020"
-                                    },
+                                    marks={},
                                     step=1
                                 ),
                                 html.Button('▶', id='play-button', n_clicks=0, style={'margin-left': '10px', 'margin-right': '10px'}),
@@ -163,7 +154,7 @@ def toggle_animation(play_clicks, pause_clicks, interval_disabled, slider_value)
     else:
         return True, None  # Disable the interval
 
-
+# update slider value with animation
 @app.callback(
     Output('graph-slider', 'value'),
     Input('animation-interval', 'n_intervals'),
@@ -193,12 +184,13 @@ def update_slider_value(n_intervals, slider_value, slider_max):
     State('number-input', 'value'),
     prevent_initial_call=True
 )
-def update_network(n_clicks, n_intervals, repo_org, repo_name, slider_value, slider_marks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold_type, threshold_value):
+def update_network(n_clicks, n_intervals, repo_org, repo_name, slider_value, marks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold_type, threshold_value):
     data = fetch_data(repo_org, repo_name, ['cmt', 'ism', 'pr', 'prm'])
-    start_month, start_year = map(int, slider_marks[str(slider_value[0])].split("/"))
-    end_month, end_year = map(int, slider_marks[str(slider_value[1])].split("/"))
-    G = build_graph(data, start_month, start_year, end_month, end_year, cmt_weight, ism_weight, pr_weight, prm_weight)
+    marks = list(marks.values())
+    start_date = dt.datetime.strptime(marks[slider_value[0]], "%m/%Y")
+    end_date = dt.datetime.strptime(marks[slider_value[1]], "%m/%Y")
+    G = build_graph(data, start_date, end_date, cmt_weight, ism_weight, pr_weight, prm_weight)
     pagerank_scores, scaled_scores = pagerank(G)
     threshold_score = find_threshold(np.array(list(pagerank_scores.values())), [threshold_type, threshold_value])
 
-    return draw_network(G, slider_value, slider_marks, pagerank_scores, scaled_scores, threshold_score)
+    return draw_network(G, start_date, end_date, pagerank_scores, scaled_scores, threshold_score)

@@ -1,7 +1,9 @@
 from dash import dcc, html, Dash, Input, Output, State
 import dash_bootstrap_components as dbc
 import dashboard.app as app
-from dashboard.graph_helper import get_marks
+import datetime as dt
+import dash_mantine_components as dmc
+from dateutil.relativedelta import relativedelta 
 
 sidebar_layout = html.Div(
             className="sidebar",
@@ -19,20 +21,28 @@ sidebar_layout = html.Div(
                 dcc.Input(id="repo-org", type="text", placeholder="Repo Org", style={"margin-bottom": "10px"}),
                 dcc.Input(id="repo-name", type="text", placeholder="Repo Name", style={"margin-bottom": "10px"}),
                 html.Br(),
-                html.Label("Start Date:  "),
-                html.Br(),
-                dcc.Input(id="start-year", type="number", placeholder="Year", style={"margin-bottom": "10px"}),
-                dcc.Input(id="start-month", type="number", placeholder="Month", style={"margin-bottom": "10px"}),
-                html.Br(),
-                html.Label("End Date:  "),
-                html.Br(),
-                dcc.Input(id="end-year", type="number", placeholder="Year", style={"margin-bottom": "10px"}),
-                dcc.Input(id="end-month", type="number", placeholder="Month", style={"margin-bottom": "10px"}),
+                html.Label("Time period:  "),
+                dmc.DateRangePicker(
+                                        id="time-period",
+                                        placeholder = "start date - end date",
+                                        initialLevel = 'year',
+                                        allowLevelChange = True,
+                                        inputFormat = "MM/YYYY",
+                                        minDate=dt.date(2005, 1, 1),
+                                        maxDate=dt.date.today(),
+                                        clearable=True,
+                                        style = {"width":"auto", "font-size": "12px"}
+                                    ),
                 html.Br(),
                 html.Label("Time Interval:  "),
                 html.Br(),
-                dcc.Input(id="interval", type="number", placeholder="Months", style={"margin-bottom": "10px"}),
-                html.Br(),
+                dcc.RadioItems(
+                        id="interval", 
+                        options =[{'label': '1 month', 'value': 1},
+                                  {'label': '3 months', 'value': 3},
+                                  {'label': '12 months', 'value': 12}],
+                        inline = True
+                    ),               
                 html.Br(),
                 html.Div([
                     html.H4([
@@ -115,24 +125,27 @@ sidebar_layout = html.Div(
 
 # update slider
 @app.callback(
-    [
-        Output('graph-slider', 'max'),
-        Output('graph-slider', 'marks'),
-        Input('submit-button', 'n_clicks'), 
-        State('start-year', 'value'),
-        State('start-month', 'value'),
-        State('end-year', 'value'),
-        State('end-month', 'value'),
-        State('interval', 'value')
-    ],
-    prevent_initial_call=True
+    Output('graph-slider', 'marks'),
+    Output('graph-slider', 'max'),
+    Input('interval', 'value'), 
+    State("time-period", "value"), 
+    prevent_initial_call = True
 )
-def set_slider(n_clicks, start_year, start_month, end_year, end_month, interval): 
-    intervals = get_marks(start_year, start_month, end_year, end_month, interval)
-    marks = {}
-    for i, interval_str in enumerate(intervals):
-        marks[i] = interval_str
-    return len(intervals)-1, marks
+def generate_slider_marks(interval, dates):
+    start_date = dt.datetime.strptime(dates[0],"%Y-%m-%d")
+    end_date = dt.datetime.strptime(dates[1],"%Y-%m-%d")
+
+    marks = {} # dict for slider marks
+    current_date = start_date # start date
+    index = 0
+
+    while current_date <= end_date: 
+        marks[index] = current_date.strftime("%m/%Y")
+        current_date += relativedelta(months=interval)
+        index += 1
+    
+    return marks, index-1
+
 
 # get user input for threshold type and value
 @app.callback(

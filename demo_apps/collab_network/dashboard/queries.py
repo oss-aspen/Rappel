@@ -16,6 +16,22 @@ engine = salc.create_engine(
 #------------------------------------------------------ AUGUR QUERY ------------------------------------------------------ 
 def fetch_data(repo_org, repo_name, query_strs):
     # perform queries for event types specified in query_strs
+    """
+    Executes SQL query against Augur database for data specified in query_strs.
+
+    Args:
+    -----
+        repo_org, repo_name ([str]): repo that SQL query is executed on.
+        query_strs [[str]]: event types to collect data on
+            'cmt': commit data (committer, author)
+            'ism': issue message data (issue_id, contributor_ids)
+            'pr': pull request data (contibutor, reviewer)
+            'prm': pull request message data (pull_request_id, contributor_ids)
+            
+    Returns:
+    --------
+        df: Results from SQL query, for each event type
+    """
     for event in query_strs: 
         if event == 'cmt':
             cmt_data = commit_query(repo_org, repo_name)
@@ -53,8 +69,8 @@ def commit_query(repo_org, repo_name):
 
     cmt_data = pd.read_sql(cmt_query, con=engine)
     cmt_data = cmt_data.dropna()
-    cmt_data['year'] = pd.to_datetime(cmt_data['timestamp'], utc=True).dt.year
-    cmt_data['month'] = pd.to_datetime(cmt_data['timestamp'], utc=True).dt.month
+    # Convert the timestamp column to offset-naive datetime objects
+    cmt_data['timestamp'] = cmt_data['timestamp'].apply(lambda x: x.replace(tzinfo=None) if x.tzinfo else x)
 
     return cmt_data
 
@@ -87,11 +103,10 @@ def issue_msg_query(repo_org, repo_name):
 
     # reformat issue message data, combine contributor ids for each issue
     ism_data = ism_data.groupby('issue_id').agg({'cntrb_id': list, 'timestamp': 'last'}).reset_index()
+    
     # remove issues with only one contributor (no connection to be made)
     ism_data = ism_data[ism_data['cntrb_id'].apply(lambda x: len(x) > 1)]
     ism_data = ism_data.sort_values('timestamp', ascending=False)
-    ism_data['year'] = pd.to_datetime(ism_data['timestamp'], utc=True).dt.year
-    ism_data['month'] = pd.to_datetime(ism_data['timestamp'], utc=True).dt.month
 
     return ism_data
 
@@ -124,8 +139,6 @@ def pr_query(repo_org, repo_name):
 
     pr_data = pd.read_sql(pr_query, con=engine)
     pr_data = pr_data.dropna()
-    pr_data['year'] = pd.to_datetime(pr_data['timestamp'], utc=True).dt.year
-    pr_data['month'] = pd.to_datetime(pr_data['timestamp'], utc=True).dt.month
 
     return pr_data
 
@@ -161,7 +174,5 @@ def pr_msg_query(repo_org, repo_name):
     # remove pr threads with only one contributor (no connection to be made)
     prm_data = prm_data[prm_data['cntrb_id'].apply(lambda x: len(x) > 1)]
     prm_data = prm_data.sort_values('timestamp', ascending=False)
-    prm_data['year'] = pd.to_datetime(prm_data['timestamp'], utc=True).dt.year
-    prm_data['month'] = pd.to_datetime(prm_data['timestamp'], utc=True).dt.month
 
     return prm_data

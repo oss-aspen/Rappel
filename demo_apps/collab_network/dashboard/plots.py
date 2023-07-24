@@ -1,216 +1,194 @@
 import numpy as np
+import pandas as pd 
 from dash import dcc, html, Dash, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 import networkx as nx
 from collections import Counter
 from .queries import fetch_data
-from .graph_helper import get_intervals, find_threshold, build_graph
+from .graph_helper import find_threshold, build_graph
 import dashboard.app as app
+import datetime as dt
 
 
 #------------------------------------------------------ COLLECT PLOT DATA ------------------------------------------------------ 
 
-def get_plot_data(data, start_year, start_month, end_year, end_month, interval, cmt_weight, ism_weight, pr_weight, prm_weight, threshold): 
-    """
-        Loops through each interval frame of the network graph and stores data for plots
-    """
-    global total_frames, promo_list, demo_list, core, peripheral, new, all_time, avg_intervals
+def get_plot_data(data, marks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold): 
+    # Loops through each interval frame of the network graph and stores data for plots
 
-    #initialize sets/lists to populate plot data
-    promo_list = []
-    demo_list = []
-    core = []
-    peripheral = []
-    new = []
-    all_time = []
-    avg_intervals = {}
+    #initialize dataframe to store plot data
+    plot_df = pd.DataFrame(columns=['core', 'peripheral', 'new', 'all_time', 'promo_list', 'demo_list', 'avg_intervals'])
 
     # calculate the total number of frames
-    total_frames = ((end_year - start_year) * 12 + (end_month - start_month)) // interval
+    total_frames = len(marks)-1
 
     for frame in range(total_frames): 
-        update_graph(frame, start_year, start_month, interval, data, cmt_weight, ism_weight, pr_weight, prm_weight, threshold)
+        start_date = dt.datetime.strptime(marks[frame], "%m/%Y")
+        end_date = dt.datetime.strptime(marks[frame+1], "%m/%Y")
 
-    return core, peripheral, new, all_time, promo_list, demo_list, avg_intervals
+        # add nodes and edges to the graph based on the snapshot data
+        G = build_graph(data, start_date, end_date, cmt_weight, ism_weight, pr_weight, prm_weight)
 
-def update_graph(frame, start_year, start_month, interval, data, cmt_weight, ism_weight, pr_weight, prm_weight, threshold):
-    # update the graph for each frame and store values for plots
-    global snap_start_year, snap_start_month, last_nodes, prev_nodes, prev_core, prev_peripheral, core_intervals
+        pagerank_scores = nx.pagerank(G)
+        threshold_score = find_threshold(np.array(list(pagerank_scores.values())), threshold)
 
-    if frame == 0:
-        snap_start_year = start_year
-        snap_start_month = start_month
+        if frame == 0:
+            prev_nodes, prev_peripheral, prev_core, core_intervals = init_sets(G)
 
-    snap_end_month = snap_start_month + interval - 1
-    snap_end_year = snap_start_year
-    if snap_end_month > 12:
-        snap_end_month -= 12
-        snap_end_year += 1
+        node_colors = ['r' if pagerank_scores[n] >= threshold_score else 'b' if n in prev_nodes else 'y' for n in G.nodes()]
+        core_nodes = set([node for node in set(G.nodes()) if pagerank_scores[node] >= threshold_score])
+        peripheral_nodes = set([node for node in set(G.nodes()) if pagerank_scores[node] < threshold_score])
 
-    # add nodes and edges to the graph based on the snapshot data
-    G = build_graph(data, snap_start_month, snap_start_year, snap_end_month, snap_end_year, cmt_weight, ism_weight, pr_weight, prm_weight)
+        # populate core intervals
+        for node in core_nodes:
+            core_intervals[node] = core_intervals.get(node, 0) + 1
+        avg_interval = sum(core_intervals[node] for node in core_nodes) / len(core_nodes)
 
-    pagerank_scores = nx.pagerank(G)
+        prev_nodes = prev_nodes | set(G.nodes())
+        peripheral_to_core = len(prev_peripheral.intersection(core_nodes))
+        core_to_peripheral = len(prev_core.intersection(peripheral_nodes))
 
-    threshold_score = find_threshold(np.array(list(pagerank_scores.values())), threshold)
+        # update the prev_core, and prev_peripheral variables for the next frame
+        prev_core = core_nodes
+        prev_peripheral = peripheral_nodes
 
-    if frame == 0:
-        prev_nodes, last_nodes, prev_peripheral, prev_core, core_intervals = init_sets(G)
+        # count contrubutor types (by color)
+        counts = Counter(node_colors)
+        core_count = counts['r']
+        peripheral_count = counts['b']
+        new_count = counts['y']
+        all_time_count = len(prev_nodes)
 
-    node_colors = ['r' if pagerank_scores[n] >= threshold_score else 'b' if n in prev_nodes else 'y' for n in G.nodes()]
-    core_nodes = set([node for node in set(G.nodes()) if pagerank_scores[node] >= threshold_score])
-    peripheral_nodes = set([node for node in set(G.nodes()) if pagerank_scores[node] < threshold_score])
+        # Append the data to the df for this frame
+        plot_df.loc[frame] = {
+            'core': core_count,
+            'peripheral': peripheral_count,
+            'new': new_count,
+            'all_time': all_time_count,
+            'promo_list': peripheral_to_core,
+            'demo_list': core_to_peripheral,
+            'avg_intervals': avg_interval
+        }
 
-    # populate core intervals
-    for node in core_nodes:
-        core_intervals[node] = core_intervals.get(node, 0) + 1
-
-    avg_intervals[frame] = sum(core_intervals[node] for node in core_nodes) / len(core_nodes)
-
-    prev_nodes = prev_nodes | set(G.nodes())
-    peripheral_to_core = len(prev_peripheral.intersection(core_nodes))
-    core_to_peripheral = len(prev_core.intersection(peripheral_nodes))
-
-    # update the prev_nodes, prev_core, and prev_peripheral variables for the next frame
-    last_nodes = set(G.nodes())
-    prev_core = core_nodes
-    prev_peripheral = peripheral_nodes
-
-    # count contrubutor types (by color)
-    counts = Counter(node_colors)
-    core.append(counts['r'])
-    peripheral.append(counts['b'])
-    new.append(counts['y'])
-    all_time.append(len(prev_nodes))
-    promo_list.append(peripheral_to_core)
-    demo_list.append(core_to_peripheral)
-
-    snap_start_year = snap_end_year
-    snap_start_month = snap_end_month + 1
-
-    if snap_start_month > 12:
-        snap_start_month = 1
-        snap_start_year += 1
-
-    if frame == total_frames - 1:
-        return None
-
-    return core, peripheral, new, all_time, promo_list, demo_list, avg_intervals
+    return plot_df
 
 def init_sets(G):
     # initialize sets for first frame
     prev_nodes = set(G.nodes())
-    last_nodes = set(G.nodes())
     prev_peripheral = set()
     prev_core = set()
     core_intervals = {}
 
-    return prev_nodes, last_nodes, prev_peripheral, prev_core, core_intervals
-#------------------------------------------------------ PLOT TRENDS ------------------------------------------------------ 
+    return prev_nodes, prev_peripheral, prev_core, core_intervals
 
-def plot_traces(intervals, core, peripheral, new, all_time, peripheral_to_core_list, core_to_peripheral_list, avg_intervals):
+#------------------------------------------------------ PLOT TRENDS ------------------------------------------------------ 
+# cardinality by conributor type
+def plot_fig1(marks, df, card_checks):
     core_trace = go.Scatter(
-        y = core,
-        x = intervals,
+        y = df['core'],
+        x = marks,
         mode = 'lines',
         name = 'core',
         line = dict(shape = 'linear', color = 'red', width = 2),
         connectgaps = True
         )
     per_trace = go.Scatter(
-        y = peripheral,
-        x = intervals,
+        y = df['peripheral'],
+        x = marks,
         mode = 'lines',
         name = 'peripheral',
         line = dict(shape = 'linear', color = 'blue', width = 2),
         connectgaps = True
     )
     new_trace = go.Scatter(
-        y = new,
-        x = intervals,
+        y = df['new'],
+        x = marks,
         mode = 'lines',
         name = 'new',
         line = dict(shape = 'linear', color = 'green', width = 2),
         connectgaps = True
     )
     all_time_trace = go.Scatter(
-        y = all_time,
-        x = intervals,
+        y = df['all_time'],
+        x = marks,
         mode = 'lines',
         name = 'all time',
         line = dict(shape = 'linear', color = 'orange', width = 2),
         connectgaps = True
     )
+    data = []
+    for c in card_checks: 
+        if c == "core":
+            data.append(core_trace)
+        if c == "peripheral": 
+            data.append(per_trace)
+        if c == "new":
+            data.append(new_trace)
+        if c == "all time":
+            data.append(all_time_trace)
+
+    layout =  dict(
+        yaxis = dict(title = 'Contributor Count'),
+        xaxis = dict(title = 'Intervals'), 
+        margin = {"t": 0}
+    )
+    fig =  go.Figure(data, layout)
+
+    return fig
+
+# promotions, demotions
+def plot_fig2(marks, df, promo_checks):
     promo_trace = go.Scatter(
-        y = peripheral_to_core_list,
-        x = intervals,
+        y = df['promo_list'],
+        x = marks,
         mode = 'lines',
         name = 'promotions',
         line = dict(shape = 'linear', color = 'green', width = 2),
         connectgaps = True
     )
     demo_trace = go.Scatter(
-        y = core_to_peripheral_list,
-        x = intervals,
+        y = df['demo_list'],
+        x = marks,
         mode = 'lines',
         name = 'demotions',
         line = dict(shape = 'linear', color = 'orange', width = 2),
         connectgaps = True
     )
-    avg_int_trace = go.Scatter(
-        y = list(avg_intervals.values()),
-        x = intervals,
-        mode = 'lines',
-        name = 'average #intervals',
-        line = dict(shape = 'linear', color = 'red', width = 2, dash = 'dot'),
-        connectgaps = True
-    )
-    return core_trace, per_trace, new_trace, all_time_trace, promo_trace, demo_trace, avg_int_trace
-
-def plot_trends(card_checks, core_trace, per_trace, new_trace, all_time_trace, promo_checks, promo_trace, demo_trace, avg_int_trace):
-    data1 = []
-    for c in card_checks: 
-        if c == "core":
-            data1.append(core_trace)
-        if c == "peripheral": 
-            data1.append(per_trace)
-        if c == "new":
-            data1.append(new_trace)
-        if c == "all time":
-            data1.append(all_time_trace)
-
-    data2 = []
+    data = []
     for c in promo_checks: 
         if c == "promotions":
-            data2.append(promo_trace)
+            data.append(promo_trace)
         if c == "demotions":
-            data2.append(demo_trace)
-
-    data3 = avg_int_trace
-            
-    layout1 =  dict(
-        yaxis = dict(title = 'Contributor Count'),
-        xaxis = dict(title = 'Intervals'), 
-        margin = {"t": 0}
-    )
-    layout2 =  dict(
+            data.append(demo_trace)
+    
+    layout =  dict(
         yaxis = dict(title = 'Contributor Count'),
         xaxis = dict(title = 'Intervals'),
         margin = {"t": 0}    
     )
-    layout3 =  dict(
+    fig =  go.Figure(data, layout)
+    
+    return fig
+
+# average intervals as core
+def plot_fig3(marks, df):  
+    data = go.Scatter(
+        y = df['avg_intervals'],
+        x = marks,
+        mode = 'lines',
+        name = 'average #intervals',
+        line = dict(shape = 'linear', color = 'red', width = 2),
+        connectgaps = True
+    )
+
+    layout =  dict(
         yaxis = dict(title = 'Average #intervals as core'),
         xaxis = dict(title = 'Intervals'), 
         margin = {"t": 0}   
     )
+    fig =  go.Figure(data, layout)
 
-    fig1 =  go.Figure(data = data1, layout=layout1)
-    fig2 =  go.Figure(data = data2, layout=layout2)
-    fig3 =  go.Figure(data = data3, layout=layout3)
-
-    return fig1, fig2, fig3
-
+    return fig
 
 #------------------------------------------------------ APP LAYOUT ------------------------------------------------------ 
 plots_layout = html.Div(
@@ -309,16 +287,12 @@ plots_layout = html.Div(
         Output('average-intervals', 'figure')
     ],
     [
-        Input('submit-button', 'n_clicks'),
+        Input('submit-button', 'n_clicks')
     ],
     [
         State('repo-org', 'value'),
         State('repo-name', 'value'),
-        State('start-year', 'value'),
-        State('start-month', 'value'), 
-        State('end-year', 'value'),
-        State('end-month', 'value'),
-        State('interval', 'value'),
+        State('graph-slider', 'marks'),
         State('cardinality-checklist', 'value'),
         State('promo-demo-checklist', 'value'), 
         State('cmt-weight', 'value'), 
@@ -330,12 +304,14 @@ plots_layout = html.Div(
     ],
     prevent_initial_call=True
 )
-def plot(n_clicks, repo_org, repo_name, start_year, start_month, end_year, end_month, interval, card_checks, promo_checks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold_type, threshold_value):
-    intervals = get_intervals(start_year, start_month, end_year, end_month, interval)
+def plot(n_clicks, repo_org, repo_name, marks, card_checks, promo_checks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold_type, threshold_value):
+    marks = list(marks.values())
     threshold = [threshold_type, threshold_value]
     data = fetch_data(repo_org, repo_name, ['cmt', 'ism', 'pr', 'prm'])
-    core, peripheral, new, all_time, peripheral_to_core_list, core_to_peripheral_list, avg_intervals = get_plot_data(data, start_year, start_month, end_year, end_month, interval, cmt_weight, ism_weight, pr_weight, prm_weight, threshold)
-    core_trace, per_trace, new_trace, all_time_trace, promo_trace, demo_trace, avg_int_trace = plot_traces(intervals, core, peripheral, new, all_time, peripheral_to_core_list, core_to_peripheral_list, avg_intervals)
-    fig1, fig2, fig3 = plot_trends(card_checks, core_trace, per_trace, new_trace, all_time_trace, promo_checks, promo_trace, demo_trace, avg_int_trace)
+    plot_df = get_plot_data(data, marks, cmt_weight, ism_weight, pr_weight, prm_weight, threshold)
+    
+    fig1 = plot_fig1(marks, plot_df, card_checks)
+    fig2 = plot_fig2(marks, plot_df, promo_checks)
+    fig3 = plot_fig3(marks, plot_df)
 
     return fig1, fig2, fig3
