@@ -13,25 +13,32 @@ engine = salc.create_engine(
     database_connection_string,
     connect_args={'options': '-csearch_path={}'.format(dbschema)})
 
-#------------------------------------------------------ AUGUR QUERY ------------------------------------------------------ 
 def fetch_data(repo_org, repo_name, query_strs):
-    # perform queries for event types specified in query_strs
     """
-    Executes SQL query against Augur database for data specified in query_strs.
+    Fetch data from the Augur database for different events in a GitHub repository.
 
     Args:
     -----
-        repo_org, repo_name ([str]): repo that SQL query is executed on.
-        query_strs [[str]]: event types to collect data on
-            'cmt': commit data (committer, author)
-            'ism': issue message data (issue_id, contributor_ids)
-            'pr': pull request data (contibutor, reviewer)
-            'prm': pull request message data (pull_request_id, contributor_ids)
-            
+        repo_org (str): The organization name of the repository.
+        repo_name (str): The name of the repository.
+        query_strs (list): A list of strings representing the events to fetch data for. The allowed 
+                           values in the list are 'cmt', 'ism', 'pr', and 'prm' for commits, issue 
+                           messages, pull requests, and pull request messages, respectively.
+
     Returns:
     --------
-        df: Results from SQL query, for each event type
+        tuple: A tuple containing data frames for each event:
+            - cmt_data (pd.DataFrame): Data frame containing commit data with commit hash, timestamps, 
+                                      and corresponding author and committer IDs.
+            - ism_data (pd.DataFrame): Data frame containing issue message data with issue IDs, 
+                                      timestamps, and contributor IDs associated with each issue.
+            - pr_data (pd.DataFrame): Data frame containing pull request data with pull request IDs, 
+                                     timestamps, contributor IDs, and reviewer IDs for each pull request.
+            - prm_data (pd.DataFrame): Data frame containing pull request message data with pull 
+                                      request IDs, timestamps, and contributor IDs associated with 
+                                      each pull request message thread.
     """
+
     for event in query_strs: 
         if event == 'cmt':
             cmt_data = commit_query(repo_org, repo_name)
@@ -44,8 +51,21 @@ def fetch_data(repo_org, repo_name, query_strs):
 
     return cmt_data, ism_data, pr_data, prm_data
 
-# commit author query
+
 def commit_query(repo_org, repo_name):
+    """
+    Execute a SQL query to fetch commit data for a given repository.
+
+    Args:
+    -----
+        repo_org (str): The organization name of the repository.
+        repo_name (str): The name of the repository.
+
+    Returns:
+    --------
+        pd.DataFrame: Data frame containing commit data with commit hash, timestamps, and corresponding 
+                      author and committer IDs.
+    """
     cmt_query = salc.sql.text(f"""
                     SET SCHEMA 'augur_data';
                     SELECT
@@ -74,8 +94,21 @@ def commit_query(repo_org, repo_name):
 
     return cmt_data
 
-# issue message query
+
 def issue_msg_query(repo_org, repo_name):
+    """
+    Execute a SQL query to fetch issue message data for a given repository.
+
+    Args:
+    -----
+        repo_org (str): The organization name of the repository.
+        repo_name (str): The name of the repository.
+
+    Returns:
+    --------
+        pd.DataFrame: Data frame containing issue message data with issue IDs, timestamps, and 
+                      contributor IDs associated with each issue.
+    """
     ism_query = salc.sql.text(f"""
                  SET SCHEMA 'augur_data';
                  SELECT
@@ -110,8 +143,21 @@ def issue_msg_query(repo_org, repo_name):
 
     return ism_data
 
+
 def pr_query(repo_org, repo_name): 
-    # pull request reviewer query
+    """
+    Execute a SQL query to fetch pull request data for a given repository.
+    
+    Args:
+    -----
+        repo_org (str): The organization name of the repository.
+        repo_name (str): The name of the repository.
+
+    Returns:
+    --------
+        pd.DataFrame: Data frame containing pull request data with pull request IDs, timestamps, 
+                      contributor IDs, and reviewer IDs for each pull request.
+    """
     pr_query = salc.sql.text(f"""
                   SET SCHEMA 'augur_data';
                   SELECT
@@ -142,8 +188,21 @@ def pr_query(repo_org, repo_name):
 
     return pr_data
 
+
 def pr_msg_query(repo_org, repo_name): 
-    #pull request message query
+    """
+    Execute a SQL query to fetch pull request message data for a given repository.
+
+    Args:
+    -----
+        repo_org (str): The organization name of the repository.
+        repo_name (str): The name of the repository.
+
+    Returns:
+    --------
+        pd.DataFrame: Data frame containing pull request message data with pull request IDs, timestamps, 
+                      and contributor IDs associated with each pull request message thread.
+    """
     prm_query = salc.sql.text(f"""
                   SET SCHEMA 'augur_data';
                   SELECT
