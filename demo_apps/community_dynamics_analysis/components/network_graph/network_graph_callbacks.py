@@ -1,9 +1,8 @@
 import numpy as np
-from dash import Input, Output, State, callback
+from dash import Input, Output, State, callback, dash
 import datetime as dt
-from components.network_graph.network_graph import draw_network
 from data_utils.queries import fetch_data
-from graph_utils.graph_helper import build_graph, apply_pagerank, find_threshold
+from graph_utils.graph_helper import build_graph, apply_pagerank, find_threshold, draw_network
 
 
 @callback(
@@ -29,10 +28,9 @@ def toggle_animation(play_clicks, pause_clicks):
                        (True if disabled, False if enabled).
                - int: interval duration (in milliseconds) for the animation when it is enabled.
     """
-    if play_clicks > pause_clicks:
-        return False, 5000  # Enable the interval and set the interval duration (in milliseconds)
-    else:
-        return True, None  # Disable the interval
+    if dash.ctx.triggered_id == 'play-button':
+        return False, 5000 # Enable the interval and set the interval duration (in milliseconds)
+    return True, None # Disable the interval
 
 
 @callback(
@@ -108,7 +106,7 @@ def update_network(n_clicks, slider_value, n_intervals, repo_org, repo_name, mar
     """
 
     
-    data = fetch_data(repo_org, repo_name, ['cmt', 'ism', 'pr', 'prm']) # fetch data from Augur
+    data = fetch_data(repo_org, repo_name) # fetch data from Augur
     marks = list(marks.values())
     # convert dates to dt.datetime objects
     start_date = dt.datetime.strptime(marks[slider_value[0]], "%m/%Y") 

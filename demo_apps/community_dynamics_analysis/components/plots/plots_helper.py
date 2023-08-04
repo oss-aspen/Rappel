@@ -116,6 +116,20 @@ def init_sets(G):
     return prev_nodes, prev_peripheral, prev_core, core_intervals
 
 def add_trace(df_table, name, color, marks):
+    """
+    Create a Plotly Scatter trace with provided data for visualization.
+
+    Args:
+        df_table (pd.Series): The data points to be plotted on the y-axis.
+        name (str): The name of the trace, which will be displayed in the legend.
+        color (str or dict): The color of the line as a string representing a color name 
+                             (e.g., 'red', 'blue', 'green').
+        marks (list): The corresponding x-axis values (slider marks) for the data points.
+
+    Returns:
+        go.Scatter: A Plotly Scatter trace representing the line plot with the provided data.
+    """
+
     trace = go.Scatter(
         y = df_table,
         x = marks,

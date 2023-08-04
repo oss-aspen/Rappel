@@ -13,7 +13,7 @@ engine = salc.create_engine(
     database_connection_string,
     connect_args={'options': '-csearch_path={}'.format(dbschema)})
 
-def fetch_data(repo_org, repo_name, query_strs):
+def fetch_data(repo_org, repo_name):
     """
     Fetch data from the Augur database for different events in a GitHub repository.
 
@@ -21,10 +21,7 @@ def fetch_data(repo_org, repo_name, query_strs):
     -----
         repo_org (str): The organization name of the repository.
         repo_name (str): The name of the repository.
-        query_strs (list): A list of strings representing the events to fetch data for. The allowed 
-                           values in the list are 'cmt', 'ism', 'pr', and 'prm' for commits, issue 
-                           messages, pull requests, and pull request messages, respectively.
-
+       
     Returns:
     --------
         tuple: A tuple containing data frames for each event:
@@ -39,15 +36,10 @@ def fetch_data(repo_org, repo_name, query_strs):
                                       each pull request message thread.
     """
 
-    for event in query_strs: 
-        if event == 'cmt':
-            cmt_data = commit_query(repo_org, repo_name)
-        if event == 'ism':
-            ism_data = issue_msg_query(repo_org, repo_name)
-        if event == 'pr':
-            pr_data = pr_query(repo_org, repo_name)
-        if event == 'prm': 
-            prm_data = pr_msg_query(repo_org, repo_name)
+    cmt_data = commit_query(repo_org, repo_name)
+    ism_data = issue_msg_query(repo_org, repo_name)
+    pr_data = pr_query(repo_org, repo_name)
+    prm_data = pr_msg_query(repo_org, repo_name)
 
     return cmt_data, ism_data, pr_data, prm_data
 

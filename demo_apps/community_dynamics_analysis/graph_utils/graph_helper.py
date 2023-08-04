@@ -1,6 +1,7 @@
 import numpy as np
 import networkx as nx
-
+import plotly.graph_objs as go
+import matplotlib.pyplot as plt
 
 #------------------------------------------------------ THRESHOLD CALCULATION ------------------------------------------------------ 
 
@@ -153,17 +154,17 @@ def add_cmt_data(G, data, start_date, end_date, weight):
     for (author, committer), weight in edge_counts.items():
         if author != committer:
             if not G.has_node(author):
-                G.add_node(author, count=1)  
+                G.add_node(author, count=1) # add node if not already in graph
             else:
-                G.nodes[author]['count'] += 1  # increase count 
+                G.nodes[author]['count'] += 1 # if exists, increase count by 1
             if not G.has_node(committer):
-                G.add_node(committer, count=1)  
+                G.add_node(committer, count=1) # add node if not already in graph
             else:
-                G.nodes[committer]['count'] += 1  # increase count 
-            if G.has_edge(author, committer): # if edge present, increase weight
-                G[author][committer]['weight'] += weight
-            else: # if not present, create edge and set weight
-                G.add_edge(author, committer, weight=weight)
+                G.nodes[committer]['count'] += 1 # if exists, increase count by 1
+            if G.has_edge(author, committer): 
+                G[author][committer]['weight'] += weight # if edge present, increase weight
+            else: 
+                G.add_edge(author, committer, weight=weight) # add edge if not already in graph
     return G
 
 
@@ -193,16 +194,16 @@ def add_ism_data(G, data, start_date, end_date, weight):
         contributors = row.cntrb_id
         for cntrb in contributors:
             if not G.has_node(cntrb):
-                G.add_node(cntrb, count=1)  
+                G.add_node(cntrb, count=1) # add node if not already in graph
             else:
-                G.nodes[cntrb]['count'] += 1  # increase count 
+                G.nodes[cntrb]['count'] += 1 # if exists, increase count by 1
         for i in range(len(contributors)):
             for j in range(i+1, len(contributors)):
                 if contributors[i] != contributors[j]:
-                    if G.has_edge(contributors[i], contributors[j]): # if edge present, increase weight
-                        G[contributors[i]][contributors[j]]['weight'] += weight
-                    else: # if not present, create edge and set weight
-                        G.add_edge(contributors[i], contributors[j], issue=issue_id, weight=weight)
+                    if G.has_edge(contributors[i], contributors[j]): 
+                        G[contributors[i]][contributors[j]]['weight'] += weight # if edge present, increase weight
+                    else:
+                        G.add_edge(contributors[i], contributors[j], issue=issue_id, weight=weight) # add edge if not already in graph
     return G
 
 def add_pr_data(G, data, start_date, end_date, weight):
@@ -227,19 +228,19 @@ def add_pr_data(G, data, start_date, end_date, weight):
     snapshot = data[(data['timestamp'] >= start_date) & (data['timestamp'] <= end_date)]
     
     for _, row in snapshot.iterrows():
-        if row['cntrb_id'] != row['reviewer']:
+        if row['cntrb_id'] != row['reviewer']: 
             if not G.has_node(row['cntrb_id']):
-                G.add_node(row['cntrb_id'], count=1)  
+                G.add_node(row['cntrb_id'], count=1) # add node if not already in graph
             else:
-                G.nodes[row['cntrb_id']]['count'] += 1  # increase count 
+                G.nodes[row['cntrb_id']]['count'] += 1 # if exists, increase count by 1
             if not G.has_node(row['reviewer']):
-                G.add_node(row['reviewer'], count=1)  
+                G.add_node(row['reviewer'], count=1) # add node if not already in graph
             else:
                 G.nodes[row['reviewer']]['count'] += 1  # increase count 
-            if G.has_edge(row['cntrb_id'], row['reviewer']): # if edge present, increase weight
-                G[row['cntrb_id']][row['reviewer']]['weight'] += weight
-            else: # if not present, create edge and set weight
-                G.add_edge(row['cntrb_id'], row['reviewer'], weight=weight)
+            if G.has_edge(row['cntrb_id'], row['reviewer']): 
+                G[row['cntrb_id']][row['reviewer']]['weight'] += weight # if edge present, increase weight
+            else: 
+                G.add_edge(row['cntrb_id'], row['reviewer'], weight=weight) # add edge if not already in graph
     return G
 
 def add_prm_data(G, data, start_date, end_date, weight): 
@@ -268,14 +269,133 @@ def add_prm_data(G, data, start_date, end_date, weight):
         contributors = row.cntrb_id
         for cntrb in contributors:
             if not G.has_node(cntrb):
-                G.add_node(cntrb, count=1)  
+                G.add_node(cntrb, count=1) # add node if not already in graph
             else:
-                G.nodes[cntrb]['count'] += 1  # increase count 
+                G.nodes[cntrb]['count'] += 1 # if exists, increase count by 1
         for i in range(len(contributors)):
             for j in range(i+1, len(contributors)):
                 if contributors[i] != contributors[j]:
-                    if G.has_edge(contributors[i], contributors[j]): # if edge present, increase weight
-                        G[contributors[i]][contributors[j]]['weight'] += weight 
-                    else: # if not present, create edge and set weight
-                        G.add_edge(contributors[i], contributors[j], pr=pr_id, weight=weight)
+                    if G.has_edge(contributors[i], contributors[j]):
+                        G[contributors[i]][contributors[j]]['weight'] += weight # if edge present, increase weight
+                    else: 
+                        G.add_edge(contributors[i], contributors[j], pr=pr_id, weight=weight) # add edge if not already in graph
     return G
+
+plt.switch_backend('Agg') 
+
+#------------------------------------------------------ NETWORK GRAPH VISUALIZATION ------------------------------------------------------ 
+
+def draw_network(G, start_date, end_date, pagerank_scores, norm_scores, threshold_score):
+    """
+    Draw and visualize a network graph based on nx.Graph object 
+    data using a combination of NetworkX and Plotly libraries.
+
+    Args:
+    -----
+        G (nx.Graph): The input graph representing interactions among contributors. Nodes in the 
+                      graph represent contributors, and edges represent different types of 
+                      interactions between contributors.
+        start_date, end_date (datetime.date): The start and end date defining the time range for snapshot 
+                                              data inclusion in the graph visualization.
+        pagerank_scores (dict): A dictionary containing contributors as keys and their corresponding 
+                                PageRank scores as values.
+        norm_scores (dict): A dictionary containing contributors as keys and their scaled PageRank 
+                              scores (normalized to the range [5,20] as values, used for node size 
+                              determination in the visualization.
+        threshold_score (float): A threshold value used to differentiate nodes based on their PageRank 
+                                 scores. Core contributors with scores greater than or equal to this 
+                                 threshold will be displayed in red, while those with lower scores 
+                                 (peripheral) will be displayed in blue.
+
+    Returns:
+    --------
+        go.Figure: A Plotly Figure object representing the network graph visualization.
+    """
+
+    fig = plt.subplots(figsize=(20, 20))
+    # set node colors based on contributor category
+    node_colors = ['red' if pagerank_scores[n] >= threshold_score else 'blue' for n in G.nodes()]
+    # set node sizes based on cantrality (PageRank) scores
+    node_sizes = [norm_scores[node] for node in G.nodes()]
+    pos = nx.spring_layout(G, iterations=50) 
+    edge_trace, node_trace = draw_network_traces(G, pos, node_colors, node_sizes)
+    # convert dates to string for title
+    start_date = start_date.strftime("%m/%Y")
+    end_date = end_date.strftime("%m/%Y")
+    fig = go.Figure(data=[edge_trace, node_trace],
+                layout=go.Layout(
+                    title=(f"{start_date}-{end_date}"),
+                    titlefont_size=20,
+                    showlegend=False,
+                    hovermode='closest',
+                    margin=dict(b=20,l=5,r=5,t=40),
+                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
+                    )
+    figure = go.Figure(data=fig)
+
+    return figure
+
+#------------------------------------------------------ NETWORKX TO PLOTLY ------------------------------------------------------ 
+
+def draw_network_traces(G, pos, node_colors, node_sizes):
+    """
+    Create edge and node traces for a network graph visualization.
+
+    Args:
+    -----------
+        G (nx.Graph): The input graph representing interactions among contributors. Nodes in the graph 
+                      represent contributors, and edges represent different types of interactions 
+                      between contributors.
+        pos (dict): A dictionary containing node positions as keys (contributors) and their respective 
+                    positions in the visualization as values. 
+        node_colors (list): A list of colors for nodes in the graph, where each color corresponds to a 
+                            contributor based on certain criteria (e.g., core, peripheral, new).
+        node_sizes (list): A list of sizes for nodes in the graph, where each size corresponds to a 
+                            contributor based on their centrality calculated via Pagerank score.
+
+    Returns:
+    --------
+        tuple: A tuple containing two Plotly Scatter objects representing the edge and node traces for 
+               the network graph visualization.
+    """
+    edge_x = []
+    edge_y = []
+    for edge in G.edges():
+        x0, y0 = pos[edge[0]]
+        x1, y1 = pos[edge[1]]
+        edge_x.append(x0)
+        edge_x.append(x1)
+        edge_x.append(None)
+        edge_y.append(y0)
+        edge_y.append(y1)
+        edge_y.append(None)
+
+    edge_trace = go.Scatter(
+        x=edge_x, y=edge_y,
+        line=dict(width=0.5, color='#888'),
+        hoverinfo='none',
+        mode='lines')
+    
+    node_x = []
+    node_y = []
+    node_text = []
+    for node in G.nodes():
+        x, y = pos[node]
+        node_x.append(x)
+        node_y.append(y)
+        # calculate number of contributions and edges for hover text
+        node_count = G.nodes[node]['count']
+        contributions_text = '# of contributions: ' + str(node_count)
+        adjacencies = G.adj[node]  # adjacent nodes for the current node
+        connections_text = '# of connections: ' + str(len(adjacencies))
+        node_text.append(contributions_text + '<br>' + connections_text)
+
+    node_trace = go.Scatter(
+        x=node_x, y=node_y,
+        marker=dict(size = node_sizes, color = node_colors),
+        text = node_text,
+        mode='markers',
+        hoverinfo='text')
+
+    return edge_trace, node_trace
