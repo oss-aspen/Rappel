@@ -71,19 +71,21 @@ This graph captures the trend of of the average number of time intervals that th
 ## How to run the app locally
 1. Clone this project from GitHub in your local project directory
 2. Change into the project directory
-3. Add the copy_cage_padres.json file to the same level as app.py. Here is a sample of what the copy_cage_padres.json file needs to look like:
-    `
-    {
-        "connection_string": "sqlite:///:memory:",
-        "database": "sandiegorh",
-        "host": "chaoss.tv",
-        "password": "<<Your Password>>",
-        "port": 5432,
-        "schema": "augur_data",
-        "user": "<<Your Username>>",
-        "user_type": "read_only"
-    }
-    `
+3. Add the config.json file to the same level as app.py. 
+
+Example of config.json file:
+```
+{
+    "connection_string": "sqlite:///:memory:",
+    "database": "sandiegorh",
+    "host": "chaoss.tv",
+    "password": "<<Your Password>>",
+    "port": 5432,
+    "schema": "augur_data",
+    "user": "<<Your Username>>",
+    "user_type": "read_only"
+}
+```
 4. Run `app.py`, the application should now start loading
 
 ## How to use the dashboard

@@ -2,7 +2,7 @@ import sqlalchemy as salc
 import json
 import pandas as pd
 
-with open("copy_cage-padres.json") as config_file:
+with open("config.json") as config_file:
     config = json.load(config_file)
 
 # connect to Augur database
