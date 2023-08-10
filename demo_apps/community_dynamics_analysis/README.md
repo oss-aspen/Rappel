@@ -4,7 +4,7 @@ This dashboard is part of an enhancement project for [Project Aspen](https://git
 The applet is designed with the primary objective of provided users with a comprehensive analysis of contributor behavior within their open-source project, 
 presented over temporal intervals through an array of insightful visualizations.
 
-**Authored by Maria Shevchuk, 7-12-2022**
+**Authored by Maria Shevchuk, 8-10-2023**
 
 ## Dashboard Organization
 
@@ -49,14 +49,22 @@ Contributors are connected if:
 - They've participated in the same PR message series together,
 - One has reviewed the other's PR.
 
+<img width="600" alt="network_graph" src="https://github.com/mariashev/Rappel/assets/87496627/f22413ba-624d-4a1b-8758-38025e7d6f87">
+
 ### Cardinality by Contributor Type plot
 This graph captures the trend of counts of core, peripheral, and new developers at each interval in the specified time frame. It also shows the total number of contributors over time. 
+
+<img width="500" alt="cardinality_by_type" src="https://github.com/mariashev/Rappel/assets/87496627/07e61b4d-6c64-4d4a-911c-5fc7965bcdea">
 
 ### Promotions/Demotions plot
 This graph captures the trend of contributors switching from peripheral to core type (promotion) and from core to peripheral (demotion).
 
+<img width="500" alt="promotions_demotions" src="https://github.com/mariashev/Rappel/assets/87496627/38119133-9168-4ff1-bce2-fad4bb175685">
+
 ### Average Intervals as Core
-This graph captures the trend of of the average number of time intervals that the core contributors have served as core.
+This graph captures the trend of the average number of time intervals that the core contributors have served as core.
+
+<img width="500" alt="avg_core_intervals" src="https://github.com/mariashev/Rappel/assets/87496627/7c81c052-dfb1-493c-ac7a-99110f9a574e">
 
 ## Project Definitions
 |  | **Term**                                       |                          Definition                                   |
@@ -105,6 +113,8 @@ Example of config.json file:
     b. Manually select which intervals you want to see displayed in the network graph by using the range slider. 
 8. Once the trend plots are loaded you can select which metrics you wish to display/hide. 
 
+<img width="1696" alt="dashboard" src="https://github.com/mariashev/Rappel/assets/87496627/09e3e85b-cb75-41d4-bcb1-3777b4a7238e">
+
 ## Resources
 You may find the following resources helpful for this project:
 
@@ -114,6 +124,6 @@ You may find the following resources helpful for this project:
 | 2| CHAOSS                                         | [Click Here](https://chaoss.community/)                               |
 | 3| Dash                                           | [Click Here](https://dash.plotly.com/)                                |
 | 4| Orbit-Love model                               | [Click Here](https://orbitmodel.com/)                                 |
-| 5| Dashboard Demo                                 | Coming Soon |
+| 5| Dashboard Demo                                 | [Click Here](https://drive.google.com/file/d/1V6VL5WOKShKlvsDUJ6TrDum1wqgcGDrn/view?usp=drive_link) |
 
 
