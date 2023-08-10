@@ -1,5 +1,5 @@
 import numpy as np
-from dash import Input, Output, State, callback, dash
+from dash import Input, Output, State, callback, ctx
 import datetime as dt
 from data_utils.queries import fetch_data
 from graph_utils.graph_helper import build_graph, apply_pagerank, find_threshold, draw_network
@@ -29,7 +29,7 @@ def toggle_animation(play_clicks, pause_clicks):
                        (True if disabled, False if enabled).
                - int: interval duration (in milliseconds) for the animation when it is enabled.
     """
-    if dash.ctx.triggered_id == 'play-button':
+    if ctx.triggered_id == 'play-button':
         return False, 5000 # Enable the interval and set the interval duration (in milliseconds)
     return True, None # Disable the interval
 
