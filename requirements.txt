@@ -3,7 +3,7 @@ cycler==0.10.0
 debugpy==1.4.1
 decorator==5.0.9
 entrypoints==0.3
-greenlet==1.1.1
+greenlet>=3.1.0
 ipykernel==6.2.0
 ipython==7.26.0
 ipython-genutils==0.2.0
