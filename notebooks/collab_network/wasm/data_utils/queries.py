@@ -1,17 +1,24 @@
 import sqlalchemy as salc
 import json
 import pandas as pd
+import os 
 
-with open("config.json") as config_file:
-    config = json.load(config_file)
+paths = ["../../comm_cage.json", "comm_cage.json", "../../config.json", "../config.json", "config.json","../../../config.json"]
 
-# connect to Augur database
+for path in paths:
+    if os.path.exists(path):
+        with open(path) as config_file:
+            config = json.load(config_file)
+        break
+else:
+    raise FileNotFoundError(f"None of the config files found: {paths}")
+
 database_connection_string = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(config['user'], config['password'], config['host'], config['port'], config['database'])
-
-dbschema='augur_data'
+dbschema = 'augur_data'
 engine = salc.create_engine(
     database_connection_string,
-    connect_args={'options': '-csearch_path={}'.format(dbschema)})
+    connect_args={'options': '-csearch_path={}'.format(dbschema)}
+)
 
 def fetch_data(repo_org, repo_name):
     """

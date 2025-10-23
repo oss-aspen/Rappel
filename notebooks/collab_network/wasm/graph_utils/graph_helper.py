@@ -288,7 +288,6 @@ def add_prm_data(G, data, start_date, end_date, weight):
 plt.switch_backend('Agg') 
 
 #------------------------------------------------------ NETWORK GRAPH VISUALIZATION ------------------------------------------------------ 
-
 def draw_network(G, start_date, end_date, pagerank_scores, norm_scores, threshold_score, color_override=None):
     """
     Draw and visualize a network graph based on nx.Graph object 
@@ -296,52 +295,55 @@ def draw_network(G, start_date, end_date, pagerank_scores, norm_scores, threshol
 
     Args:
     -----
-        G (nx.Graph): The input graph representing interactions among contributors. Nodes in the 
-                      graph represent contributors, and edges represent different types of 
-                      interactions between contributors.
-        start_date, end_date (datetime.date): The start and end date defining the time range for snapshot 
-                                              data inclusion in the graph visualization.
-        pagerank_scores (dict): A dictionary containing contributors as keys and their corresponding 
-                                PageRank scores as values.
-        norm_scores (dict): A dictionary containing contributors as keys and their scaled PageRank 
-                              scores (normalized to the range [5,20] as values, used for node size 
-                              determination in the visualization.
-        threshold_score (float): A threshold value used to differentiate nodes based on their PageRank 
-                                 scores. Core contributors with scores greater than or equal to this 
-                                 threshold will be displayed in red, while those with lower scores 
-                                 (peripheral) will be displayed in blue.
+        G (nx.Graph): The input graph representing interactions among contributors.
+        start_date, end_date (datetime.date): Time range for the graph visualization.
+        pagerank_scores (dict): Contributors as keys and PageRank scores as values.
+        norm_scores (dict): Contributors as keys and their scaled PageRank scores (node sizes).
+        threshold_score (float): Threshold to differentiate nodes by importance.
+        color_override (list|dict|None): Optional override for node colors.
 
     Returns:
     --------
         go.Figure: A Plotly Figure object representing the network graph visualization.
     """
 
-    fig = plt.subplots(figsize=(20, 40))
     # set node colors based on contributor category
     if not color_override:
         node_colors = ['red' if pagerank_scores[n] >= threshold_score else 'blue' for n in G.nodes()]
     else:
-        node_colors = color_override
-    # set node sizes based on cantrality (PageRank) scores
-    node_sizes = [norm_scores[node] for node in G.nodes()]
-    pos = nx.spring_layout(G, iterations=100, k=0.3) 
-    edge_trace, node_trace = draw_network_traces(G, pos, node_colors, node_sizes)
-    # convert dates to string for title
-    start_date = start_date.strftime("%m/%Y")
-    end_date = end_date.strftime("%m/%Y")
-    fig = go.Figure(data=[edge_trace, node_trace],
-                layout=go.Layout(
-                    title=(f"{start_date}-{end_date}"),
-                    titlefont_size=20,
-                    showlegend=False,
-                    hovermode='closest',
-                    margin=dict(b=20,l=5,r=5,t=40),
-                    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
-                    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False))
-                    )
-    figure = go.Figure(data=fig)
+        # allow dict keyed by node or a list aligned with node order
+        if isinstance(color_override, dict):
+            node_colors = [color_override.get(n, '#808080') for n in G.nodes()]
+        else:
+            if len(color_override) != len(G.nodes()):
+                raise ValueError(
+                    f"color_override has length {len(color_override)} but graph has {len(G.nodes())} nodes."
+                )
+            node_colors = color_override
 
-    return figure
+    # node sizes based on normalized scores
+    node_sizes = [float(norm_scores[node]) for node in G.nodes()]
+    pos = nx.spring_layout(G, iterations=100, k=0.3) 
+
+    edge_trace, node_trace = draw_network_traces(G, pos, node_colors, node_sizes)
+
+    # convert dates for title
+    start_str = start_date.strftime("%m/%Y")
+    end_str = end_date.strftime("%m/%Y")
+
+    # ✅ updated layout: no titlefont / titlefont_size
+    layout = go.Layout(
+        title={"text": f"{start_str}-{end_str}", "font": {"size": 20}},
+        showlegend=False,
+        hovermode="closest",
+        margin=dict(b=20, l=5, r=5, t=40),
+        xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+        yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)
+    )
+
+    # ✅ build the figure (no double nesting)
+    fig = go.Figure(data=[edge_trace, node_trace], layout=layout)
+    return fig
 
 #------------------------------------------------------ NETWORKX TO PLOTLY ------------------------------------------------------ 
 
