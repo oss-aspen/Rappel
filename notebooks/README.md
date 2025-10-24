@@ -30,3 +30,14 @@ engine = salc.create_engine(
     connect_args={'options': '-csearch_path={}'.format(dbschema)}
 )
 ```
+
+## Cleaning up old workspace configs from older versions of Jupyter
+If any of the notebooks freeze, run this after configuring your virtual environment and installing the contents of the requirements.tx file. 
+```bash
+# where Jupyter stores workspaces depends on platform; show paths first
+jupyter --paths
+
+# common locations:
+rm -f ~/.jupyter/lab/workspaces/*.jupyterlab-workspace 2>/dev/null || true
+rm -f ~/Library/Jupyter/lab/workspaces/*.jupyterlab-workspace 2>/dev/null || true
+```
