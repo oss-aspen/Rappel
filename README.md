@@ -3,6 +3,8 @@ Project Aspen (Sandiego)
 
 Project Aspen will glean information from open source-ecosystem data sets that can help drive community- and business-oriented decision making. Using data-analysis tools built by OSPO, as well as community metric tools from Project CHAOSS, Sandiego will enable contributors and participants to ask questions and make data-informed decisions about open source projects and communities.
 
+[Looking to Setup and Go? Click Here!](./settingup.md)
+
 Project Discussion
 ------------
 

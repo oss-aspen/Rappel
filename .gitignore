@@ -2,6 +2,13 @@
 __pycache__/
 *.py[cod]
 
+# data config
+config.json
+**/config.json
+
+# Python venv
+.venv*/**
+
 # C extensions
 *.so
 
